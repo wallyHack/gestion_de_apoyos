@@ -111,6 +111,89 @@ class Persona(models.Model):
     class Meta:
         """ nombre en plural(Muchos) del modelo"""
         verbose_name_plural = "Personas"
+        
+class Departamento(models.Model):
+    """ modelo departamento """
+    nombre = models.CharField(max_length=100)
+    numero_de_empleados = models.IntegerField(
+        blank = True,
+        null = True
+    )    
+    
+    def __str__(self):
+        """ descripción del modelo departamento"""
+        return '{}'.format(self.nombre)
+    
+    def save(self):
+        """ el nombre del departamento lo guardamos en mayúsculas"""
+        self.nombre = self.nombre.upper()
+        super(Departamento, self).save()
+             
+class EncargadoRuta(models.Model):
+    """ modelo para el encargado de ruta"""
+    nombres = models.CharField(
+        max_length=100
+    )
+
+    ap_paterno = models.CharField(
+        max_length=100
+    )
+
+    ap_materno = models.CharField(
+        max_length=100
+    )
+
+    # choices
+    HOMBRE = 'HOMBRE'
+    MUJER = 'MUJER'
+    TIPO_DE_SEXO = [
+        (HOMBRE, 'HOMBRE'),
+        (MUJER, 'MUJER')
+    ]
+
+    sexo = models.CharField(
+        max_length = 10,
+        choices = TIPO_DE_SEXO,
+        default = HOMBRE
+    )
+
+    telefono = models.BigIntegerField(
+        blank = True,
+        null=True
+    )
+
+    domicilio = models.TextField(
+        max_length=400,
+        blank = True
+    )
+
+    email = models.EmailField(
+        null = True,
+        blank = True
+    )
+
+    # llaves foráneas
+    # un encargado de ruta administra/controla una o muchas localidades
+    comunidades = models.ManyToManyField(Localidad)
+    # un encargado de ruta dirige un departamento
+    departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE);
+
+    def __str__(self):
+        """ Descripción del modelo encargado de ruta """
+        return '{} {} {}'.format(self.nombres, self.ap_paterno, self.ap_materno)
+
+    def save(self):
+        """ el nombre del encargado de ruta lo guardamos en mayúsculas"""
+        self.nombres = self.nombres.upper()
+        # si la cadena esta llena, convertimos el contenido a mayúsculas
+        if self.ap_paterno or self.ap_materno:
+            self.ap_paterno = self.ap_paterno.upper()
+            self.ap_materno = self.ap_materno.upper()
+        super(EncargadoRuta, self).save()
+
+    class Meta:
+        """ nombre en plural(Muchos) del modelo"""
+        verbose_name_plural = "Encargados de Ruta"
 
 class Apoyos(models.Model):
     """ modelo de apoyos"""
@@ -158,9 +241,8 @@ class Apoyos(models.Model):
     # un apoyo es entregado a una persona
     persona = models.ForeignKey(Persona, on_delete=models.CASCADE)
     # un apoyo es entregado por un encargado
-    # encargado = models.ForeignKey(EncargadoRuta, on_delete=models.CASCADE)
-
-    persona_que_entrego = models.CharField(max_length=200, blank=True, null=True)
+    encargado_de_ruta = models.ForeignKey(EncargadoRuta, on_delete=models.CASCADE)
+    #persona_que_entrego = models.CharField(max_length=200, blank=True, null=True)
 
     def __str__(self):
         """ Descripción del modelo apoyo """
@@ -169,68 +251,3 @@ class Apoyos(models.Model):
     class Meta:
         """ nombre en plural(Muchos) del modelo"""
         verbose_name_plural = "Apoyos"
-
-class EncargadoRuta(models.Model):
-    """ modelo para el encargado de ruta"""
-    nombres = models.CharField(
-        max_length=100
-    )
-
-    ap_paterno = models.CharField(
-        max_length=100
-    )
-
-    ap_materno = models.CharField(
-        max_length=100
-    )
-
-    # choices
-    HOMBRE = 'HOMBRE'
-    MUJER = 'MUJER'
-    TIPO_DE_SEXO = [
-        (HOMBRE, 'HOMBRE'),
-        (MUJER, 'MUJER')
-    ]
-
-    sexo = models.CharField(
-        max_length = 10,
-        choices = TIPO_DE_SEXO,
-        default = HOMBRE
-    )
-
-    telefono = models.BigIntegerField(
-        blank = True,
-        null=True
-    )
-
-    domicilio = models.TextField(
-        max_length=400,
-        blank = True
-    )
-
-    email = models.EmailField(
-        null = True,
-        blank = True
-    )
-
-    # llaves foráneas
-    # un encargado de ruta administra/controla una o muchas localidades
-    comunidades = models.ManyToManyField(Localidad)
-
-    def __str__(self):
-        """ Descripción del modelo encargado de ruta """
-        return '{} {}'.format(self.nombres, self.ap_paterno)
-
-    def save(self):
-        """ el nombre del encargado de ruta lo guardamos en mayúsculas"""
-        self.nombres = self.nombres.upper()
-        # si la cadena esta llena, convertimos el contenido a mayúsculas
-        if self.ap_paterno or self.ap_materno:
-            self.ap_paterno = self.ap_paterno.upper()
-            self.ap_materno = self.ap_materno.upper()
-        super(EncargadoRuta, self).save()
-
-    class Meta:
-        """ nombre en plural(Muchos) del modelo"""
-        verbose_name_plural = "Encargados de Ruta"
-
