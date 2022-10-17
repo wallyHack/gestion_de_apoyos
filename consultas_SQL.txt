@@ -1,0 +1,94 @@
+
+-- url de video
+https://www.youtube.com/watch?v=vbOkR5Ox79Y
+
+SQL - py manage.py dbshell
+- consultamos todas las localidades
+SELECT *FROM apoyos_localidad;
+
+- consultamos todas las personas
+SELECT *FROM apoyos_persona;
+
+- consultamos todos los encargados de ruta
+SELECT *FROM apoyos_encargadoruta;
+
+- consultamos todos los apoyos 
+SELECT *FROM apoyos_apoyos;
+
+- consultamos todos los apoyos entregados a personas
+SELECT *FROM apoyos_persona INNER JOIN;
+
+*************************************************************************
+
+SQL - py manage.py shell
+from apoyos.models import Persona, Localidad, EncargadoRuta, Apoyos, Departamento
+
+personas = Persona.objects.all()
+for p in personas:
+    print(p.nombres)
+
+localidades = Localidad.objects.all()
+for loc in localidades:
+    print(loc.nombre)
+
+apoyos = Apoyos.objects.all()
+encargados = EncargadoRuta.objects.all()
+departamentos = Departamento.objects.all()
+
+- mostramos la consulta en SQL
+print(Persona.objects.all().query)
+print(Persona.objects.select_related().all().query)
+print(Apoyos.objects.select_related().all().query)
+
+- consultamos un registro especifico
+Persona.objects.get(nombres='DELIA')
+
+- consultamos todas las personas inactivas
+Persona.objects.filter(estado='INACTIVO')
+
+- iexact: buscará el nombre exacto sin tener en cuenta mayúsculas y minúsculas
+Localidad.objects.filter(nombre__iexact='EL RAYO')
+Persona.objects.filter(nombres__iexact="AMALIA")
+
+- icontains: Hará una query Where de tipo LIKE
+Persona.objects.filter(nombres__contains="AMALIA")
+
+- consultamos el total de localidades
+from django.db.models import Count, Avg, Max, Min, Sum
+Localidad.objects.all().aggregate(Count('id'))
+
+- consultamos el total de personas
+Persona.objects.all().aggregate(Count('id'))
+
+-- consultas INNER JOIN 
+
+-- select_related() SOLO ES PARA RELACIÓN DE LLAVE FORANEA
+
+- consultamos todas las personas que viven en una localidad(AGUA GORDA)
+personas = Persona.objects.all().select_related('localidad').filter(localidad=1)
+for p in personas():
+    print(p.nombres, p.ap_paterno, p.localidad.id, p.localidad.name, p.localidad.seccion)
+
+-- prefetch_related SOLO ES PARA RELACIÓN DE MUCHOS A MUCHOS
+
+- consultamos todas las comunidades que controla un encargado de ruta
+from apoyos.models import EncargadoRuta, Localidad
+encargado = EncargadoRuta.objects.prefetch_related('comunidades')
+for e in encargado:
+    print(e.nombres, e.comunidades.all())
+
+https://www.youtube.com/watch?v=mO-pfdJpnBA
+- example
+employees = Employee.object.all().select_related('Department')
+for employee in employees:
+	print(employee.name, employee.department.name)
+
+- consultar todos los apoyos obtenidos por una persona(CANUTO HERNANDEZ)
+Apoyos.objects.all().select_related().filter(persona=13)
+
+- consultar todos los apoyos obtenidos por(AMALIA CONTRERAS)
+Apoyos.objects.all().select_related().filter(persona=5)
+Apoyos.objects.().select_related().filter(persona=9)
+
+- consultar todas las localidades que controla un encargado de ruta
+EncargadoRuta.objects.all().select_related('Localidad')

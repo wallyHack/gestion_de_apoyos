@@ -1,7 +1,8 @@
+
 from django.contrib import admin
 
 # Register your models here.
-from .models import Apoyos, Departamento, EncargadoRuta, Localidad, Persona
+from .models import Apoyos, Departamento, EncargadoRuta, Localidad, Persona, Puesto, Empleado
 
 
 class LocalidadAdmin(admin.ModelAdmin):
@@ -43,9 +44,24 @@ class PersonaAdmin(admin.ModelAdmin):
     list_filter = ['tipo', 'estado', 'localidad']
     search_fields = ['id', 'nombres', 'ap_paterno']
     list_per_page = 12
+    
+class PuestoAdmin(admin.ModelAdmin):
+    """ modelo admin de puesto"""
+    ordering = ['id']
+    list_display = ('id', 'nombre')
+    search_fields = ['nombre']
+    list_per_page = 12
+    
+class EmpleadoAdmin(admin.ModelAdmin):
+    """ modelo admin de empleado"""
+    ordering = ['id']
+    list_display = ('id', 'nombre', 'ap_paterno', 'ap_materno', 'sexo', 'departamento', 'puesto', 'status', 'telefono')
+    list_filter = ('departamento', 'puesto', 'status', 'sexo')
 
 admin.site.register(Localidad, LocalidadAdmin)
 admin.site.register(Departamento, DepartamentoAdmin)
 admin.site.register(Apoyos, ApoyosAdmin)
 admin.site.register(EncargadoRuta, EncargadoRutaAdmin)
 admin.site.register(Persona, PersonaAdmin)
+admin.site.register(Puesto, PuestoAdmin)
+admin.site.register(Empleado, EmpleadoAdmin)

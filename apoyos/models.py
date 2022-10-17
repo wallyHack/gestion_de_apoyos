@@ -1,4 +1,5 @@
 
+from unittest.util import _MAX_LENGTH
 from django.db import models
 
 # Create your models here.
@@ -251,3 +252,95 @@ class Apoyos(models.Model):
     class Meta:
         """ nombre en plural(Muchos) del modelo"""
         verbose_name_plural = "Apoyos"
+        
+class Puesto(models.Model):
+    """ modelo de Puesto de trabajo"""
+    nombre = models.CharField(max_length=200)
+    
+    def __str__(self):
+        """ descripcion del puesto"""
+        return '{}'.format(self.nombre)
+    
+    def save(self):
+       """ el nombre del puesto de trabajo lo guardamos en mayúsculas"""
+       self.nombre = self.nombre.upper()
+       super(Puesto, self).save()
+       
+    class Meta:
+        """ nombre en plural(Muchos) del modelo"""
+        verbose_name_plural = "Puestos"
+        
+class Empleado(models.Model):
+    """ modelo empleado"""
+    nombre = models.CharField(max_length=100)
+    ap_paterno = models.CharField(
+        max_length = 100,
+        blank = True,
+        null =  True
+    )
+    
+    ap_materno = models.CharField(
+        max_length = 100,
+        blank = True,
+        null =  True
+    )
+    
+    domicilio = models.TextField(
+        max_length = 250,
+        blank = True,
+        null = True
+    )
+    
+    telefono = models.BigIntegerField(
+        blank = True,
+        null = True
+    )
+    
+    M = 'MASCULINO'
+    F = 'FEMENINO'
+    SEXO = [
+        ( M, 'MASCULINO'),
+        (F, 'FEMENINO')
+    ]
+    sexo = models.CharField(
+        max_length = 15,
+        choices = SEXO,
+        default = M
+    )
+    
+    ACT = 'ACTIVO'
+    INA = 'INACTIVO'
+    ESTADO = [
+        (ACT, 'ACTIVO'),
+        (INA, 'INACTIVO')
+    ]
+
+    status = models.CharField(
+        max_length = 10,
+        choices = ESTADO,
+        default = ACT
+    )
+    
+    #relaciones
+    # un empleado trabaja en un departamento
+    departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE)
+    # un empleado tiene asignado un puesto
+    puesto = models.ForeignKey(Puesto, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        """ descripción de empleado"""
+        return '{} {} {}'.format(self.nombre, self.ap_paterno, self.ap_materno)
+    
+    def save(self):
+        """ el nombre del empleado lo guardamos en mayúsculas"""
+        self.nombre = self.nombre.upper()
+        # si la cadena esta llena, convertimos el contenido a mayúsculas
+        if self.ap_paterno or self.ap_materno: # si hay contenido en estos campos
+            self.ap_paterno = self.ap_paterno.upper()
+            self.ap_materno = self.ap_materno.upper()
+
+        super(Empleado, self).save()
+        
+    class Meta:
+        """ nombre en plural(Muchos) del modelo"""
+        verbose_name_plural = "Empleados"
