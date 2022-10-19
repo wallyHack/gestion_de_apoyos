@@ -19,7 +19,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # cierre de sesión cuando se cierra el navegador
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -133,6 +132,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/login/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
