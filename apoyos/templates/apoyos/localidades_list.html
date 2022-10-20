@@ -13,7 +13,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                 <div class="dropdown-header">Acciones:</div>
-                    <a class="dropdown-item" href="{% url 'apoyos:persona_new' %}"> <i class="fa fa-calendar-plus"></i>Nueva</a>
+                    <a class="dropdown-item" href="{% url 'apoyos:localidades_new' %}"> <i class="fa fa-calendar-plus"></i>Nueva</a>
                     <!-- <a class="dropdown-item" href="#">Another action</a> -->
                 <div class="dropdown-divider"></div>
                 <!-- <a class="dropdown-item" href="#">Something else here</a> -->
@@ -24,18 +24,14 @@
     <div class="card-body">
        
        {% if not obj %}
-            <div class="alert alert-info">No hay personas registradas</div>           
+            <div class="alert alert-info">No hay localidades</div>           
        {% else %}
 
        <table class="table table-striped table-hover">
            <thead>
                <th>ID</th>
-               <th>NOMBRE</th>
-               <th>APELIDO PATERNO</th>
-               <th>APELLIDO MATERNO</th>
-               <th>TIPO</th>
                <th>LOCALIDAD</th>
-               <th>ESTADO</th>               
+               <th>SECCIÓN</th>          
 
                <th class="all">Acciones</th>
            </thead>
@@ -45,13 +41,8 @@
                {% for item in obj %}
                    <tr>
                        <td>{{ item.id }}</td>
-                       <td>{{ item.nombres }}</td>
-                       <td>{{ item.ap_paterno }}</td>
-                       <td>{{ item.ap_materno }}</td>
-                       <td>{{ item.tipo }}</td>
-                       <td>{{ item.localidad }}</td>                       
-                       <td>{{ item.estado | yesno:"Activo, Inactivo" }}</td>
-
+                       <td>{{ item.nombre}}</td>
+                       <td>{{ item.seccion }}</td>                       
                        <td>
                            <a href="#" class="btn btn-warning btn-circle" role="button"><i class="far fa-edit"></i></a>
                            <a href="#" class="btn btn-danger btn-circle" role="button"><i class="far fa-trash-alt"></i></a>
