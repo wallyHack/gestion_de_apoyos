@@ -21,23 +21,26 @@
                                 <div class="col-8">
                                     <div class="input-group">
                                         <input type="text" name="nombre" id="id_nombre" maxlength="100" 
-                                        class="form-control" placeholder="Nombre.." required> 
+                                        class="form-control" placeholder="Nombre.." required 
+                                        value="{% if obj %} {{ obj.nombre }} {% endif %}">                                        
                                         <!-- {{ form.nombre }} -->
                                     </div>                                    
                                 </div>
 
                                 <div class="col-4">
                                     <div class="input-group">
-                                        <input type="number" name="seccion" id="id_seccion" 
-                                        class="form-control" placeholder="Sección.." required>
+                                        <input type="text" name="seccion" id="id_seccion" 
+                                        class="form-control" placeholder="Sección.." required 
+                                        value="{% if obj %} {{ obj.seccion }} {% endif %}">
                                         <!-- {{ form.seccion }} -->
                                     </div>
                                 </div>   
 
                                 <div class="col-12 my-3">
                                     <div class="input-group">
-                                        <input type="number" name="numero_habitantes" id="id_numero_habitantes" 
-                                        class="form-control" placeholder="Número de habitantes..">
+                                        <input type="text" name="numero_habitantes" id="id_numero_habitantes" 
+                                        class="form-control" placeholder="Número de habitantes.."
+                                        value="{% if obj %} {{ obj.numero_habitantes }} {% endif %}">
                                         <!-- {{ form.numero_habitantes }} -->
                                     </div>
                                 </div>

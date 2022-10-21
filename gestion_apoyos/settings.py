@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bases.apps.BasesConfig',
-    'apoyos.apps.ApoyosConfig'
+    'apoyos.apps.ApoyosConfig',
 ]
 
 X_FRAME_OPTIONS ='SAMEORIGIN'

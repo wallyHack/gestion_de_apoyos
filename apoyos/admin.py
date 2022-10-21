@@ -63,7 +63,7 @@ class EmpleadoAdmin(admin.ModelAdmin):
     """ modelo admin de empleado"""
     ordering = ['id']
     list_display = ('id', 'nombre', 'ap_paterno', 'ap_materno',
-                    'genero', 'departamento', 'puesto', 'status', 'telefono')
+                    'genero', 'departamento', 'puesto', 'status', 'telefono', 'sueldo')
     list_filter = ('departamento', 'puesto', 'status', 'genero')
 
 

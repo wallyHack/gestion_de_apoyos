@@ -222,6 +222,13 @@ class Empleado(models.Model):
     departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE)
     # un empleado tiene asignado un puesto
     puesto = models.ForeignKey(Puesto, on_delete=models.CASCADE)
+    
+    sueldo = models.DecimalField(
+        max_digits=12,
+        decimal_places=2,
+        blank=True,
+        null=True
+    )
 
     def __str__(self):
         """ descripción de empleado"""

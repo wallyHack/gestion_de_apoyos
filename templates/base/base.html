@@ -20,6 +20,9 @@
     <!--  CSS de bootstrap-->
     <link href="{% static 'base/css/sb-admin-2.min.css' %}" rel="stylesheet">
 
+    <!-- CSS de Bootrtrap-Table -->
+    <link rel="stylesheet" href="{% static 'base/css/bootstrap-table.min.css' %}">
+    <!-- <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.1/dist/bootstrap-table.min.css"> -->
     <!-- Activamos el datatable -->
     <link href="{% static 'base/vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
 
@@ -73,8 +76,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">ADMIN. RECURSOS:</h6>
-                        <a class="collapse-item" href="{% url 'apoyos:persona_list' %}">Personas</a>
-                        <a class="collapse-item" href="{% url 'apoyos:localidades_list' %}">Localidadaes</a>
+                        <a class="collapse-item" href="#">Personas</a>
+                        <a class="collapse-item" href="{% url 'apoyos:localidades_list' %}">Localidades</a>
                         <a class="collapse-item" href="#">Encargados Ruta</a>
                         <a class="collapse-item" href="#">Apoyos</a>
                     </div>
@@ -427,6 +430,10 @@
     <!-- Bootstrap core JavaScript-->
     <script src="{% static 'base/vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'base/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- JS de Bootstrap-Table -->
+    <script src="{% static 'base/js/bootstrap-table.min.js' %}""></script>
+    <!-- <script src="https://unpkg.com/bootstrap-table@1.21.1/dist/bootstrap-table.min.js"></script> -->
 
     <!-- Core plugin JavaScript-->
     <script src="{% static 'base/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
