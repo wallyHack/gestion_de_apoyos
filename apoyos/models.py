@@ -1,6 +1,6 @@
 
+from email.policy import default
 from django.db import models
-
 # Create your models here.
 class Localidad(models.Model):
     """ modelo localidad"""
@@ -25,6 +25,7 @@ class Localidad(models.Model):
     tipo = models.CharField(
         max_length=12,
         choices=TIPO_DE_LOCALIDAD,
+        default = RURAL
     )
 
     numero_habitantes = models.IntegerField(

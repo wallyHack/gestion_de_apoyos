@@ -8,7 +8,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.decorators import login_required, permission_required
 
 from bases.views import HomeSinPrivilegios 
-from .forms import LocalidadesForm
+from .forms import LocalidadesForm, PersonasForm
 from.models import Localidad, Puesto, Persona, EncargadoRuta, Apoyos, Empleado, Departamento
 
 # Create your views here.
@@ -37,11 +37,45 @@ class LocalidadEdit(LoginRequiredMixin, generic.UpdateView):
     success_url = reverse_lazy("apoyos:localidades_list")
     login_url = "bases:login"
     
-class LocalidadDelete(SuccessMessageMixin, generic.edit.DeleteView):
+class LocalidadDelete(LoginRequiredMixin, generic.DeleteView):
     """ vista basada en clase para eliminar una localidad"""
     model = Localidad
     template_name = "apoyos/localidades_del.html"
     context_object_name = "obj"
     success_url = reverse_lazy("apoyos:localidades_list")
+    
+#*********************************************************************************
+
+class PersonaView(LoginRequiredMixin, generic.ListView):
+    """ vista basada en clase para listar personas"""
+    model = Persona
+    template_name = "apoyos/personas_list.html"
+    context_object_name = "obj"
+    login_url = "bases:login"
+    
+class PersonaNew(LoginRequiredMixin, generic.CreateView):
+    """ vista basada en clase para agregar personas"""
+    model = Persona
+    template_name = "apoyos/personas_form.html"
+    context_object_name = "obj"
+    form_class = PersonasForm
+    success_url = reverse_lazy("apoyos:personas_list")
+    login_url = "bases:login"
+    
+class PersonaEdit(LoginRequiredMixin, generic.UpdateView):
+    """ vista basada en clase para actualizar personas"""
+    model = Persona
+    template_name = "apoyos/personas_form.html"
+    context_object_name = "obj"
+    form_class = PersonasForm
+    success_url = reverse_lazy("apoyos:personas_list")
+    login_url = "bases:login"
+    
+class PersonaDelete(LoginRequiredMixin, generic.DeleteView):
+    """ vista basada en clase para eliminar personas"""
+    model = Persona
+    template_name = "apoyos/personas_del.html"
+    context_object_name = "obj"
+    success_url = reverse_lazy("apoyos:personas_list")
     
 #*********************************************************************************

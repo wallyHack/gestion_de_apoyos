@@ -1,0 +1,105 @@
+{% extends 'base/base.html' %}
+
+{% block page_content %}
+   <form method="POST" class="form-inline">
+       {% csrf_token %}
+        <div class="col-xl-6 col-md-6 mb-6">
+            
+            {% if obj %}      
+                <div class="card border-left-warning shadow h-100 py-2">
+            {% else %}
+                <div class="card border-left-succes shadow h-100 py-2">
+            {% endif %}
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                {% if obj %} Editar {% else %} Nueva {% endif %} Persona 
+                            </div>                        
+                            <div class="dropdown-divider"></div>                            
+
+                            <!-- primer fila -->
+                            <div class="row mt-3">                                
+                                <!-- campo 1 -->
+                                <div class="col-6">
+                                    <div class="col-6">{{ form.nombres.label }}</div>  
+                                    <div class="col-12">{{ form.nombres }}</div>
+                                </div>                               
+
+                                <!-- campo 2 -->
+                                <div class="col-6">
+                                    <div class="col-6">{{ form.ap_paterno.label }}</div>                   
+                                    <div class="col-12">{{ form.ap_paterno }}</div>
+                                </div>
+                            </div>
+
+                            <!-- segunda fila -->
+                            <div class="row my-3">                                
+                                <!-- campo 1 -->
+                                <div class="col-6">
+                                    <div class="col-6">{{ form.ap_materno.label }}</div>  
+                                    <div class="col-12">{{ form.ap_materno }}</div>
+                                </div>                               
+
+                                <!-- campo 2 -->
+                                <div class="col-6">
+                                    <div class="col-6">{{ form.tipo.label }}</div>                   
+                                    <div class="col-12">{{ form.tipo }}</div>
+                                </div>
+                            </div>
+
+                            <!-- tercera fila -->
+                            <div class="row my-3">                                
+                                <!-- campo 1 -->
+                                <div class="col-6">
+                                    <div class="col-6">{{ form.genero.label }}</div>  
+                                    <div class="col-12">{{ form.genero }}</div>
+                                </div>                               
+
+                                <!-- campo 2 -->
+                                <div class="col-6">
+                                    <div class="col-6">{{ form.domicilio.label }}</div>                   
+                                    <div class="col-12">{{ form.domicilio }}</div>
+                                </div>
+                            </div>
+
+                            <!-- cuarta fila -->
+                            <div class="row my-3">                                
+                                <!-- campo 1 -->
+                                <div class="col-6">
+                                    <div class="col-6">{{ form.estado.label }}</div>  
+                                    <div class="col-12">{{ form.estado }}</div>
+                                </div>                               
+
+                                <!-- campo 2 -->
+                                <div class="col-6">
+                                    <div class="col-6">{{ form.telefono.label }}</div>                   
+                                    <div class="col-12">{{ form.telefono }}</div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <div class="col">{{ form.localidad.label }}</div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12">{{ form.localidad }}</div>
+                            </div>
+                            
+                            <!-- {{ form.as_p }} -->
+                            <div class="dropdown-divider"></div>
+                            <div class="row mt-3">
+                                 <div class="col">
+                                    <button type="submit" class="btn btn-danger"><span class="fa fa-save"></span>Guardar</button>
+                                    <a href="{% url 'apoyos:personas_list' %}" class="btn btn-success"><span class="fa fa-undo">Cancelar</span></a>
+                                </div>
+                            </div>                                
+                            
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+   </form>  
+{% endblock page_content %}    
+{% block js_page %} {% endblock js_page %}
+    
