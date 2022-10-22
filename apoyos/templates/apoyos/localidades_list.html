@@ -6,7 +6,7 @@
  <div class="card shadow mb-4">
     <!-- Card Header - Dropdown -->
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-        <h6 class="m-0 font-weight-bold text-primary">Listado de Personas</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Listado de Localidades - Pinos, Zacatecas</h6>
         <div class="dropdown no-arrow">
             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -43,7 +43,8 @@
             <thead>
                 <th data-field="id" data-sortable="true">Id</th>
                 <th data-field="nombre" data-sortable="true">Nombres</th>
-                <th data-field="seccion" data-sortable="true">Sección</th>                                  
+                <th data-field="seccion" data-sortable="true">Sección</th>
+                <th data-field="tipo" data-sortable="true">Tipo</th>               
                 <th class="all">Acciones</th>
             </thead>
  
@@ -53,7 +54,8 @@
                         <td>{{ item.id }}</td>
                         <td>{{ item.nombre }}</td>
                         <td>{{ item.seccion }}</td> 
-                                                                                                                           
+                        <td>{{ item.tipo }}</td>            
+                        
                         <td>                            
                             <a href="{% url 'apoyos:localidades_edit' item.id %}" class="btn btn-warning btn-circle"> <i class="far fa-edit"></i> </a>                           
                             <a href="{% url 'apoyos:localidades_delete' item.id %}" class="btn btn-danger btn-circle"> <i class="fas fa-trash-alt"></i> </a>

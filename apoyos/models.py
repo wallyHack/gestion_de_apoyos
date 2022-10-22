@@ -8,8 +8,23 @@ class Localidad(models.Model):
         max_length=200
     )
 
-    seccion = models.IntegerField(
-        null=True, blank=True
+    seccion = models.CharField(
+        max_length=100,
+        null=True,
+        blank=True
+    )
+    
+    # choices - tipo de localidad
+    RURAL = 'RURAL'
+    URBANO = 'URBANO(A)'
+    TIPO_DE_LOCALIDAD = [
+        (RURAL, 'RURAL'),
+        (URBANO, 'URBANO(A)')
+    ]
+
+    tipo = models.CharField(
+        max_length=12,
+        choices=TIPO_DE_LOCALIDAD,
     )
 
     numero_habitantes = models.IntegerField(

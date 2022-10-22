@@ -7,8 +7,8 @@ from .models import Apoyos, Departamento, EncargadoRuta, Localidad, Persona, Pue
 class LocalidadAdmin(admin.ModelAdmin):
     """ modelelo administrativo de Localidad"""
     ordering = ['id']
-    list_display = ('id', 'nombre', 'seccion', 'numero_habitantes')
-    list_filter = ['nombre', 'seccion']
+    list_display = ('id', 'nombre', 'seccion', 'tipo')
+    list_filter = ['tipo', 'seccion']
     search_fields = ['id', 'nombre']
     list_per_page = 10
     

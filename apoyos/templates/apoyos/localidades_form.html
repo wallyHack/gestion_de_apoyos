@@ -16,33 +16,27 @@
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 {% if obj %} Editar {% else %} Nueva {% endif %} Localidad 
                             </div>                        
-                            <div class="dropdown-divider"> </div>
-                            <div class="row">                               
-                                <div class="col-8">
-                                    <div class="input-group">
-                                        <input type="text" name="nombre" id="id_nombre" maxlength="100" 
-                                        class="form-control" placeholder="Nombre.." required 
-                                        value="{% if obj %} {{ obj.nombre }} {% endif %}">                                        
-                                        <!-- {{ form.nombre }} -->
-                                    </div>                                    
+                            <div class="dropdown-divider"></div>
+                             <!-- primer fila -->
+                            <div class="row">                                
+                                <div class="col-md-10">
+                                    <div class="col-4"> {{ form.nombre.label }}</div>                   
+                                    <div class="col-12 my-2">{{ form.nombre }}</div>
                                 </div>
+                            </div>
 
-                                <div class="col-4">
-                                    <div class="input-group">
-                                        <input type="text" name="seccion" id="id_seccion" 
-                                        class="form-control" placeholder="Sección.." required 
-                                        value="{% if obj %} {{ obj.seccion }} {% endif %}">
-                                        <!-- {{ form.seccion }} -->
-                                    </div>
-                                </div>   
+                            <!-- segunda fila -->
+                            <div class="row">                                
+                                <!-- campo 1 -->
+                                <div class="col-6">
+                                    <div class="col-6">{{ form.seccion.label }}</div>  
+                                    <div class="col-12">{{ form.seccion }}</div>
+                                </div>                               
 
-                                <div class="col-12 my-3">
-                                    <div class="input-group">
-                                        <input type="text" name="numero_habitantes" id="id_numero_habitantes" 
-                                        class="form-control" placeholder="Número de habitantes.."
-                                        value="{% if obj %} {{ obj.numero_habitantes }} {% endif %}">
-                                        <!-- {{ form.numero_habitantes }} -->
-                                    </div>
+                                <!-- campo 2 -->
+                                <div class="col-6">
+                                    <div class="col-4">{{ form.tipo.label }}</div>                   
+                                    <div class="col-12">{{ form.tipo }}</div>
                                 </div>
                             </div>
 

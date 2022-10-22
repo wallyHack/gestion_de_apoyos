@@ -8,7 +8,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.decorators import login_required, permission_required
 
 from bases.views import HomeSinPrivilegios 
-from .forms import LocalidadesForm, PersonaForm
+from .forms import LocalidadesForm
 from.models import Localidad, Puesto, Persona, EncargadoRuta, Apoyos, Empleado, Departamento
 
 # Create your views here.
