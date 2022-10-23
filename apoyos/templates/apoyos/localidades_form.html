@@ -8,8 +8,9 @@
             {% if obj %}      
                 <div class="card border-left-warning shadow h-100 py-2">
             {% else %}
-                <div class="card border-left-succes shadow h-100 py-2">
+                <div class="card border-left-success shadow h-100 py-2">
             {% endif %}
+            
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
@@ -17,25 +18,26 @@
                                 {% if obj %} Editar {% else %} Nueva {% endif %} Localidad 
                             </div>                        
                             <div class="dropdown-divider"></div>
-                             <!-- primer fila -->
-                            <div class="row">                                
-                                <div class="col-md-10">
-                                    <div class="col-4"> {{ form.nombre.label }}</div>                   
-                                    <div class="col-12 my-2">{{ form.nombre }}</div>
+                            
+                            <!-- primer fila -->
+                            <div class="row mt-3">                                
+                                <div class="col-10 ml-2">
+                                    <div class="col"> {{ form.nombre.label }}</div>                   
+                                    <div class="input-group">{{ form.nombre }}</div>
                                 </div>
                             </div>
 
                             <!-- segunda fila -->
-                            <div class="row">                                
+                            <div class="row my-2">                                
                                 <!-- campo 1 -->
                                 <div class="col-6">
-                                    <div class="col-6">{{ form.seccion.label }}</div>  
+                                    <div class="col-6 mt-1 ml-2">{{ form.seccion.label }}</div>  
                                     <div class="col-12">{{ form.seccion }}</div>
                                 </div>                               
 
                                 <!-- campo 2 -->
                                 <div class="col-6">
-                                    <div class="col-4">{{ form.tipo.label }}</div>                   
+                                    <div class="col-4 mt-1 ml-2">{{ form.tipo.label }}</div>                   
                                     <div class="col-12">{{ form.tipo }}</div>
                                 </div>
                             </div>

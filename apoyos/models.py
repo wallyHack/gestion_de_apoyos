@@ -297,15 +297,15 @@ class EncargadoRuta(models.Model):
         choices=TIPO_DE_SEXO,
         default=HOMBRE
     )
-
+    
     telefono = models.BigIntegerField(
-        blank=True,
-        null=True
+        null=True,
+        blank=True
     )
 
-    domicilio = models.TextField(
-        max_length=400,
-        blank=True
+    domicilio = models.CharField(
+        max_length=150,
+        blank=True,        
     )
 
     email = models.EmailField(

@@ -1,7 +1,8 @@
 
 from django.urls import path
-from .views import LocalidadView, LocalidadNew, LocalidadEdit, LocalidadDelete, PersonaView, \
-    PersonaNew, PersonaEdit, PersonaDelete
+from .views import LocalidadView, LocalidadNew, LocalidadEdit, LocalidadDelete, \
+    PersonaView, PersonaNew, PersonaEdit, PersonaDelete, \
+    EncargadoRutaView, EncargadoRutaNew, EncargadoRutaEdit, EncargadoRutaDelete
 
 urlpatterns = [
     # crud localidades
@@ -15,4 +16,10 @@ urlpatterns = [
     path('personas/new', PersonaNew.as_view(), name='personas_new'),
     path('personas/edit/<int:pk>', PersonaEdit.as_view(), name='personas_edit'),
     path('personas/delete/<int:pk>', PersonaDelete.as_view(), name="personas_delete"),
+    
+    # crud de encargados de ruta
+    path('encargados-ruta/', EncargadoRutaView.as_view(), name='encargados_list'),
+    path('encargados-ruta/new', EncargadoRutaNew.as_view(), name='encargados_new'),
+    path('encargados-ruta/edit/<int:pk>', EncargadoRutaEdit.as_view(), name='encargados_edit'),
+    path('encargados-ruta/delete/<int:pk>', EncargadoRutaDelete.as_view(), name="encargados_delete"),
 ]

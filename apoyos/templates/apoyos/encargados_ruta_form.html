@@ -10,68 +10,46 @@
             {% else %}
                 <div class="card border-left-success shadow h-100 py-2">
             {% endif %}
-                <div class="card-body">
+                <div class="card-body ">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                {% if obj %} Editar {% else %} Nueva {% endif %} Persona 
+                                {% if obj %} Editar {% else %} Nuevo {% endif %} Encargado de Ruta
                             </div>                        
-                            <div class="dropdown-divider"></div>   
-                            
+                            <div class="dropdown-divider"></div>  
+
                             <!-- fila 1 -->
                             <div class="row mb-3">
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     {{ form.nombres.label }}
                                     <div class="input-group">                                        
                                         {{ form.nombres }}
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+
+                                <div class="col-md-6">
                                     {{ form.ap_paterno.label }}
                                     <div class="input-group">
                                         {{ form.ap_paterno }}
                                     </div>
-                                </div>
-                                <div class="col-md-4">
+                                </div>                                
+                            </div>
+
+                             <!-- fila 2 -->
+                             <div class="row mb-3">
+                                <div class="col-md-6">
                                     {{ form.ap_materno.label }}
-                                    <div class="input-group">
+                                    <div class="input-group">                                        
                                         {{ form.ap_materno }}
                                     </div>
                                 </div>
-                            </div>
-
-                            <!-- fila 2 -->
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    {{ form.tipo.label }}
-                                    <div class="input-group">
-                                        {{ form.tipo }}
-                                    </div>
-                                </div>
-                                
-                                <div class="col-md-6">
-                                    {{ form.genero.label }}
-                                    <div class="input-group">
-                                        {{ form.genero }}
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- fila 3 -->
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    {{ form.domicilio.label }}
-                                    <div class="input-group">
-                                        {{ form.domicilio }}
-                                    </div>
-                                </div>
 
                                 <div class="col-md-6">
-                                    {{ form.estado.label }}
+                                    {{ form.sexo.label }}
                                     <div class="input-group">
-                                        {{ form.estado }}
+                                        {{ form.sexo }}
                                     </div>
-                                </div>                                
+                                </div>                               
                             </div>
 
                             <!-- fila 3 -->
@@ -82,20 +60,38 @@
                                         {{ form.telefono }}
                                     </div>
                                 </div>
+
                                 <div class="col-md-6">
-                                    {{ form.localidad.label }}
+                                    {{ form.domicilio.label }}
                                     <div class="input-group">
-                                        {{ form.localidad }}
+                                        {{ form.domicilio }}
+                                    </div>
+                                </div>                                
+                            </div> 
+                            
+                            <!-- fila 4 -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    {{ form.email.label }}
+                                    <div class="input-group">
+                                        {{ form.email }}
                                     </div>
                                 </div>
-                            </div>
-                            
+
+                                <div class="col-md-6">
+                                    {{ form.departamento.label }}
+                                    <div class="input-group">
+                                        {{ form.departamento }}
+                                    </div>
+                                </div>                                
+                            </div>       
+                                                                                            
                             <!-- {{ form.as_p }} -->
                             <div class="dropdown-divider"></div>
                             <div class="row mt-3">
                                  <div class="col">
                                     <button type="submit" class="btn btn-danger"><span class="fa fa-save"></span>Guardar</button>
-                                    <a href="{% url 'apoyos:personas_list' %}" class="btn btn-success"><span class="fa fa-undo">Cancelar</span></a>
+                                    <a href="{% url 'apoyos:encargados_list' %}" class="btn btn-success"><span class="fa fa-undo">Cancelar</span></a>
                                 </div>
                             </div>                                
                             

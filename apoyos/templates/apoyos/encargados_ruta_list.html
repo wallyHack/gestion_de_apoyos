@@ -6,14 +6,14 @@
  <div class="card shadow mb-4">
     <!-- Card Header - Dropdown -->
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-        <h6 class="m-0 font-weight-bold text-primary">Listado de Personas - (Activistas/Activados) </h6>
+        <h6 class="m-0 font-weight-bold text-primary">Listado de Encargados de Ruta </h6>
         <div class="dropdown no-arrow">
             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                 <div class="dropdown-header">Acciones:</div>
-                    <a class="dropdown-item" href="{% url 'apoyos:personas_new' %}"> <i class="fa fa-calendar-plus"></i>Nueva</a>
+                    <a class="dropdown-item" href="{% url 'apoyos:encargados_new' %}"> <i class="fa fa-calendar-plus"></i>Nuevo</a>
                     <!-- <a class="dropdown-item" href="#">Another action</a> -->
                 <div class="dropdown-divider"></div>
                 <!-- <a class="dropdown-item" href="#">Something else here</a> -->
@@ -24,7 +24,7 @@
     <div class="card-body">
        
         {% if not obj %}
-             <div class="alert alert-info">No Hay Personas</div>           
+             <div class="alert alert-info">No Hay Encargados de Ruta</div>           
         {% else %}
  
         <table
@@ -41,44 +41,49 @@
              data-locale="es-MX"
          >
             <thead>
-                <th data-field="id" data-sortable="true">Id</th>
+                <!-- <th data-field="id" data-sortable="true">Id</th> -->
                 <th data-field="nombres" data-sortable="true">Nombres</th>
                 <th data-field="ap_paterno" data-sortable="true">Ap Paterno</th>
-                <th data-field="ap_materno" data-sortable="true">Ap Materno</th>
-                <th data-field="tipo" data-sortable="true">Tipo</th>                
-                <th data-field="localidad" data-sortable="true">Localidad</th>
-                <th data-field="seccion">Sección</th>                           
+                <th data-field="ap_materno" data-sortable="true">Ap Materno</th>                
+                <!-- <th data-field="telefono">Telefono</th>                              -->
+                <th data-field="localidad" data-sortable="true">Departamento</th>
+                            
                 <th class="all">Acciones</th>
             </thead>
  
             <tbody>               
                 {% for item in obj %}
                     <tr>
-                        <td>{{ item.id }}</td>
+                        <!-- <td>{{ item.id }}</td> -->
                         <td>{{ item.nombres }}</td>
-
+                        
                         <!-- si hay apellido paterno lo mostramos -->
                         {% if item.ap_paterno %}
                             <td>{{ item.ap_paterno }}</td>
                         {% else %}
                             <td></td>
-                        {% endif%}                                                    
-                        
+                        {% endif %}
+                                                                           
                         <!-- si hay apellido materno lo mostramos -->
                         {% if item.ap_materno %}
                             <td>{{ item.ap_materno }}</td> 
                         {% else %}
                             <td></td> 
                         {% endif %}    
-
-                        <td>{{ item.tipo }}</td>                                                        
-                        <!-- localidad donde vive -->
-                        <td>{{ item.localidad }}</td>
-                        <td>{{ item.localidad.seccion }}</td>                       
-                        
+                                                                        
+                        <!-- si tiene telefono lo mostramos -->                        
+                        <!-- {% if item.telefono %}
+                            <td>{{ item.telefono }}</td>                        
+                        {% else %}
+                            <td></td> 
+                        {% endif %}    -->
+                                                                                                                                                                                   
+                        <!-- departamento que dirige -->
+                        <td>{{ item.departamento }}</td>
+                                        
                         <td>                            
-                            <a href="{% url 'apoyos:personas_edit' item.id %}" class="btn btn-warning btn-circle"><i class="far fa-edit"></i></a>                           
-                            <a href="{% url 'apoyos:personas_delete' item.id %}" class="btn btn-danger btn-circle"><i class="fas fa-trash-alt"></i> </a>
+                            <a href="{% url 'apoyos:encargados_edit' item.id %}" class="btn btn-warning btn-circle"><i class="far fa-edit"></i></a>                           
+                            <a href="{% url 'apoyos:encargados_delete' item.id %}" class="btn btn-danger btn-circle"><i class="fas fa-trash-alt"></i> </a>
                         </td>
                         
                     </tr>
