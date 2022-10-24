@@ -1,6 +1,6 @@
 
 from django import forms
-from .models import Localidad, Persona, EncargadoRuta, Puesto
+from .models import Departamento, Localidad, Persona, EncargadoRuta, Puesto
 
 class LocalidadesForm(forms.ModelForm):
     """ form para Localidades"""
@@ -70,6 +70,7 @@ class EncargadosRutaForm(forms.ModelForm):
         
 class PuestosForm(forms.ModelForm):
     """ form para puestos"""
+    
     class Meta:
         model = Puesto
         # campos que muestra el form
@@ -78,6 +79,27 @@ class PuestosForm(forms.ModelForm):
             'nombre': 'Nombre'
         }
         
+    def __init__(self, *args, **kwargs):
+        """ método que itera los campos del form y agrega la clase form-control de bootstrap a los input"""
+        super().__init__(*args, **kwargs)
+        for field in iter(self.fields):
+            self.fields[field].widget.attrs.update({
+                'class': 'form-control'
+            })
+            
+class DepartamentoForm(forms.ModelForm):
+    """ form para departamentos"""
+
+    class Meta:
+        """Meta definition for MODELNAMEform."""
+        model = Departamento        
+        # campos que muestra el form
+        fields = ('nombre', 'numero_de_empleados')
+        labels = {
+            'nombre': 'Nombre',
+            'numero_de_empleados': 'Número de empleados'
+        }
+    
     def __init__(self, *args, **kwargs):
         """ método que itera los campos del form y agrega la clase form-control de bootstrap a los input"""
         super().__init__(*args, **kwargs)

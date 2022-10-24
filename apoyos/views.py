@@ -8,7 +8,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.decorators import login_required, permission_required
 
 from bases.views import HomeSinPrivilegios 
-from .forms import LocalidadesForm, PersonasForm, EncargadosRutaForm, PuestosForm
+from .forms import DepartamentoForm, LocalidadesForm, PersonasForm, EncargadosRutaForm, PuestosForm
 from.models import Localidad, Puesto, Persona, EncargadoRuta, Apoyos, Empleado, Departamento
 
 # Create your views here.
@@ -145,3 +145,37 @@ class PuestoDelete(LoginRequiredMixin, generic.DeleteView):
     template_name = "apoyos/puestos_del.html"
     context_object_name = "obj"
     success_url = reverse_lazy("apoyos:puestos_list")
+    
+#*********************************************************************************
+
+class DepartamentoView(LoginRequiredMixin, generic.ListView):
+    """ vista basada en clase para listar los departamentos"""
+    model = Departamento
+    template_name = "apoyos/departamentos_list.html"
+    context_object_name = "obj"
+    login_url = "bases:login"
+    
+class DepartamentoNew(LoginRequiredMixin, generic.CreateView):
+    """ vista basada en clase para llenar form de departamento"""
+    model = Departamento
+    template_name = "apoyos/departamentos_form.html"
+    context_object_name = "obj"
+    form_class = DepartamentoForm
+    success_url = reverse_lazy("apoyos:departamentos_list")
+    login_url = "bases:login"
+    
+class DepartamentoEdit(LoginRequiredMixin, generic.UpdateView):
+    """ vista basada en clase para editar form de departamento"""
+    model = Departamento
+    template_name = "apoyos/departamentos_form.html"
+    context_object_name = "obj"
+    form_class = DepartamentoForm
+    success_url = reverse_lazy("apoyos:departamentos_list")
+    login_url = "bases:login"
+
+class DepartamentoDelete(LoginRequiredMixin, generic.DeleteView):
+    """ vista basada en clase para eliminar un departamento"""
+    model = Departamento
+    template_name = "apoyos/departamentos_del.html"
+    context_object_name = "obj"
+    success_url = reverse_lazy("apoyos:departamentos_list")
