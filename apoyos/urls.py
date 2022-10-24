@@ -2,14 +2,15 @@
 from django.urls import path
 from .views import LocalidadView, LocalidadNew, LocalidadEdit, LocalidadDelete, \
     PersonaView, PersonaNew, PersonaEdit, PersonaDelete, \
-    EncargadoRutaView, EncargadoRutaNew, EncargadoRutaEdit, EncargadoRutaDelete
+    EncargadoRutaView, EncargadoRutaNew, EncargadoRutaEdit, EncargadoRutaDelete, \
+    PuestoView, PuestoNew, PuestoEdit, PuestoDelete
 
 urlpatterns = [
     # crud localidades
     path('localidades/', LocalidadView.as_view(), name='localidades_list'),
     path('localidades/new', LocalidadNew.as_view(), name='localidades_new'),
     path('localidades/edit/<int:pk>', LocalidadEdit.as_view(), name='localidades_edit'),
-    path('categorias/delete/<int:pk>', LocalidadDelete.as_view(), name='localidades_delete'),
+    path('localidades/delete/<int:pk>', LocalidadDelete.as_view(), name='localidades_delete'),
     
     # crud personas
     path('personas/', PersonaView.as_view(), name='personas_list'),
@@ -22,4 +23,10 @@ urlpatterns = [
     path('encargados-ruta/new', EncargadoRutaNew.as_view(), name='encargados_new'),
     path('encargados-ruta/edit/<int:pk>', EncargadoRutaEdit.as_view(), name='encargados_edit'),
     path('encargados-ruta/delete/<int:pk>', EncargadoRutaDelete.as_view(), name="encargados_delete"),
+    
+    # crud de puestos
+    path('puestos/', PuestoView.as_view(), name='puestos_list'),
+    path('puestos/new', PuestoNew.as_view(), name='puestos_new'),
+    path('puestos/edit/<int:pk>', PuestoEdit.as_view(), name='puestos_edit'),
+    path('puestos/delete/<int:pk>', PuestoDelete.as_view(), name='puestos_delete'),
 ]
