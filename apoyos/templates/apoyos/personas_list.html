@@ -44,8 +44,8 @@
                 <th data-field="id" data-sortable="true">Id</th>
                 <th data-field="nombres" data-sortable="true">Nombres</th>
                 <th data-field="ap_paterno" data-sortable="true">Ap Paterno</th>
-                <th data-field="ap_materno" data-sortable="true">Ap Materno</th>
-                <th data-field="tipo" data-sortable="true">Tipo</th>                
+                <!-- <th data-field="ap_materno" data-sortable="true">Ap Materno</th> -->
+                <!-- <th data-field="tipo" data-sortable="true">Tipo</th>                 -->
                 <th data-field="localidad" data-sortable="true">Localidad</th>
                 <th data-field="seccion">Sección</th>                           
                 <th class="all">Acciones</th>
@@ -65,13 +65,13 @@
                         {% endif%}                                                    
                         
                         <!-- si hay apellido materno lo mostramos -->
-                        {% if item.ap_materno %}
+                        <!-- {% if item.ap_materno %}
                             <td>{{ item.ap_materno }}</td> 
                         {% else %}
                             <td></td> 
-                        {% endif %}    
+                        {% endif %}     -->
 
-                        <td>{{ item.tipo }}</td>                                                        
+                        <!-- <td>{{ item.tipo }}</td>                                                         -->
                         <!-- localidad donde vive -->
                         <td>{{ item.localidad }}</td>
                         <td>{{ item.localidad.seccion }}</td>                       

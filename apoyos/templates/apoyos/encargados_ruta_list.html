@@ -41,10 +41,10 @@
              data-locale="es-MX"
          >
             <thead>
-                <!-- <th data-field="id" data-sortable="true">Id</th> -->
+                <th data-field="id" data-sortable="true">Id</th>
                 <th data-field="nombres" data-sortable="true">Nombres</th>
                 <th data-field="ap_paterno" data-sortable="true">Ap Paterno</th>
-                <th data-field="ap_materno" data-sortable="true">Ap Materno</th>                
+                <!-- <th data-field="ap_materno" data-sortable="true">Ap Materno</th>                 -->
                 <!-- <th data-field="telefono">Telefono</th>                              -->
                 <th data-field="localidad" data-sortable="true">Departamento</th>
                             
@@ -54,7 +54,7 @@
             <tbody>               
                 {% for item in obj %}
                     <tr>
-                        <!-- <td>{{ item.id }}</td> -->
+                        <td>{{ item.id }}</td>
                         <td>{{ item.nombres }}</td>
                         
                         <!-- si hay apellido paterno lo mostramos -->
@@ -65,11 +65,11 @@
                         {% endif %}
                                                                            
                         <!-- si hay apellido materno lo mostramos -->
-                        {% if item.ap_materno %}
+                        <!-- {% if item.ap_materno %}
                             <td>{{ item.ap_materno }}</td> 
                         {% else %}
                             <td></td> 
-                        {% endif %}    
+                        {% endif %}     -->
                                                                         
                         <!-- si tiene telefono lo mostramos -->                        
                         <!-- {% if item.telefono %}
