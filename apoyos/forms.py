@@ -1,6 +1,6 @@
 
 from django import forms
-from .models import Departamento, Localidad, Persona, EncargadoRuta, Puesto
+from .models import Departamento, Localidad, Persona, EncargadoRuta, Puesto, Empleado
 
 class LocalidadesForm(forms.ModelForm):
     """ form para Localidades"""
@@ -107,3 +107,32 @@ class DepartamentoForm(forms.ModelForm):
             self.fields[field].widget.attrs.update({
                 'class': 'form-control'
             })
+            
+class EmpleadosForm(forms.ModelForm):
+    """ form para empleados"""
+
+    class Meta:
+        """Meta definition for Empleadosform."""
+
+        model = Empleado
+        # campos que muestra el form
+        fields = ('nombre', 'ap_paterno', 'ap_materno', 'domicilio', 'telefono',
+        'genero', 'status', 'departamento', 'puesto', 'sueldo')
+        labels = {
+            'nombre': 'Nombre', 'ap_paterno': 'Apellido Paterno', 'ap_materno': 'Apellido Materno',
+            'domicilio': 'Domicilio', 'telefono':'Teléfono', 'genero': 'Genéro', 'status': 'Status',
+            'departamento': 'Departamento', 'puesto': 'Puesto', 'sueldo': 'Sueldo'
+        }
+        
+    def __init__(self, *args, **kwargs):
+        """ método que itera los campos del form y agrega la clase form-control de bootstrap a los input"""
+        super().__init__(*args, **kwargs)
+        for field in iter(self.fields):
+            self.fields[field].widget.attrs.update({
+                'class': 'form-control'
+            })
+            
+        # al select y/o combo box de departamento y puesto le agregamos un valor por defecto
+        self.fields['departamento'].empty_label = 'Seleccione departamento..'
+        self.fields['puesto'].empty_label = 'Seleccione puesto..'
+

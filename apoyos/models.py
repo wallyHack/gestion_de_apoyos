@@ -197,7 +197,7 @@ class Empleado(models.Model):
         null=True
     )
 
-    domicilio = models.TextField(
+    domicilio = models.CharField(
         max_length=250,
         blank=True,
         null=True

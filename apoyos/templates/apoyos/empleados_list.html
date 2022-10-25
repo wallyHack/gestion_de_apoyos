@@ -1,0 +1,116 @@
+
+{% extends 'base/base.html' %}
+
+{% block page_content %}
+ <!-- Dropdown Card Example -->
+ <div class="card shadow mb-4">
+    <!-- Card Header - Dropdown -->
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">Listado de Empleados - Pinos, Zacatecas</h6>
+        <div class="dropdown no-arrow">
+            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                <div class="dropdown-header">Acciones:</div>
+                    <a class="dropdown-item" href="{% url 'apoyos:empleados_new' %}"> <i class="fa fa-calendar-plus"></i>Nuevo</a>
+                    <!-- <a class="dropdown-item" href="#">Another action</a> -->
+                <div class="dropdown-divider"></div>
+                <!-- <a class="dropdown-item" href="#">Something else here</a> -->
+            </div>
+        </div>
+    </div>
+    <!-- Card Body -->
+    <div class="card-body">
+       
+        {% if not obj %}
+            <div class="alert alert-info">No Hay Empleados</div>           
+        {% else %}
+ 
+        <table
+             id="table"
+             data-toggle="table"
+             data-pagination="true"
+             data-page-size="5"
+             data-search="true"
+             data-show-columns="true"
+             data-show-fullscreen="true"
+             data-show-toggle="true"
+             data-show-export="true"
+             data-click-to-select="true"
+             data-locale="es-MX"
+         >
+            <thead>
+                <th data-field="id" data-sortable="true">Id</th>
+                <th data-field="nombre" data-sortable="true">Nombre</th>
+                <th data-field="ap_paterno" data-sortable="true">Apellido Paterno</th>
+                <!-- <th data-field="ap_materno" data-sortable="true">Apellido Materno</th> -->
+                <!-- <th data-field="telefono" data-sortable="true">Telefono</th> -->
+                <th data-field="departamento" data-sortable="true">Departamento</th>
+                <th data-field="puesto" data-sortable="true">Puesto</th>
+                <!-- <th data-field="sueldo" data-sortable="true">Sueldo</th>                -->
+                <th class="all">Acciones</th>
+            </thead>
+ 
+            <tbody>               
+                {% for item in obj %}
+                    <tr>
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.nombre }}</td>
+                        
+                        {% if item.ap_paterno %}
+                            <td>{{ item.ap_paterno }}</td> 
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                                                    
+                        <!-- {% if item.ap_materno %}
+                            <td>{{ item.ap_materno }}</td> 
+                        {% else %}
+                            <td></td>
+                        {% endif %} -->
+                        
+                        {% if item.departamento %}
+                            <td>{{ item.departamento }}</td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                                                    
+                        {% if item.puesto %}
+                            <td>{{ item.puesto }}</td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}                                                                          
+                        
+                        <!-- {% if item.telefono %}
+                            <td>{{ item.telefono }}</td> 
+                        {% else %}
+                            <td></td>
+                        {% endif %}     
+                            
+                        
+                        {% if item.sueldo %}
+                            <td>{{ item.sueldo }}</td>
+                            {% else %}
+                            <td></td>
+                        {% endif %}    -->
+                                                                                   
+                        <td>                            
+                            <a href="{% url 'apoyos:empleados_edit' item.id %}" class="btn btn-warning btn-circle"> <i class="far fa-edit"></i> </a>                           
+                            <a href="{% url 'apoyos:empleados_delete' item.id %}" class="btn btn-danger btn-circle"> <i class="fas fa-trash-alt"></i> </a>
+                        </td>
+                        
+                    </tr>
+                {% endfor %}
+                    
+            </tbody>
+        </table>       
+        {% endif %}
+    </div>
+</div>    
+
+{% endblock page_content %}
+
+
+
+

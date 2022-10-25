@@ -8,7 +8,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.decorators import login_required, permission_required
 
 from bases.views import HomeSinPrivilegios 
-from .forms import DepartamentoForm, LocalidadesForm, PersonasForm, EncargadosRutaForm, PuestosForm
+from .forms import DepartamentoForm, EmpleadosForm, LocalidadesForm, PersonasForm, EncargadosRutaForm, PuestosForm
 from.models import Localidad, Puesto, Persona, EncargadoRuta, Apoyos, Empleado, Departamento
 
 # Create your views here.
@@ -179,3 +179,37 @@ class DepartamentoDelete(LoginRequiredMixin, generic.DeleteView):
     template_name = "apoyos/departamentos_del.html"
     context_object_name = "obj"
     success_url = reverse_lazy("apoyos:departamentos_list")
+    
+#*********************************************************************************
+
+class EmpleadoView(LoginRequiredMixin, generic.ListView):
+    """ vista basada en clase para listar los empleados"""
+    model = Empleado
+    template_name = "apoyos/empleados_list.html"
+    context_object_name = "obj"
+    login_url = "bases:login"
+    
+class EmpleadoNew(LoginRequiredMixin, generic.CreateView):
+    """ vista basada en clase para llenar form de empleado"""
+    model = Empleado
+    template_name = "apoyos/empleados_form.html"
+    context_object_name = "obj"
+    form_class = EmpleadosForm
+    success_url = reverse_lazy("apoyos:empleados_list")
+    login_url = "bases:login"
+    
+class EmpleadoEdit(LoginRequiredMixin, generic.UpdateView):
+    """ vista basada en clase para editar form de empleado"""
+    model = Empleado
+    template_name = "apoyos/empleados_form.html"
+    context_object_name = "obj"
+    form_class = EmpleadosForm
+    success_url = reverse_lazy("apoyos:empleados_list")
+    login_url = "bases:login"
+    
+class EmpleadoDelete(LoginRequiredMixin, generic.DeleteView):
+    """ vista basada en clase para eliminar un empleado"""
+    model = Empleado
+    template_name = "apoyos/empleados_del.html"
+    context_object_name = "obj"
+    success_url = reverse_lazy("apoyos:empleados_list")

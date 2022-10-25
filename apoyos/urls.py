@@ -4,7 +4,8 @@ from .views import LocalidadView, LocalidadNew, LocalidadEdit, LocalidadDelete, 
     PersonaView, PersonaNew, PersonaEdit, PersonaDelete, \
     EncargadoRutaView, EncargadoRutaNew, EncargadoRutaEdit, EncargadoRutaDelete, \
     PuestoView, PuestoNew, PuestoEdit, PuestoDelete, \
-    DepartamentoView, DepartamentoNew, DepartamentoEdit, DepartamentoDelete
+    DepartamentoView, DepartamentoNew, DepartamentoEdit, DepartamentoDelete, \
+    EmpleadoView, EmpleadoNew, EmpleadoEdit, EmpleadoDelete
 
 urlpatterns = [
     # crud localidades
@@ -36,4 +37,10 @@ urlpatterns = [
     path('departamentos/new', DepartamentoNew.as_view(), name='departamentos_new'),
     path('departamentos/edit/<int:pk>', DepartamentoEdit.as_view(), name='departamentos_edit'),
     path('departamentos/delete/<int:pk>', DepartamentoDelete.as_view(), name='departamentos_delete'),
+    
+    # crud de empleados
+    path('empleados/', EmpleadoView.as_view(), name='empleados_list'),
+    path('empleados/new', EmpleadoNew.as_view(), name='empleados_new'),
+    path('empleados/edit/<int:pk>', EmpleadoEdit.as_view(), name='empleados_edit'),
+    path('empleados/delete/<int:pk>', EmpleadoDelete.as_view(), name='empleados_delete'),
 ]

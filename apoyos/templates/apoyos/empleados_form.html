@@ -3,7 +3,7 @@
 {% block page_content %}
    <form method="POST" class="form-inline">
        {% csrf_token %}
-        <div class="col-xl-8 col-md-8 mb-8">
+        <div class="col-xl-12 col-md-12 mb-12">
             
             {% if obj %}      
                 <div class="card border-left-warning shadow h-100 py-2">
@@ -14,26 +14,26 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                {% if obj %} Editar {% else %} Nueva {% endif %} Persona 
+                                {% if obj %} Editar {% else %} Nuevo {% endif %} Empleado
                             </div>                        
                             <div class="dropdown-divider"></div>   
                             
                             <!-- fila 1 -->
                             <div class="row mb-3">
                                 <div class="col-md-4">
-                                    {{ form.nombres.label }}
+                                    {{ form.nombre.label }}:
                                     <div class="input-group">                                        
-                                        {{ form.nombres }}
+                                        {{ form.nombre }}
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    {{ form.ap_paterno.label }}
+                                    {{ form.ap_paterno.label }}:
                                     <div class="input-group">
                                         {{ form.ap_paterno }}
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    {{ form.ap_materno.label }}
+                                    {{ form.ap_materno.label }}:
                                     <div class="input-group">
                                         {{ form.ap_materno }}
                                     </div>
@@ -42,15 +42,22 @@
 
                             <!-- fila 2 -->
                             <div class="row mb-3">
-                                <div class="col-md-6">
-                                    {{ form.tipo.label }}
+                                <div class="col-md-4">
+                                    {{ form.domicilio.label }}:
                                     <div class="input-group">
-                                        {{ form.tipo }}
+                                        {{ form.domicilio }}
                                     </div>
                                 </div>
                                 
-                                <div class="col-md-6">
-                                    {{ form.genero.label }}
+                                <div class="col-md-4">
+                                    {{ form.telefono.label }}:
+                                    <div class="input-group">
+                                        {{ form.telefono }}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    {{ form.genero.label }}:
                                     <div class="input-group">
                                         {{ form.genero }}
                                     </div>
@@ -60,16 +67,16 @@
                             <!-- fila 3 -->
                             <div class="row mb-3">
                                 <div class="col-md-6">
-                                    {{ form.domicilio.label }}
+                                    {{ form.status.label }}:
                                     <div class="input-group">
-                                        {{ form.domicilio }}
+                                        {{ form.status }}
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
-                                    {{ form.estado.label }}
+                                    {{ form.departamento.label }}:
                                     <div class="input-group">
-                                        {{ form.estado }}
+                                        {{ form.departamento }}
                                     </div>
                                 </div>                                
                             </div>
@@ -77,15 +84,15 @@
                             <!-- fila 4 -->
                             <div class="row mb-3">
                                 <div class="col-md-6">
-                                    {{ form.telefono.label }}
+                                    {{ form.puesto.label }}:
                                     <div class="input-group">
-                                        {{ form.telefono }}
+                                        {{ form.puesto }}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    {{ form.localidad.label }}
+                                    {{ form.sueldo.label }}:
                                     <div class="input-group">
-                                        {{ form.localidad }}
+                                        {{ form.sueldo }}
                                     </div>
                                 </div>
                             </div>
@@ -95,7 +102,7 @@
                             <div class="row mt-3">
                                  <div class="col">
                                     <button type="submit" class="btn btn-danger"><span class="fa fa-save"></span>Guardar</button>
-                                    <a href="{% url 'apoyos:personas_list' %}" class="btn btn-success"><span class="fa fa-undo">Cancelar</span></a>
+                                    <a href="{% url 'apoyos:empleados_list' %}" class="btn btn-success"><span class="fa fa-undo">Cancelar</span></a>
                                 </div>
                             </div>                                
                             
