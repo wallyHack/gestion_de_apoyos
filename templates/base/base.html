@@ -26,6 +26,9 @@
     <!-- Activamos el datatable -->
     <link href="{% static 'base/vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
 
+    <!-- CSS jQuery-confirm -->
+    <link rel="stylesheet" href="{% static 'base/vendor/jquery_confirm/jquery-confirm.min.css' %}">
+
 
 </head>
 
@@ -77,7 +80,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">ADMIN. RECURSOS:</h6>
                         <a class="collapse-item" href="{% url 'apoyos:personas_list' %}">Personas</a>
-                        <a class="collapse-item" href="#">Apoyos</a>
+                        <a class="collapse-item" href="{% url 'apoyos:apoyos_list' %}">Apoyos</a>
                         <a class="collapse-item" href="{% url 'apoyos:encargados_list' %}">Encargados Ruta</a>
                         <a class="collapse-item" href="{% url 'apoyos:localidades_list' %}">Localidades</a>                                               
                     </div>
@@ -431,6 +434,9 @@
     <script src="{% static 'base/vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'base/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
+    <!-- JS de jQuery-confirm -->
+    <script src="{% static 'base/vendor/jquery_confirm/jquery-confirm.min.js' %}"></script>
+
     <!-- JS de Bootstrap-Table -->
     <script src="{% static 'base/js/bootstrap-table.min.js' %}""></script>
     <!-- <script src="https://unpkg.com/bootstrap-table@1.21.1/dist/bootstrap-table.min.js"></script> -->
@@ -444,9 +450,35 @@
     <!-- Page level plugins -->
     <script src="{% static 'base/vendor/datatables/jquery.dataTables.min.js' %}"></script>
     <script src="{% static 'base/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
-
+   
     
-    {% block js_page %} {% endblock js_page %}
+    {% block control_modal %}
+        <script>
+            function abrir_modal(){
+
+            }
+
+            function cerrar_modal(){
+
+            }
+
+            // mensaje de jQuery confirm
+            function mensaje(msg, color = 'green'){
+                $.alert({
+                    title: 'Error de credenciales?',
+                    icon: 'fa fa-user',
+                    theme: 'modern',
+                    type: color,
+                    content: msg
+                });
+            }
+        </script>
+    {% endblock control_modal %}
+
+    {% block js_page %}
+        
+    {% endblock js_page %}
+        
 </body>
 
 </html>

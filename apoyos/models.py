@@ -65,6 +65,12 @@ class Puesto(models.Model):
 
 class Persona(models.Model):
     """ modelo persona"""
+    curp = models.CharField(
+        max_length=18,
+        null=True,
+        blank=True
+    )
+    
     nombres = models.CharField(
         max_length=100,
     )
@@ -195,6 +201,25 @@ class Empleado(models.Model):
         max_length=100,
         blank=True,
         null=True
+    )
+    
+    # choices 
+    SINDICALIZADO = 'SINDICALIZADO'
+    EVENTUAL = 'EVENTUAL'
+    CONTRATO = 'CONTRATO'
+    OTROS = 'OTROS'
+    
+    TIPO_DE_EMPLEADO = [ 
+        (SINDICALIZADO, 'SINDICALIZADO'),
+        (EVENTUAL, 'EVENTUAL'),
+        (CONTRATO, 'CONTRATO'),        
+        (OTROS, 'OTROS')
+    ]
+
+    tipo_de_empleado = models.CharField(
+        max_length=20,
+        choices=TIPO_DE_EMPLEADO,
+        default=SINDICALIZADO
     )
 
     domicilio = models.CharField(
@@ -364,7 +389,7 @@ class Apoyos(models.Model):
         default=ECONOMICO
     )
 
-    descripcion = models.TextField(
+    descripcion = models.CharField(
         max_length=250
     )
 
@@ -372,10 +397,10 @@ class Apoyos(models.Model):
         null=True, blank=True
     )
 
-    comprobacion = models.ImageField(
+    foto_de_comprobacion = models.ImageField(
         upload_to="apoyos/", null=True, blank=True)
 
-    notas_adicionales = models.TextField(
+    notas_adicionales = models.CharField(
         max_length=500,
         null=True,
         blank=True

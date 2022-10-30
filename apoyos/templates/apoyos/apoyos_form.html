@@ -14,103 +14,72 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                {% if obj %} Editar {% else %} Nuevo {% endif %} Empleado
+                                {% if obj %} Editar {% else %} Nuevo {% endif %} Apoyo
                             </div>                        
                             <div class="dropdown-divider"></div>   
                             
                             <!-- fila 1 -->
                             <div class="row mb-3">
                                 <div class="col-md-4">
-                                    {{ form.nombre.label }}:
+                                    {{ form.tipo.label }}:
                                     <div class="input-group">                                        
-                                        {{ form.nombre }}
+                                        {{ form.tipo }}
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    {{ form.ap_paterno.label }}:
+                                    {{ form.descripcion.label }}:
                                     <div class="input-group">
-                                        {{ form.ap_paterno }}
+                                        {{ form.descripcion }}
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    {{ form.ap_materno.label }}:
+                                    {{ form.fecha_de_entrega.label }}:
                                     <div class="input-group">
-                                        {{ form.ap_materno }}
+                                        {{ form.fecha_de_entrega }}
                                     </div>
                                 </div>
                             </div>
 
                             <!-- fila 2 -->
                             <div class="row mb-3">
-                                <div class="col-md-4">
-                                    {{ form.tipo_de_empleado.label }}:
+                                <div class="col-md-6">
+                                    {{ form.foto_de_comprobacion.label }}:
                                     <div class="input-group">
-                                        {{ form.tipo_de_empleado }}
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    {{ form.domicilio.label }}:
-                                    <div class="input-group">
-                                        {{ form.domicilio }}
+                                        {{ form.foto_de_comprobacion }}
                                     </div>
                                 </div>
                                 
-                                <div class="col-md-4">
-                                    {{ form.telefono.label }}:
+                                <div class="col-md-6">
+                                    {{ form.notas_adicionales.label }}:
                                     <div class="input-group">
-                                        {{ form.telefono }}
+                                        {{ form.notas_adicionales }}
                                     </div>
                                 </div>
-                                
                             </div>
 
                             <!-- fila 3 -->
                             <div class="row mb-3">
-                                <div class="col-md-4">
-                                    {{ form.genero.label }}:
+                                <div class="col-md-6">
+                                    {{ form.persona.label }}:
                                     <div class="input-group">
-                                        {{ form.genero }}
+                                        {{ form.persona }}
                                     </div>
                                 </div>
 
-                                <div class="col-md-4">
-                                    {{ form.status.label }}:
+                                <div class="col-md-6">
+                                    {{ form.encargado_de_ruta.label }}:
                                     <div class="input-group">
-                                        {{ form.status }}
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    {{ form.departamento.label }}:
-                                    <div class="input-group">
-                                        {{ form.departamento }}
+                                        {{ form.encargado_de_ruta }}
                                     </div>
                                 </div>                                
-                            </div>
-
-                            <!-- fila 4 -->
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    {{ form.puesto.label }}:
-                                    <div class="input-group">
-                                        {{ form.puesto }}
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    {{ form.sueldo.label }}:
-                                    <div class="input-group">
-                                        {{ form.sueldo }}
-                                    </div>
-                                </div>
-                            </div>
+                            </div>                           
                             
                             <!-- {{ form.as_p }} -->
                             <div class="dropdown-divider"></div>
                             <div class="row mt-3">
                                  <div class="col">
                                     <button type="submit" class="btn btn-danger"><span class="fa fa-save"></span>Guardar</button>
-                                    <a href="{% url 'apoyos:empleados_list' %}" class="btn btn-success"><span class="fa fa-undo">Cancelar</span></a>
+                                    <a href="{% url 'apoyos:personas_list' %}" class="btn btn-success"><span class="fa fa-undo">Cancelar</span></a>
                                 </div>
                             </div>                                
                             

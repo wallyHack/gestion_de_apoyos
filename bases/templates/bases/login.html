@@ -24,24 +24,7 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Bienvenido al Sistema!</h1>
                                     <small class="text-danger">
-                                        
-                                        {% if form.errors %} <!-- si el formulario tiene errores -->                                            
-                                            {% for field in form %}                                                
-                                                {% if field.errors %}                                                    
-                                                    {% for error in field.errors %}
-                                                        {{ error|escape }}
-                                                    {% endfor %}                                                                                                        
-                                                {% endif %}                                                    
-                                            {% endfor %}                                                
-                                        {% endif %}
-
-                                        
-                                        {% if form.non_field_errors %}                                            
-                                            {% for error in form.non_field_errors %}
-                                                {{ error|escape }}                                                
-                                            {% endfor %}                                                
-                                        {% endif %}                                            
-                                            
+                                                                                                                                                                 
                                     </small>
                                 </div>
                                 <form class="user" method="post">
@@ -75,5 +58,27 @@
 
     </div>
 {% endblock login %}
+
+{% block js_page %}
+    <script>
+        {% if form.errors %}
+            //si el formulario tiene errores
+            {% for field in form %}
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                        mensaje('{{ error|escape }}', 'red')
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                mensaje('{{ error|escape }}', 'red')
+            {% endfor %}
+        {% endif %}
+    </script>
+{% endblock js_page %}
     
     

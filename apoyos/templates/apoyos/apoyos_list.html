@@ -1,0 +1,108 @@
+
+{% extends 'base/base.html' %}
+
+{% block page_content %}
+ <!-- Dropdown Card Example -->
+ <div class="card shadow mb-4">
+    <!-- Card Header - Dropdown -->
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">Listado de Apoyos - Pinos, Zacatecas</h6>
+        <div class="dropdown no-arrow">
+            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                <div class="dropdown-header">Acciones:</div>
+                    <a class="dropdown-item" href="{% url 'apoyos:apoyos_new' %}"> <i class="fa fa-calendar-plus"></i>Nuevo</a>
+                    <!-- <a class="dropdown-item" href="#">Another action</a> -->
+                <div class="dropdown-divider"></div>
+                <!-- <a class="dropdown-item" href="#">Something else here</a> -->
+            </div>
+        </div>
+    </div>
+    <!-- Card Body -->
+    <div class="card-body">
+       
+        {% if not obj %}
+            <div class="alert alert-info">No Hay Apoyos</div>           
+        {% else %}
+ 
+        <table
+             id="table"
+             data-toggle="table"
+             data-pagination="true"
+             data-page-size="5"
+             data-search="true"
+             data-show-columns="true"
+             data-show-fullscreen="true"
+             data-show-toggle="true"
+             data-show-export="true"
+             data-click-to-select="true"
+             data-locale="es-MX"
+         >
+            <thead>
+                <!-- <th data-field="id" data-sortable="true">Id</th> -->
+                <th data-field="tipo" data-sortable="true">Tipo de apoyo</th>
+                <th data-field="descripcion" data-sortable="true">Descripcion</th>                
+                <th data-field="fecha_de_entrega" data-sortable="true">Fecha de entrega</th>                
+                <!-- <th data-field="notas_adicionales" data-sortable="true">notas_adicionales</th>   -->
+                <!-- <th data-field="persona" data-sortable="true">Persona</th> -->
+                <!-- <th data-field="encargado_de_ruta" data-sortable="true">Encargado de Ruta</th>               -->
+                <th class="all">Acciones</th>
+            </thead>
+ 
+            <tbody>               
+                {% for item in obj %}
+                    <tr>
+                        <!-- <td>{{ item.id }}</td> -->
+                        <td>{{ item.tipo }}</td>
+                        
+                        {% if item.descripcion %}
+                            <td>{{ item.descripcion }}</td> 
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                                                    
+                        {% if item.fecha_de_entrega %}
+                            <td>{{ item.fecha_de_entrega }}</td> 
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                                                                                                    
+                        <!-- {% if item.notas_adicionales %}
+                            <td>{{ item.notas_adicionales }}</td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}                                                                           -->
+                        
+                        <!-- {% if item.persona %}
+                            <td>{{ item.persona }}</td> 
+                        {% else %}
+                            <td></td>
+                        {% endif %}      -->
+                                                    
+                        <!-- {% if item.encargado_de_ruta %}
+                            <td>{{ item.encargado_de_ruta }}</td>
+                            {% else %}
+                            <td></td>
+                        {% endif %} -->
+                                                                                   
+                        <td>                            
+                            <a href="{% url 'apoyos:apoyos_edit' item.id %}" class="btn btn-warning btn-circle"> <i class="far fa-edit"></i> </a>                           
+                            <a href="{% url 'apoyos:apoyos_delete' item.id %}" class="btn btn-danger btn-circle"> <i class="fas fa-trash-alt"></i> </a>
+                        </td>
+                        
+                    </tr>
+                {% endfor %}
+                    
+            </tbody>
+        </table>       
+        {% endif %}
+    </div>
+</div>    
+
+{% endblock page_content %}
+
+
+
+

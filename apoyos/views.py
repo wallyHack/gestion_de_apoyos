@@ -8,7 +8,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.decorators import login_required, permission_required
 
 from bases.views import HomeSinPrivilegios 
-from .forms import DepartamentoForm, EmpleadosForm, LocalidadesForm, PersonasForm, EncargadosRutaForm, PuestosForm
+from .forms import ApoyosForm, DepartamentoForm, EmpleadosForm, LocalidadesForm, PersonasForm, EncargadosRutaForm, PuestosForm
 from.models import Localidad, Puesto, Persona, EncargadoRuta, Apoyos, Empleado, Departamento
 
 # Create your views here.
@@ -213,3 +213,81 @@ class EmpleadoDelete(LoginRequiredMixin, generic.DeleteView):
     template_name = "apoyos/empleados_del.html"
     context_object_name = "obj"
     success_url = reverse_lazy("apoyos:empleados_list")
+    
+#*********************************************************************************
+
+class ApoyosView(LoginRequiredMixin, generic.ListView):
+    """ vista basada en clase para listar los apoyos"""
+    model = Apoyos
+    template_name = "apoyos/apoyos_list.html"
+    context_object_name = "obj"
+    login_url = "bases:login"
+    
+class ApoyosNew(LoginRequiredMixin, generic.CreateView):
+    """ vista basada en clase para llenar form de apoyo"""
+    model = Apoyos
+    template_name = "apoyos/apoyos_form.html"
+    context_object_name = "obj"
+    form_class = ApoyosForm
+    success_url = reverse_lazy("apoyos:apoyos_list")
+    login_url = "bases:login"
+    
+class ApoyosEdit(LoginRequiredMixin, generic.UpdateView):
+    """ vista basada en clase para editar form de apoyos"""
+    model = Apoyos
+    template_name = "apoyos/apoyos_form.html"
+    context_object_name = "obj"
+    form_class = ApoyosForm
+    success_url = reverse_lazy("apoyos:apoyos_edit")
+    login_url = "bases:login"
+    
+    
+class ApoyosDelete(LoginRequiredMixin, generic.DeleteView):
+    """ vista basada en clase para eliminar un apoyo"""
+    model = Apoyos
+    template_name = "apoyos/apoyos_del.html"
+    context_object_name = "obj"
+    success_url = reverse_lazy("apoyos:apoyos_list")
+    
+#*********************************************************************************
+# filtros personalizados 
+def comunidades_por_encargado(request, id):
+    """ mostrar todas las comunidades que administra un encargado de ruta"""
+    encargado = EncargadoRuta.objects.prefetch_related('comunidades').filter(pk=id)
+    nombre_de_encargado = ""
+    comunidades = {}
+    for e in encargado:
+        nombre_de_encargado = e.nombres +' '+ e.ap_paterno +' '+ e.ap_materno
+        comunidades = e.comunidades.all()
+        
+    comunidadaes = list(comunidades)
+    print(nombre_de_encargado)
+    print(list(comunidades))
+    # print(comunidades)
+    # print(type(encargado))
+    # encargado = list(encargado)    
+    # print(type(encargado))
+    #for e in encargado:
+        #print(e.nombres, e.comunidades.all())        
+    context = {'obj': comunidades, 'nombre_de_encargado': nombre_de_encargado}
+    template_name = "apoyos/comunidades-er.html"
+    
+    # if not encargado:
+    #     return redirect('apoyos:encargados_list')
+    
+    return render(request, template_name, context)
+    
+def apoyos_por_persona(request, id):
+    """ mostramos todos los apoyos que ha recibido una persona"""
+    apoyos_recibidos = Apoyos.objects.all().select_related('persona').filter(persona=id)
+    print(apoyos_recibidos)
+
+    context = {'obj': apoyos_recibidos}
+    template_name = "apoyos/apoyos_recibidos.html"
+    
+    # if not apoyos_recibidos:
+    #     return redirect('apoyos:apoyos_list')
+
+    return render(request, template_name, context)
+
+

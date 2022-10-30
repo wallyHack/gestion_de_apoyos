@@ -1,0 +1,70 @@
+
+{% extends 'base/base.html' %}
+
+{% block page_content %}
+ <!-- Dropdown Card Example -->
+ <div class="card shadow mb-4">
+    <!-- Card Header - Dropdown -->
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">{{ nombre_de_encargado }}</h6>
+    </div>
+    <!-- Card Body -->
+    <div class="card-body">
+       
+        {% if not obj %}
+            <div class="alert alert-info">No Hay Localidades</div>           
+        {% else %}
+ 
+        <table
+             id="table"
+             data-toggle="table"
+             data-pagination="true"
+             data-page-size="10"
+             data-search="true"
+             data-show-columns="true"
+             data-show-fullscreen="true"
+             data-show-toggle="true"
+             data-show-export="true"
+             data-click-to-select="true"
+             data-locale="es-MX"
+         >
+            <thead>
+                <!-- <th data-field="id" data-sortable="true">Id</th> -->
+                <th data-field="nombre" data-sortable="true">Nombres</th>
+                <th data-field="seccion" data-sortable="true">Sección</th>
+                <th data-field="tipo" data-sortable="true">Tipo</th>                              
+            </thead>
+ 
+            <tbody>               
+                {% for item in obj %}
+                    <tr>
+                        <!-- <td>{{ item.id }}</td> -->
+                        <td>{{ item.nombre }}</td>
+                        <td>{{ item.seccion }}</td> 
+                        <td>{{ item.tipo }}</td>                                                                                
+                    </tr>
+                {% endfor %}
+                    
+            </tbody>            
+        </table>           
+        {% endif %}
+
+        <div>
+            <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-secondary btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-arrow-left"></i>
+                </span>
+                <span class="text">Regresar</span>
+            </a>
+            <!-- <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-warning btn-circle"><i class="far fa-caret-square-down"></i></a> -->
+            <!-- <button type="button" class="btn btn-warning ml-3"><i class="fa-rainbow"></i><a href="{{ request.META.HTTP_REFERER }}">Regresar</a></button>     -->
+        </div>
+    </div>
+</div>    
+
+{% endblock page_content %}
+
+
+
+
+

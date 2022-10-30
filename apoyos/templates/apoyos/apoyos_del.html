@@ -8,9 +8,9 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1"> ¿Eliminar {{ obj.nombres }} {{ obj.ap_paterno }}?</div>
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1"> ¿Eliminar apoyo de : {{ obj.descripcion }}?</div>
                             <button type="submit" class="btn btn-danger"><i class="far fa-question-circle"></i>Si, Eliminar</button>
-                            <a href="{% url 'apoyos:encargados_list' %}" class="btn btn-success"><span class="fa fa-undo"></span>Cancelar</a>
+                            <a href="{% url 'apoyos:apoyos_list' %}" class="btn btn-success"><span class="fa fa-undo"></span>Cancelar</a>
                         </div>      
                         
                         <div class="col-auto">

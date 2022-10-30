@@ -1,0 +1,61 @@
+
+{% extends 'base/base.html' %}
+
+{% block page_content %}
+ <!-- Dropdown Card Example -->
+ <div class="card shadow mb-4">
+    <!-- Card Header - Dropdown -->
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary"></h6>
+    </div>
+    <!-- Card Body -->
+    <div class="card-body">
+       
+        {% if not obj %}
+            <div class="alert alert-info">No hay apoyos recibidos</div>           
+        {% else %}
+
+        <table class="table table-striped">
+            <thead>
+              <tr>                
+                <th scope="col">Tipo</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Fecha de entrega</th>
+                <th scope="col">Notas adicionales</th>
+              </tr>
+            </thead>
+            <tbody>
+                
+                {% for item in obj %}
+                    <tr>                    
+                        <td>{{ item.tipo }}</td>
+                        <td>{{ item.descripcion }}</td>
+                        <td>{{ item.fecha_de_entrega }}</td>
+                        <td>{{ item.notas_adicionales }}</td>
+                    </tr>
+                {% endfor %}                                 
+            </tbody>
+          </table>
+
+        {% endif %}
+ 
+        
+        <div>
+            <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-secondary btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-arrow-left"></i>
+                </span>
+                <span class="text">Regresar</span>
+            </a>
+            <!-- <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-warning btn-circle"><i class="far fa-caret-square-down"></i></a> -->
+            <!-- <button type="button" class="btn btn-warning ml-3"><i class="fa-rainbow"></i><a href="{{ request.META.HTTP_REFERER }}">Regresar</a></button>     -->
+        </div>
+    </div>
+</div>    
+
+{% endblock page_content %}
+
+
+
+
+
