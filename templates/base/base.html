@@ -464,14 +464,32 @@
 
             // mensaje de jQuery confirm
             function mensaje(msg, color = 'green'){
+                // validamos los colores de mensajes
+                if(color == 'success') {                    
+                    color = 'green';                          
+                }
+
+                if(color=='error'){
+                    color = 'red';
+                }
+
                 $.alert({
-                    title: 'Error de credenciales?',
-                    icon: 'fa fa-user',
+                    title: '',
+                    icon: '',
                     theme: 'modern',
                     type: color,
                     content: msg
                 });
             }
+
+            // mostramos los mensajes
+            {% if messages %}
+                {% for message in messages %}
+                // console.log("{{ messaje.tags }}");
+                    mensaje("{{ message }}", "{{ message.tags }}");
+                {% endfor %}
+            {% endif %}
+
         </script>
     {% endblock control_modal %}
 

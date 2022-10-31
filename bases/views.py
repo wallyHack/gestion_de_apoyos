@@ -7,6 +7,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.base import TemplateView
+from django.contrib import messages
 
 # Create your views here.
 class Sin_Privilegios(LoginRequiredMixin, PermissionRequiredMixin):

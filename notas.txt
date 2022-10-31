@@ -1,4 +1,4 @@
 
 video 91 inactivar
 
-video 108 mensajes desde vista funcion 
+video 111 permisos de django

@@ -19,29 +19,34 @@ class LocalidadView(LoginRequiredMixin, generic.ListView):
     context_object_name = "obj"
     login_url = "bases:login"
     
-class LocalidadNew(LoginRequiredMixin, generic.CreateView):
+class LocalidadNew(SuccessMessageMixin, LoginRequiredMixin, generic.CreateView):
     """ vista basada en clase para llenar form de localidad"""
     model = Localidad
     template_name = "apoyos/localidades_form.html"
     context_object_name = "obj"
-    form_class = LocalidadesForm
+    form_class = LocalidadesForm    
+    success_message = "Localidad agregada satisfactoriamente.."
     success_url = reverse_lazy("apoyos:localidades_list")
     login_url = "bases:login"
     
-class LocalidadEdit(LoginRequiredMixin, generic.UpdateView):
+        
+class LocalidadEdit(SuccessMessageMixin, LoginRequiredMixin, generic.UpdateView):
     """ vista basada en clase para editar form de localidad"""
     model = Localidad
     template_name = "apoyos/localidades_form.html"
     context_object_name = "obj"
-    form_class = LocalidadesForm
+    form_class = LocalidadesForm    
+    success_message = "Localidad actualizada satisfactoriamente.."
     success_url = reverse_lazy("apoyos:localidades_list")
     login_url = "bases:login"
     
-class LocalidadDelete(LoginRequiredMixin, generic.DeleteView):
+    
+class LocalidadDelete(SuccessMessageMixin, LoginRequiredMixin, generic.DeleteView):
     """ vista basada en clase para eliminar una localidad"""
     model = Localidad
     template_name = "apoyos/localidades_del.html"
     context_object_name = "obj"
+    success_message = "Localidad eliminada satisfactoriamente.."
     success_url = reverse_lazy("apoyos:localidades_list")
     
 #*********************************************************************************
@@ -53,29 +58,32 @@ class PersonaView(LoginRequiredMixin, generic.ListView):
     context_object_name = "obj"
     login_url = "bases:login"
     
-class PersonaNew(LoginRequiredMixin, generic.CreateView):
+class PersonaNew(SuccessMessageMixin, LoginRequiredMixin, generic.CreateView):
     """ vista basada en clase para agregar personas"""
     model = Persona
     template_name = "apoyos/personas_form.html"
     context_object_name = "obj"
     form_class = PersonasForm
+    success_message = "Persona agregada satisfactoriamente.."
     success_url = reverse_lazy("apoyos:personas_list")
     login_url = "bases:login"
     
-class PersonaEdit(LoginRequiredMixin, generic.UpdateView):
+class PersonaEdit(SuccessMessageMixin, LoginRequiredMixin, generic.UpdateView):
     """ vista basada en clase para actualizar personas"""
     model = Persona
     template_name = "apoyos/personas_form.html"
     context_object_name = "obj"
     form_class = PersonasForm
+    success_message = "Persona actualizada satisfactoriamente.."
     success_url = reverse_lazy("apoyos:personas_list")
     login_url = "bases:login"
     
-class PersonaDelete(LoginRequiredMixin, generic.DeleteView):
+class PersonaDelete(SuccessMessageMixin, LoginRequiredMixin, generic.DeleteView):
     """ vista basada en clase para eliminar personas"""
     model = Persona
     template_name = "apoyos/personas_del.html"
     context_object_name = "obj"
+    success_message = "Persona eliminada satisfactoriamente.."
     success_url = reverse_lazy("apoyos:personas_list")
     
 #*********************************************************************************
@@ -87,29 +95,32 @@ class EncargadoRutaView(LoginRequiredMixin, generic.ListView):
     context_object_name = "obj"
     login_url = "bases:login"
     
-class EncargadoRutaNew(LoginRequiredMixin, generic.CreateView):
+class EncargadoRutaNew(SuccessMessageMixin, LoginRequiredMixin, generic.CreateView):
     """ vista basada en clase para agregar encargados de ruta"""
     model = EncargadoRuta
     template_name = "apoyos/encargados_ruta_form.html"
     context_object_name = "obj"
     form_class = EncargadosRutaForm
+    success_message = "Encargado de ruta agregado satisfactoriamente.."
     success_url = reverse_lazy("apoyos:encargados_list")
     login_url = "bases:login"
     
-class EncargadoRutaEdit(LoginRequiredMixin, generic.UpdateView):
+class EncargadoRutaEdit(SuccessMessageMixin, LoginRequiredMixin, generic.UpdateView):
     """ vista basada en clase para actualizar encargados de ruta"""
     model = EncargadoRuta
     template_name = "apoyos/encargados_ruta_form.html"
     context_object_name = "obj"
     form_class = EncargadosRutaForm
+    success_message = "Encargado de ruta actualizado satisfactoriamente.."
     success_url = reverse_lazy("apoyos:encargados_list")
     login_url = "bases:login"
     
-class EncargadoRutaDelete(LoginRequiredMixin, generic.DeleteView):
+class EncargadoRutaDelete(SuccessMessageMixin, LoginRequiredMixin, generic.DeleteView):
     """ vista basada en clase para eliminar encargados de ruta"""
     model = EncargadoRuta
     template_name = "apoyos/encargados_ruta_del.html"
     context_object_name = "obj"
+    success_message = "Encargado de ruta eliminado satisfactoriamente.."
     success_url = reverse_lazy("apoyos:encargados_list")
     
 #*********************************************************************************
@@ -121,29 +132,32 @@ class PuestoView(LoginRequiredMixin, generic.ListView):
     context_object_name = "obj"
     login_url = "bases:login"
     
-class PuestoNew(LoginRequiredMixin, generic.CreateView):
+class PuestoNew(SuccessMessageMixin, LoginRequiredMixin, generic.CreateView):
     """ vista basada en clase para llenar form de puesto"""
     model = Puesto
     template_name = "apoyos/puestos_form.html"
     context_object_name = "obj"
     form_class = PuestosForm
+    success_message = "Puesto agregado satisfactoriamente.."
     success_url = reverse_lazy("apoyos:puestos_list")
     login_url = "bases:login"
     
-class PuestoEdit(LoginRequiredMixin, generic.UpdateView):
+class PuestoEdit(SuccessMessageMixin, LoginRequiredMixin, generic.UpdateView):
     """ vista basada en clase para editar form de puesto"""
     model = Puesto
     template_name = "apoyos/puestos_form.html"
     context_object_name = "obj"
     form_class = PuestosForm
+    success_message = "Puesto actualizado satisfactoriamente.."
     success_url = reverse_lazy("apoyos:puestos_list")
     login_url = "bases:login"
     
-class PuestoDelete(LoginRequiredMixin, generic.DeleteView):
+class PuestoDelete(SuccessMessageMixin, LoginRequiredMixin, generic.DeleteView):
     """ vista basada en clase para eliminar un puesto"""
     model = Puesto
     template_name = "apoyos/puestos_del.html"
     context_object_name = "obj"
+    success_message = "Puesto eliminado satisfactoriamente.."
     success_url = reverse_lazy("apoyos:puestos_list")
     
 #*********************************************************************************
@@ -155,29 +169,32 @@ class DepartamentoView(LoginRequiredMixin, generic.ListView):
     context_object_name = "obj"
     login_url = "bases:login"
     
-class DepartamentoNew(LoginRequiredMixin, generic.CreateView):
+class DepartamentoNew(SuccessMessageMixin, LoginRequiredMixin, generic.CreateView):
     """ vista basada en clase para llenar form de departamento"""
     model = Departamento
     template_name = "apoyos/departamentos_form.html"
     context_object_name = "obj"
     form_class = DepartamentoForm
+    success_message = "Departamento agregado satisfactoriamente.."
     success_url = reverse_lazy("apoyos:departamentos_list")
     login_url = "bases:login"
     
-class DepartamentoEdit(LoginRequiredMixin, generic.UpdateView):
+class DepartamentoEdit(SuccessMessageMixin, LoginRequiredMixin, generic.UpdateView):
     """ vista basada en clase para editar form de departamento"""
     model = Departamento
     template_name = "apoyos/departamentos_form.html"
     context_object_name = "obj"
     form_class = DepartamentoForm
+    success_message = "Departamento actualizado satisfactoriamente.."
     success_url = reverse_lazy("apoyos:departamentos_list")
     login_url = "bases:login"
 
-class DepartamentoDelete(LoginRequiredMixin, generic.DeleteView):
+class DepartamentoDelete(SuccessMessageMixin, LoginRequiredMixin, generic.DeleteView):
     """ vista basada en clase para eliminar un departamento"""
     model = Departamento
     template_name = "apoyos/departamentos_del.html"
     context_object_name = "obj"
+    success_message = "Departamento eliminado satisfactoriamente.."
     success_url = reverse_lazy("apoyos:departamentos_list")
     
 #*********************************************************************************
@@ -189,29 +206,32 @@ class EmpleadoView(LoginRequiredMixin, generic.ListView):
     context_object_name = "obj"
     login_url = "bases:login"
     
-class EmpleadoNew(LoginRequiredMixin, generic.CreateView):
+class EmpleadoNew(SuccessMessageMixin, LoginRequiredMixin, generic.CreateView):
     """ vista basada en clase para llenar form de empleado"""
     model = Empleado
     template_name = "apoyos/empleados_form.html"
     context_object_name = "obj"
     form_class = EmpleadosForm
+    success_message = "Empleado agregado satisfactoriamente.."
     success_url = reverse_lazy("apoyos:empleados_list")
     login_url = "bases:login"
     
-class EmpleadoEdit(LoginRequiredMixin, generic.UpdateView):
+class EmpleadoEdit(SuccessMessageMixin, LoginRequiredMixin, generic.UpdateView):
     """ vista basada en clase para editar form de empleado"""
     model = Empleado
     template_name = "apoyos/empleados_form.html"
     context_object_name = "obj"
     form_class = EmpleadosForm
+    success_message = "Empleado actualizado satisfactoriamente.."
     success_url = reverse_lazy("apoyos:empleados_list")
     login_url = "bases:login"
     
-class EmpleadoDelete(LoginRequiredMixin, generic.DeleteView):
+class EmpleadoDelete(SuccessMessageMixin, LoginRequiredMixin, generic.DeleteView):
     """ vista basada en clase para eliminar un empleado"""
     model = Empleado
     template_name = "apoyos/empleados_del.html"
     context_object_name = "obj"
+    success_message = "Empleado eliminado satisfactoriamente.."
     success_url = reverse_lazy("apoyos:empleados_list")
     
 #*********************************************************************************
@@ -223,30 +243,32 @@ class ApoyosView(LoginRequiredMixin, generic.ListView):
     context_object_name = "obj"
     login_url = "bases:login"
     
-class ApoyosNew(LoginRequiredMixin, generic.CreateView):
+class ApoyosNew(SuccessMessageMixin, LoginRequiredMixin, generic.CreateView):
     """ vista basada en clase para llenar form de apoyo"""
     model = Apoyos
     template_name = "apoyos/apoyos_form.html"
     context_object_name = "obj"
     form_class = ApoyosForm
+    success_message = "Apoyo agregado satisfactoriamente.."
     success_url = reverse_lazy("apoyos:apoyos_list")
     login_url = "bases:login"
     
-class ApoyosEdit(LoginRequiredMixin, generic.UpdateView):
+class ApoyosEdit(SuccessMessageMixin, LoginRequiredMixin, generic.UpdateView):
     """ vista basada en clase para editar form de apoyos"""
     model = Apoyos
     template_name = "apoyos/apoyos_form.html"
     context_object_name = "obj"
     form_class = ApoyosForm
+    success_message = "Apoyo actualizado satisfactoriamente.."
     success_url = reverse_lazy("apoyos:apoyos_edit")
     login_url = "bases:login"
     
-    
-class ApoyosDelete(LoginRequiredMixin, generic.DeleteView):
+class ApoyosDelete(SuccessMessageMixin, LoginRequiredMixin, generic.DeleteView):
     """ vista basada en clase para eliminar un apoyo"""
     model = Apoyos
     template_name = "apoyos/apoyos_del.html"
     context_object_name = "obj"
+    success_message = "Apoyo eliminado satisfactoriamente.."
     success_url = reverse_lazy("apoyos:apoyos_list")
     
 #*********************************************************************************
