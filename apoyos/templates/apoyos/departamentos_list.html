@@ -42,7 +42,10 @@
          >
             <thead>
                 <th data-field="id" data-sortable="true">Id</th>
-                <th data-field="nombre" data-sortable="true">Nombre</th>                           
+                <th data-field="nombre" data-sortable="true">Nombre</th>  
+                <!-- <th data-field="titular">Titular</th> -->
+                <!-- <th data-field="">Teléfono</th> -->
+                <!-- <th data-field="">Correo Electrónico</th>     -->
                 <th class="all">Acciones</th>
             </thead>
  
@@ -52,6 +55,24 @@
                         <td>{{ item.id }}</td>
                         <td>{{ item.nombre }}</td>
                         
+                        <!-- {% if item.titular %}
+                            <td>{{ item.titular }}</td>
+                        {% else %}
+                            <td></td>
+                        {% endif %} -->
+
+                        <!-- {% if item.telefono %}
+                            <td>{{ item.telefono }}</td>
+                        {% else %}
+                            <td></td>
+                        {% endif %} -->
+
+                        <!-- {% if item.email %}
+                            <td>{{ item.email }}</td>
+                        {% else %}
+                            <td></td>
+                        {% endif %} -->
+                                                    
                         <!-- {% if obj.numero_de_empleados %}
                             <td>{{ item.numero_de_empleados }}</td>
                         {% else %}

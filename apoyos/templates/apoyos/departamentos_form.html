@@ -1,9 +1,12 @@
+
 {% extends 'base/base.html' %}
+
+{% load static %}
 
 {% block page_content %}
    <form method="POST" class="form-inline">
        {% csrf_token %}
-        <div class="col-xl-6 col-md-6 mb-6">
+        <div class="col-xl-10 col-md-10 mb-10">
             
             {% if obj %}      
                 <div class="card border-left-warning shadow h-100 py-2">
@@ -17,22 +20,49 @@
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 {% if obj %} Editar {% else %} Nuevo {% endif %} Departamento
                             </div>                        
-                            <div class="dropdown-divider"></div>
+                            <div class="dropdown-divider"></div>     
+                            
+                            <div class="col">
+                                <div class="card" style="width: 52rem;">
+                                    <img src="{% static 'base/img/department_work.svg' %}" class="card-img-top" alt="..." height="200px" width="200px">
+                                    <div class="card-body">
+                                      <h5 class="card-title text-md-center">Áreas de Trabajo - Presidencia Municipal</h5>
+                                      <!-- <p class="card-text">Toby es un perro muy jugueton y fuerte. Le gusta pasear todas las mañanas
+                                        y conocer nuevos amigos para convivir con ellos</p> -->
+                                      <!-- <a href="#" class="btn btn-primary">Vamos...</a> -->
+                                    </div>
+                                </div>
+                            </div>
                             
                             <!-- primer fila -->
                             <div class="row mt-3">                                
-                                <div class="col-10">
-                                    {{ form.nombre.label }}
+                                <div class="col-4">
+                                    {{ form.nombre.label }}:
                                     <div class="input-group my-1">{{ form.nombre }}</div>
+                                </div>
+
+                                <div class="col-4">
+                                    {{ form.titular.label }}:
+                                    <div class="input-group my-1">{{ form.titular }}</div>
+                                </div>
+
+                                <div class="col-4">
+                                    {{ form.telefono.label }}:
+                                    <div class="input-group my-1">{{ form.telefono }}</div>
                                 </div>
                             </div>
 
                             <!-- segunda fila -->
                             <div class="row my-3">                                                                
-                                <div class="col-10">
-                                    {{ form.numero_de_empleados.label }}
+                                <div class="col-6">
+                                    {{ form.email.label }}:
+                                    <div class="input-group my-1">{{ form.email }}</div>
+                                </div>    
+                                
+                                <div class="col-6">
+                                    {{ form.numero_de_empleados.label }}:
                                     <div class="input-group my-1">{{ form.numero_de_empleados }}</div>
-                                </div>                                                               
+                                </div>    
                             </div>
 
                              <!-- {{ form.as_p }} -->

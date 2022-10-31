@@ -1,5 +1,7 @@
 {% extends 'base/base.html' %}
 
+{% load static %}
+
 {% block page_content %}
    <form method="POST" class="form-inline">
        {% csrf_token %}
@@ -18,11 +20,23 @@
                                 {% if obj %} Editar {% else %} Nueva {% endif %} Localidad 
                             </div>                        
                             <div class="dropdown-divider"></div>
+
+                            <div class="col">
+                                <div class="card" style="width: 28rem;">
+                                    <img src="{% static 'base/img/localidad.svg' %}" class="card-img-top" alt="..." height="200px" width="200px">
+                                    <div class="card-body">
+                                      <h5 class="card-title text-md-center">Localidades - Pinos, Zacatecas</h5>
+                                      <!-- <p class="card-text">Toby es un perro muy jugueton y fuerte. Le gusta pasear todas las mañanas
+                                        y conocer nuevos amigos para convivir con ellos</p> -->
+                                      <!-- <a href="#" class="btn btn-primary">Vamos...</a> -->
+                                    </div>
+                                </div>
+                            </div>
                             
                             <!-- primer fila -->
                             <div class="row mt-3">                                
-                                <div class="col-10 ml-2">
-                                    <div class="col"> {{ form.nombre.label }}</div>                   
+                                <div class="col">
+                                    {{ form.nombre.label }}
                                     <div class="input-group">{{ form.nombre }}</div>
                                 </div>
                             </div>
@@ -31,14 +45,14 @@
                             <div class="row my-2">                                
                                 <!-- campo 1 -->
                                 <div class="col-6">
-                                    <div class="col-6 mt-1 ml-2">{{ form.seccion.label }}</div>  
-                                    <div class="col-12">{{ form.seccion }}</div>
+                                    {{ form.seccion.label }}
+                                    <div class="input-group">{{ form.seccion }}</div>
                                 </div>                               
 
                                 <!-- campo 2 -->
                                 <div class="col-6">
-                                    <div class="col-4 mt-1 ml-2">{{ form.tipo.label }}</div>                   
-                                    <div class="col-12">{{ form.tipo }}</div>
+                                    {{ form.tipo.label }}
+                                    <div class="input-group">{{ form.tipo }}</div>
                                 </div>
                             </div>
 

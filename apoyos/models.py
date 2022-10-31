@@ -169,6 +169,22 @@ class Persona(models.Model):
 class Departamento(models.Model):
     """ modelo departamento """
     nombre = models.CharField(max_length=100)
+    titular = models.CharField(
+        max_length=200,
+        blank=True,
+        null=True
+    )
+    
+    telefono = models.BigIntegerField(
+        blank=True,
+        null=True
+    )
+    
+    email = models.EmailField(
+        blank=True,
+        null=True
+    )
+    
     numero_de_empleados = models.IntegerField(
         blank=True,
         null=True

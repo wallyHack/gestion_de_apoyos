@@ -16,7 +16,7 @@ class LocalidadAdmin(admin.ModelAdmin):
 class DepartamentoAdmin(admin.ModelAdmin):
     """ modelo administrativo de Departamento"""
     ordering = ['id']
-    list_display = ('id', 'nombre', 'numero_de_empleados')
+    list_display = ('id', 'nombre', 'titular', 'telefono', 'email', 'numero_de_empleados')
     list_filter = ['nombre']
     search_fields = ['id', 'nombre']
     list_per_page = 10

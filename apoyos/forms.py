@@ -94,9 +94,12 @@ class DepartamentoForm(forms.ModelForm):
         """Meta definition for DepartamentoForm"""
         model = Departamento        
         # campos que muestra el form
-        fields = ('nombre', 'numero_de_empleados')
+        fields = ('nombre', 'titular', 'telefono', 'email', 'numero_de_empleados')
         labels = {
             'nombre': 'Nombre',
+            'titular': 'Titular',
+            'telefono': 'Teléfono',
+            'email': 'Correo Electrónico',
             'numero_de_empleados': 'Número de empleados'
         }
     

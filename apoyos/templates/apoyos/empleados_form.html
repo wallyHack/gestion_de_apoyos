@@ -1,5 +1,7 @@
 {% extends 'base/base.html' %}
 
+{% load static %}
+
 {% block page_content %}
    <form method="POST" class="form-inline">
        {% csrf_token %}
@@ -16,7 +18,19 @@
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 {% if obj %} Editar {% else %} Nuevo {% endif %} Empleado
                             </div>                        
-                            <div class="dropdown-divider"></div>   
+                            <div class="dropdown-divider"></div>  
+                            
+                            <div class="col">
+                                <div class="card" style="width: 64rem;">
+                                    <img src="{% static 'base/img/empleado.svg' %}" class="card-img-top" alt="..." height="200px" width="200px">
+                                    <div class="card-body">
+                                      <h5 class="card-title text-md-center">Empleados Registrados - Presidencia Municipal</h5>
+                                      <!-- <p class="card-text">Toby es un perro muy jugueton y fuerte. Le gusta pasear todas las mañanas
+                                        y conocer nuevos amigos para convivir con ellos</p> -->
+                                      <!-- <a href="#" class="btn btn-primary">Vamos...</a> -->
+                                    </div>
+                                </div>
+                            </div>
                             
                             <!-- fila 1 -->
                             <div class="row mb-3">

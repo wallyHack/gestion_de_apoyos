@@ -27,7 +27,7 @@ urlpatterns = [
     path('encargados-ruta/edit/<int:pk>', EncargadoRutaEdit.as_view(), name='encargados_edit'),
     path('encargados-ruta/delete/<int:pk>', EncargadoRutaDelete.as_view(), name="encargados_delete"),
     
-    # comunidadaes que dirige un encargado de ruta
+    # comunidadaes que dirige cada encargado de ruta
     path('encargados-ruta/comunidades-er/<int:id>', comunidades_por_encargado, name='comunidades-er'),    
     
     # crud de puestos
@@ -54,6 +54,6 @@ urlpatterns = [
     path('apoyos/edit/<int:pk>', ApoyosEdit.as_view(), name='apoyos_edit'),
     path('apoyos/delete/<int:pk>', ApoyosDelete.as_view(), name='apoyos_delete'),
     
-    # apoyos que ha recibido una persona
+    # apoyos que ha recibido cada persona
     path('apoyos/apoyos-recibidos/<int:id>', apoyos_por_persona, name='apoyos-recibidos'),
 ]
