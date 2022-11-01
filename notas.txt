@@ -1,4 +1,4 @@
 
 video 91 inactivar
 
-video 111 permisos de django
+video 115 plantilla sin privilegios

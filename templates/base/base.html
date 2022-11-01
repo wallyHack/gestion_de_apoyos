@@ -79,10 +79,25 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">ADMIN. RECURSOS:</h6>
-                        <a class="collapse-item" href="{% url 'apoyos:personas_list' %}">Personas</a>
-                        <a class="collapse-item" href="{% url 'apoyos:apoyos_list' %}">Apoyos</a>
-                        <a class="collapse-item" href="{% url 'apoyos:encargados_list' %}">Encargados Ruta</a>
-                        <a class="collapse-item" href="{% url 'apoyos:localidades_list' %}">Localidades</a>                                               
+                        <!-- permisos a nivel de plantillas -->                        
+                        {% if perms.apoyos.view_persona %}
+                            <a class="collapse-item" href="{% url 'apoyos:personas_list' %}">Personas</a>
+                        {% endif %}
+                            
+                        
+                        {% if perms.apoyos.view_apoyos %}
+                            <a class="collapse-item" href="{% url 'apoyos:apoyos_list' %}">Apoyos</a>
+                        {% endif %}
+
+                        
+                        {% if perms.apoyos.view_encargadoruta %}
+                            <a class="collapse-item" href="{% url 'apoyos:encargados_list' %}">Encargados Ruta</a>
+                        {% endif %}
+                            
+                        
+                        {% if perms.apoyos.view_localidad %}
+                        <a class="collapse-item" href="{% url 'apoyos:localidades_list' %}">Localidades</a>  
+                        {% endif %}                                                                                                                                               
                     </div>
                 </div>
             </li>
@@ -98,9 +113,20 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">ADMIN. PERSONAL:</h6>
-                        <a class="collapse-item" href="{% url 'apoyos:empleados_list' %}">Empleados</a>
-                        <a class="collapse-item" href="{% url 'apoyos:departamentos_list' %}">Departamentos</a>
-                        <a class="collapse-item" href="{% url 'apoyos:puestos_list' %}">Puestos</a>                                              
+                        <!-- permisos a nivel de plantillas -->  
+                        
+                        {% if perms.apoyos.view_empleado %}
+                            <a class="collapse-item" href="{% url 'apoyos:empleados_list' %}">Empleados</a>
+                        {% endif %}
+                           
+                        
+                        {% if perms.apoyos.view_departamento %}
+                            <a class="collapse-item" href="{% url 'apoyos:departamentos_list' %}">Departamentos</a>
+                        {% endif %}
+                                                    
+                        {% if perms.apoyos.view_puesto %}
+                            <a class="collapse-item" href="{% url 'apoyos:puestos_list' %}">Puestos</a>
+                        {% endif %}                                                                                                                         
                     </div>
                 </div>
             </li>
@@ -340,7 +366,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ user.username }}</span>
                                 <img class="img-profile rounded-circle"
                                     src="{% static 'base/img/undraw_profile.svg' %}">
                             </a>

@@ -12,8 +12,9 @@ from .forms import ApoyosForm, DepartamentoForm, EmpleadosForm, LocalidadesForm,
 from.models import Localidad, Puesto, Persona, EncargadoRuta, Apoyos, Empleado, Departamento
 
 # Create your views here.
-class LocalidadView(LoginRequiredMixin, generic.ListView):
+class LocalidadView(LoginRequiredMixin, PermissionRequiredMixin, generic.ListView):
     """ vista basada en clase para listar localidades"""
+    permission_required = "apoyos.view_localidad"
     model = Localidad
     template_name = "apoyos/localidades_list.html"
     context_object_name = "obj"
@@ -51,8 +52,9 @@ class LocalidadDelete(SuccessMessageMixin, LoginRequiredMixin, generic.DeleteVie
     
 #*********************************************************************************
 
-class PersonaView(LoginRequiredMixin, generic.ListView):
+class PersonaView(LoginRequiredMixin, PermissionRequiredMixin, generic.ListView):
     """ vista basada en clase para listar personas"""
+    permission_required = "apoyos.view_persona"
     model = Persona
     template_name = "apoyos/personas_list.html"
     context_object_name = "obj"
@@ -88,8 +90,9 @@ class PersonaDelete(SuccessMessageMixin, LoginRequiredMixin, generic.DeleteView)
     
 #*********************************************************************************
 
-class EncargadoRutaView(LoginRequiredMixin, generic.ListView):
+class EncargadoRutaView(LoginRequiredMixin, PermissionRequiredMixin, generic.ListView):
     """ vista basada en clase para listar encargados de ruta"""
+    permission_required = "apoyos.view_encargadoruta"
     model = EncargadoRuta
     template_name = "apoyos/encargados_ruta_list.html"
     context_object_name = "obj"
@@ -125,8 +128,9 @@ class EncargadoRutaDelete(SuccessMessageMixin, LoginRequiredMixin, generic.Delet
     
 #*********************************************************************************
     
-class PuestoView(LoginRequiredMixin, generic.ListView):
+class PuestoView(LoginRequiredMixin, PermissionRequiredMixin, generic.ListView):
     """ vista basada en clase para listar los puestos"""
+    permission_required = "apoyos.view_puesto"
     model = Puesto
     template_name = "apoyos/puestos_list.html"
     context_object_name = "obj"
@@ -162,8 +166,9 @@ class PuestoDelete(SuccessMessageMixin, LoginRequiredMixin, generic.DeleteView):
     
 #*********************************************************************************
 
-class DepartamentoView(LoginRequiredMixin, generic.ListView):
+class DepartamentoView(LoginRequiredMixin, PermissionRequiredMixin, generic.ListView):
     """ vista basada en clase para listar los departamentos"""
+    permission_required = "apoyos.view_departamento"
     model = Departamento
     template_name = "apoyos/departamentos_list.html"
     context_object_name = "obj"
@@ -199,8 +204,9 @@ class DepartamentoDelete(SuccessMessageMixin, LoginRequiredMixin, generic.Delete
     
 #*********************************************************************************
 
-class EmpleadoView(LoginRequiredMixin, generic.ListView):
+class EmpleadoView(LoginRequiredMixin, PermissionRequiredMixin, generic.ListView):
     """ vista basada en clase para listar los empleados"""
+    permission_required = "apoyos.view_empleado"
     model = Empleado
     template_name = "apoyos/empleados_list.html"
     context_object_name = "obj"
@@ -236,8 +242,9 @@ class EmpleadoDelete(SuccessMessageMixin, LoginRequiredMixin, generic.DeleteView
     
 #*********************************************************************************
 
-class ApoyosView(LoginRequiredMixin, generic.ListView):
+class ApoyosView(LoginRequiredMixin, PermissionRequiredMixin, generic.ListView):
     """ vista basada en clase para listar los apoyos"""
+    permission_required = "apoyos.view_apoyos"
     model = Apoyos
     template_name = "apoyos/apoyos_list.html"
     context_object_name = "obj"
