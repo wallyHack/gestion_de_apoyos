@@ -5,7 +5,7 @@ from django.contrib import messages
 
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-# from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import login_required, permission_required
 
 from bases.views import Sin_Privilegios 
 from .forms import ApoyosForm, DepartamentoForm, EmpleadosForm, LocalidadesForm, PersonasForm, EncargadosRutaForm, PuestosForm
@@ -278,6 +278,9 @@ class ApoyosDelete(SuccessMessageMixin, Sin_Privilegios, generic.DeleteView):
     
 #*********************************************************************************
 # filtros personalizados 
+
+@login_required(login_url='/login/') # debe estar logeado
+@permission_required('apoyos.view_localidad', login_url='bases:sin_privilegios')
 def comunidades_por_encargado(request, id):
     """ mostrar todas las comunidades que administra un encargado de ruta"""
     encargado = EncargadoRuta.objects.prefetch_related('comunidades').filter(pk=id)
@@ -304,6 +307,8 @@ def comunidades_por_encargado(request, id):
     
     return render(request, template_name, context)
     
+@login_required(login_url='/login/') # debe estar logeado
+@permission_required('apoyos.view_apoyos', login_url='bases:sin_privilegios')
 def apoyos_por_persona(request, id):
     """ mostramos todos los apoyos que ha recibido una persona"""
     apoyos_recibidos = Apoyos.objects.all().select_related('persona').filter(persona=id)
