@@ -82,6 +82,12 @@
                         <td>                            
                             <a href="{% url 'apoyos:departamentos_edit' item.id %}" class="btn btn-warning btn-circle"> <i class="far fa-edit"></i> </a>                           
                             <a href="{% url 'apoyos:departamentos_delete' item.id %}" class="btn btn-danger btn-circle"> <i class="fas fa-trash-alt"></i> </a>
+                            <a href="{% url 'apoyos:empleados_por_departamento' item.id %}" class="btn btn-success btn-icon-split btn-sm">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                                <span class="text">Ver empleados</span>
+                            </a>
                         </td>
                         
                     </tr>

@@ -59,6 +59,12 @@
                         <td>                            
                             <a href="{% url 'apoyos:localidades_edit' item.id %}" class="btn btn-warning btn-circle"> <i class="far fa-edit"></i> </a>                           
                             <a href="{% url 'apoyos:localidades_delete' item.id %}" class="btn btn-danger btn-circle"> <i class="fas fa-trash-alt"></i> </a>
+                            <a href="{% url 'apoyos:personas_por_comunidad' item.id %}" class="btn btn-success btn-icon-split btn-sm">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-user-alt-slash"></i>
+                                </span>
+                                <span class="text">Ver personas</span>
+                            </a>
                         </td>
                         
                     </tr>

@@ -55,6 +55,12 @@
                         <td>                            
                             <a href="{% url 'apoyos:puestos_edit' item.id %}" class="btn btn-warning btn-circle"> <i class="far fa-edit"></i> </a>                           
                             <a href="{% url 'apoyos:puestos_delete' item.id %}" class="btn btn-danger btn-circle"> <i class="fas fa-trash-alt"></i> </a>
+                            <a href="{% url 'apoyos:comunidades-er' item.id %}" class="btn btn-primary btn-icon-split btn-sm">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                                <span class="text">Ver empleados</span>
+                            </a>
                         </td>
                         
                     </tr>

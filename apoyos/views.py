@@ -265,7 +265,7 @@ class ApoyosEdit(SuccessMessageMixin, Sin_Privilegios, generic.UpdateView):
     context_object_name = "obj"
     form_class = ApoyosForm
     success_message = "Apoyo actualizado satisfactoriamente.."
-    success_url = reverse_lazy("apoyos:apoyos_edit")
+    success_url = reverse_lazy("apoyos:apoyos_list")
     
 class ApoyosDelete(SuccessMessageMixin, Sin_Privilegios, generic.DeleteView):
     """ vista basada en clase para eliminar un apoyo"""
@@ -278,6 +278,42 @@ class ApoyosDelete(SuccessMessageMixin, Sin_Privilegios, generic.DeleteView):
     
 #*********************************************************************************
 # filtros personalizados 
+
+@login_required(login_url='/login/') # debe estar logeado
+@permission_required('apoyos.view_persona', login_url='bases:sin_privilegios')
+def personas_por_comunidad(request, id):
+    """ mostramos todas las personas de cada comunidad"""
+    personas = Persona.objects.all().select_related('localidad').filter(localidad=id)
+    #print(personas)
+    
+    template_name = 'apoyos/personas_por_comunidad.html'
+    context = {'obj': personas}
+    
+    return render(request, template_name, context)
+
+@login_required(login_url='/login/')
+@permission_required('apoyos.view_empleado', login_url='bases:sin_privilegios')
+def empleados_por_departamento(request, id):
+    """ mostramos todos los empleados de cada departamento"""
+    empleados = Empleado.objects.all().select_related('departamento').filter(departamento=id)
+    #print(empleados)
+    
+    template_name = 'apoyos/empleados_por_departamento.html'
+    context = {'obj': empleados}
+    
+    return render(request, template_name, context)
+
+@login_required(login_url='/login/') # debe estar logeado
+@permission_required('apoyos.view_apoyos', login_url='bases:sin_privilegios')
+def apoyos_por_persona(request, id):
+    """ mostramos todos los apoyos que ha recibido una persona"""
+    apoyos_recibidos = Apoyos.objects.all().select_related('persona').filter(persona=id)
+    #print(apoyos_recibidos)
+
+    context = {'obj': apoyos_recibidos}
+    template_name = "apoyos/apoyos_recibidos.html"
+    
+    return render(request, template_name, context)
 
 @login_required(login_url='/login/') # debe estar logeado
 @permission_required('apoyos.view_localidad', login_url='bases:sin_privilegios')
@@ -307,19 +343,6 @@ def comunidades_por_encargado(request, id):
     
     return render(request, template_name, context)
     
-@login_required(login_url='/login/') # debe estar logeado
-@permission_required('apoyos.view_apoyos', login_url='bases:sin_privilegios')
-def apoyos_por_persona(request, id):
-    """ mostramos todos los apoyos que ha recibido una persona"""
-    apoyos_recibidos = Apoyos.objects.all().select_related('persona').filter(persona=id)
-    print(apoyos_recibidos)
 
-    context = {'obj': apoyos_recibidos}
-    template_name = "apoyos/apoyos_recibidos.html"
-    
-    # if not apoyos_recibidos:
-    #     return redirect('apoyos:apoyos_list')
-
-    return render(request, template_name, context)
 
 

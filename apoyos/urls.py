@@ -1,11 +1,11 @@
 
 from django.urls import path
 from .views import ApoyosView, LocalidadView, LocalidadNew, LocalidadEdit, LocalidadDelete, \
-    PersonaView, PersonaNew, PersonaEdit, PersonaDelete, \
+    PersonaView, PersonaNew, PersonaEdit, PersonaDelete, personas_por_comunidad, \
     EncargadoRutaView, EncargadoRutaNew, EncargadoRutaEdit, EncargadoRutaDelete, comunidades_por_encargado, \
     PuestoView, PuestoNew, PuestoEdit, PuestoDelete, \
     DepartamentoView, DepartamentoNew, DepartamentoEdit, DepartamentoDelete, \
-    EmpleadoView, EmpleadoNew, EmpleadoEdit, EmpleadoDelete, \
+    EmpleadoView, EmpleadoNew, EmpleadoEdit, EmpleadoDelete, empleados_por_departamento, \
     ApoyosView, ApoyosNew, ApoyosEdit, ApoyosDelete, apoyos_por_persona
 
 urlpatterns = [
@@ -20,6 +20,9 @@ urlpatterns = [
     path('personas/new', PersonaNew.as_view(), name='personas_new'),
     path('personas/edit/<int:pk>', PersonaEdit.as_view(), name='personas_edit'),
     path('personas/delete/<int:pk>', PersonaDelete.as_view(), name="personas_delete"),
+    
+    # personas de cada comunidad
+    path('personas/personas-por-comunidad/<int:id>', personas_por_comunidad, name='personas_por_comunidad'),
     
     # crud de encargados de ruta
     path('encargados-ruta/', EncargadoRutaView.as_view(), name='encargados_list'),
@@ -47,6 +50,9 @@ urlpatterns = [
     path('empleados/new', EmpleadoNew.as_view(), name='empleados_new'),
     path('empleados/edit/<int:pk>', EmpleadoEdit.as_view(), name='empleados_edit'),
     path('empleados/delete/<int:pk>', EmpleadoDelete.as_view(), name='empleados_delete'),
+    
+    # empleados de cada departamento
+    path('empleados/empleados-por-departamento/<int:id>', empleados_por_departamento, name='empleados_por_departamento'),
     
     # crud de apoyos
     path('apoyos/', ApoyosView.as_view(), name='apoyos_list'),
