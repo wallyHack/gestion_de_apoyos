@@ -12,10 +12,11 @@ from django.contrib import messages
 # Create your views here.
 class Sin_Privilegios(LoginRequiredMixin, PermissionRequiredMixin):
     login_url = 'bases:login'
-    raiseExceptions = False
+    raiseExceptions = False # no se ponga la pantalla en blanco
     redirect_field_name = "redirect_to"
 
     def handle_no_permission(self):
+        """ método que valida si el usuario tiene privilegios, para redireccionar a plantilla"""
         from django.contrib.auth.models import AnonymousUser
 
         # si el usuario es válido, se muestra la vista sin privilegios
@@ -29,5 +30,6 @@ class Home(LoginRequiredMixin, TemplateView):
     login_url = 'bases:login' # sino esta logeado se redireccona al admin
 
 class HomeSinPrivilegios(LoginRequiredMixin, generic.TemplateView):
+    login_url = 'bases:login'
     template_name = "bases/sin_privilegios.html"
 
