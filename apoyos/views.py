@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib import messages
+from .forms import ApoyosForm
 
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
@@ -302,6 +303,17 @@ def empleados_por_departamento(request, id):
     
     return render(request, template_name, context)
 
+def empleados_por_puesto(request, id):
+    """ mostramos todos los empleados de cada puesto"""
+    empleados = Empleado.objects.all().select_related('puesto').filter(puesto=id);
+    
+    template_name = 'apoyos/empleados_por_puesto.html'
+    context = {
+        'obj': empleados
+    }
+    
+    return render(request, template_name, context)
+
 @login_required(login_url='/login/') # debe estar logeado
 @permission_required('apoyos.view_apoyos', login_url='bases:sin_privilegios')
 def apoyos_por_persona(request, id):
@@ -362,6 +374,30 @@ def getActivados(request):
     context = {'obj': activados}
     
     return render(request, template_name, context)
+
+def agregarApoyos(request, nombre):
+    """ agregamos un apoyo"""
+    
+    # form vacio
+    data = {
+        'form': ApoyosForm({
+            'tipo': 'VIVIENDA',
+            'descripcion': '1 carretilla', 
+            'notas_adicionales': 'se entrego esto',
+            'persona':nombre       
+        })
+    }
+    
+    if request.method == 'POST':
+        formulario = ApoyosForm(data=request.POST or None, files=request.FILES)
+        if formulario.is_valid():            
+            formulario.save()
+            messages.success(request, 'Agregado correctamente.')
+            return redirect('apoyos:apoyos_list')
+        else:
+            data['form'] = formulario
+    
+    return render(request, 'apoyos/agregar-apoyo.html', data)
     
     
 

@@ -62,13 +62,13 @@
          >
             <thead>
                 <!-- <th data-field="id" data-sortable="true">Id</th> -->
-                <!-- <th data-field="curp"  data-search="curp">CURP</th> -->
-                <th data-field="nombres" data-sortable="true">Nombres</th>
-                <th data-field="ap_paterno" data-sortable="true">Ap Paterno</th>
-                <!-- <th data-field="ap_materno" data-sortable="true">Ap Materno</th> -->
+                <th data-field="curp" data-search="curp">CURP</th>
+                <th data-field="nombres">Nombres</th>
+                <th data-field="ap_paterno">Ap Paterno</th>
+                <th data-field="ap_materno">Ap Materno</th>
                 <!-- <th data-field="tipo" data-sortable="true">Tipo</th>                 -->
-                <th data-field="localidad" data-sortable="true">Localidad</th>
-                <th data-field="seccion">Sección</th>                           
+                <!-- <th data-field="localidad" data-sortable="true">Localidad</th>
+                <th data-field="seccion">Sección</th>                            -->
                 <th class="all">Acciones</th>
             </thead>
  
@@ -77,13 +77,20 @@
                     <tr>
                         <!-- <td>{{ item.id }}</td> -->
                         
-                        <!-- {% if item.curp %}
+                        {% if item.curp %}
                            <td>{{ item.curp }}</td> 
                         {% else %}
                             <td></td>
-                        {% endif%}    
-                             -->
-                        <td>{{ item.nombres }}</td>
+                        {% endif%}  
+
+                         
+                        {% if item.nombres %}
+                            <td>{{ item.nombres }}</td>
+                        {% else %}
+                            <td></td>                        
+                         {% endif %}
+                                   
+                        
 
                         <!-- si hay apellido paterno lo mostramos -->
                         {% if item.ap_paterno %}
@@ -93,16 +100,16 @@
                         {% endif%}                                                    
                         
                         <!-- si hay apellido materno lo mostramos -->
-                        <!-- {% if item.ap_materno %}
+                        {% if item.ap_materno %}
                             <td>{{ item.ap_materno }}</td> 
                         {% else %}
                             <td></td> 
-                        {% endif %}     -->
+                        {% endif %}    
 
                         <!-- <td>{{ item.tipo }}</td>                                                         -->
                         <!-- localidad donde vive -->
-                        <td>{{ item.localidad }}</td>
-                        <td>{{ item.localidad.seccion }}</td>                       
+                        <!-- <td>{{ item.localidad }}</td>
+                        <td>{{ item.localidad.seccion }}</td>                        -->
                         
                         <td>                            
                             <a href="{% url 'apoyos:personas_edit' item.id %}" class="btn btn-warning btn-circle"><i class="far fa-edit"></i></a>                           
@@ -115,7 +122,7 @@
                                 <span class="text">Ver apoyos</span>
                             </a>
 
-                            <a href="#" class="btn btn-info btn-icon-split btn-sm">
+                            <a href="{% url 'apoyos:agregar_apoyos' item.nombres %}" class="btn btn-info btn-icon-split btn-sm">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-box-open"></i>
                                 </span>

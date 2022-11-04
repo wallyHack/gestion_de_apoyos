@@ -5,8 +5,8 @@ from .views import ApoyosView, LocalidadView, LocalidadNew, LocalidadEdit, Local
     EncargadoRutaView, EncargadoRutaNew, EncargadoRutaEdit, EncargadoRutaDelete, comunidades_por_encargado, \
     PuestoView, PuestoNew, PuestoEdit, PuestoDelete, \
     DepartamentoView, DepartamentoNew, DepartamentoEdit, DepartamentoDelete, \
-    EmpleadoView, EmpleadoNew, EmpleadoEdit, EmpleadoDelete, empleados_por_departamento, \
-    ApoyosView, ApoyosNew, ApoyosEdit, ApoyosDelete, apoyos_por_persona
+    EmpleadoView, EmpleadoNew, EmpleadoEdit, EmpleadoDelete, empleados_por_departamento, empleados_por_puesto, \
+    ApoyosView, ApoyosNew, ApoyosEdit, ApoyosDelete, apoyos_por_persona, agregarApoyos
 
 urlpatterns = [
     # crud localidades
@@ -58,12 +58,17 @@ urlpatterns = [
     
     # empleados de cada departamento
     path('empleados/empleados-por-departamento/<int:id>', empleados_por_departamento, name='empleados_por_departamento'),
+    # empleados de cada puesto
+    path('empleados/empleados-por-puesto/<int:id>', empleados_por_puesto, name='empleados_por_puesto'),
     
     # crud de apoyos
     path('apoyos/', ApoyosView.as_view(), name='apoyos_list'),
     path('apoyos/new', ApoyosNew.as_view(), name='apoyos_new'),
     path('apoyos/edit/<int:pk>', ApoyosEdit.as_view(), name='apoyos_edit'),
     path('apoyos/delete/<int:pk>', ApoyosDelete.as_view(), name='apoyos_delete'),
+    
+    # agregar apoyo
+    path('apoyos/agregar-apoyo/<str:nombre>', agregarApoyos, name='agregar_apoyos'),
     
     # apoyos que ha recibido cada persona
     path('apoyos/apoyos-recibidos/<int:id>', apoyos_por_persona, name='apoyos-recibidos'),

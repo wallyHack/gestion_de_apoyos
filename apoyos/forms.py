@@ -28,10 +28,10 @@ class PersonasForm(forms.ModelForm):
         model = Persona
         # campos que muestra el formulario
         fields = ("curp", "nombres", "ap_paterno", "ap_materno", "tipo", "genero", \
-        "domicilio", "estado", "telefono", "localidad")
+        "fecha_de_nacimiento","domicilio", "estado", "telefono", "localidad")
         labels = {
             'curp': 'CURP', 'nombres': 'Nombres', 'ap_paterno': 'Apellido Paterno', \
-            'ap_materno': 'Apellido Materno', 'genero': 'Género'
+            'ap_materno': 'Apellido Materno', 'genero': 'Género', 'fecha_de_nacimiento':'Fecha de Nacimiento'
         }
         
     def __init__(self, *args, **kwargs):

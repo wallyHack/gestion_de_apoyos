@@ -1,5 +1,7 @@
 {% extends 'base/base.html' %}
 
+{% load static %}
+
 {% block page_content %}
    <form method="POST" class="form-inline">
        {% csrf_token %}
@@ -17,6 +19,15 @@
                                 {% if obj %} Editar {% else %} Nueva {% endif %} Persona 
                             </div>                        
                             <div class="dropdown-divider"></div>   
+
+                            <div class="col">
+                                <div class="card" style="width: 40rem;">
+                                    <img src="{% static 'base/img/avatar-activista.svg' %}" class="card-img-top" alt="..." height="200px" width="200px">
+                                    <div class="card-body">
+                                      <h5 class="card-title text-md-center">Activistas/Activados - Pinos, Zacatecas</h5>                                     
+                                    </div>
+                                </div>
+                            </div>
                             
                             <div class="row mb-3">
                                 <div class="col-md-10 ml-5">
@@ -51,17 +62,24 @@
 
                             <!-- fila 2 -->
                             <div class="row mb-3">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     {{ form.tipo.label }}
                                     <div class="input-group">
                                         {{ form.tipo }}
                                     </div>
                                 </div>
                                 
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     {{ form.genero.label }}
                                     <div class="input-group">
                                         {{ form.genero }}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    {{ form.fecha_de_nacimiento.label }}
+                                    <div class="input-group">
+                                        {{ form.fecha_de_nacimiento }}
                                     </div>
                                 </div>
                             </div>

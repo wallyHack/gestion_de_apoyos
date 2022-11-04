@@ -116,6 +116,10 @@ class Persona(models.Model):
         choices=GENERO,
         default=M
     )
+    
+    fecha_de_nacimiento = models.DateField(
+        null=True, blank=True
+    )
 
     domicilio = models.CharField(
         max_length=150,

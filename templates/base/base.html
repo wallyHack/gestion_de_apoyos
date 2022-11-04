@@ -67,8 +67,20 @@
                 OPCIONES DE MENÚ
             </div>
 
+            <!-- variables que contienen etiquetas de ruta -->
+            <!-- Admin de recursos -->
+            {% url 'apoyos:personas_list' as personas_url %}
+            {% url 'apoyos:apoyos_list' as apoyos_url %}
+            {% url 'apoyos:encargados_list' as enc_url %}
+            {% url 'apoyos:localidades_list' as loc_url %}
+
+            <!-- admin de personal -->
+            {% url 'apoyos:empleados_list' as emp_url %}            
+            {% url 'apoyos:puestos_list' as puestos_url %}
+            {% url 'apoyos:departamentos_list' as departamentos_url %}
+
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item {% if personas_url in request.path or apoyos_url in request.path or enc_url in request.path or loc_url in request.path %} active {% endif %}">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <!-- <i class="fas fa-fw fa-cog"></i> -->
@@ -76,56 +88,56 @@
                     
                     <span>RECURSOS</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseTwo" class="collapse {% if personas_url in request.path or apoyos_url in request.path or enc_url in request.path or loc_url in request.path %} show {% endif %}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">ADMIN. RECURSOS:</h6>
                         <!-- permisos a nivel de plantillas -->                        
                         {% if perms.apoyos.view_persona %}
-                            <a class="collapse-item" href="{% url 'apoyos:personas_list' %}">Personas</a>
+                            <a class="collapse-item {% if personas_url in request.path %} active {% endif %}" href="{{ personas_url }}">Personas</a>
                         {% endif %}
                             
                         
                         {% if perms.apoyos.view_apoyos %}
-                            <a class="collapse-item" href="{% url 'apoyos:apoyos_list' %}">Apoyos</a>
+                            <a class="collapse-item {% if apoyos_url in request.path %} active {% endif %}" href="{{ apoyos_url }}">Apoyos</a>
                         {% endif %}
 
                         
                         {% if perms.apoyos.view_encargadoruta %}
-                            <a class="collapse-item" href="{% url 'apoyos:encargados_list' %}">Encargados Ruta</a>
+                            <a class="collapse-item {% if enc_url in request.path %} active {% endif %}" href="{{ enc_url }}">Encargados Ruta</a>
                         {% endif %}
                             
                         
                         {% if perms.apoyos.view_localidad %}
-                        <a class="collapse-item" href="{% url 'apoyos:localidades_list' %}">Localidades</a>  
+                        <a class="collapse-item {% if loc_url in request.path %} active {% endif %}" href="{{ loc_url }}">Localidades</a>  
                         {% endif %}                                                                                                                                               
                     </div>
                 </div>
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+            <li class="nav-item {% if emp_url in request.path or puestos_url in request.path or departamentos_url in request.path %} active {% endif %}">
+                <a class="nav-link collapsed active" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-user-edit"></i>
                     <span>PERSONAL</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                <div id="collapseUtilities" class="collapse {% if emp_url in request.path or puestos_url in request.path or departamentos_url in request.path %} show {% endif %}" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">ADMIN. PERSONAL:</h6>
                         <!-- permisos a nivel de plantillas -->  
                         
                         {% if perms.apoyos.view_empleado %}
-                            <a class="collapse-item" href="{% url 'apoyos:empleados_list' %}">Empleados</a>
+                            <a class="collapse-item {% if emp_url in request.path %} active {% endif %}" href="{{ emp_url }}">Empleados</a>
                         {% endif %}
                            
                         
                         {% if perms.apoyos.view_departamento %}
-                            <a class="collapse-item" href="{% url 'apoyos:departamentos_list' %}">Departamentos</a>
+                            <a class="collapse-item {% if departamentos_url in request.path %} active {% endif %}" href="{{ departamentos_url }}">Departamentos</a>
                         {% endif %}
                                                     
                         {% if perms.apoyos.view_puesto %}
-                            <a class="collapse-item" href="{% url 'apoyos:puestos_list' %}">Puestos</a>
+                            <a class="collapse-item {% if puestos_url in request.path %} active {% endif %}" href="{{ puestos_url }}">Puestos</a>
                         {% endif %}                                                                                                                         
                     </div>
                 </div>
