@@ -1,7 +1,7 @@
 
 from django.urls import path
 from .views import ApoyosView, LocalidadView, LocalidadNew, LocalidadEdit, LocalidadDelete, \
-    PersonaView, PersonaNew, PersonaEdit, PersonaDelete, personas_por_comunidad, \
+    PersonaView, PersonaNew, PersonaEdit, PersonaDelete, personas_por_comunidad, getActivistas, getActivados, \
     EncargadoRutaView, EncargadoRutaNew, EncargadoRutaEdit, EncargadoRutaDelete, comunidades_por_encargado, \
     PuestoView, PuestoNew, PuestoEdit, PuestoDelete, \
     DepartamentoView, DepartamentoNew, DepartamentoEdit, DepartamentoDelete, \
@@ -20,6 +20,11 @@ urlpatterns = [
     path('personas/new', PersonaNew.as_view(), name='personas_new'),
     path('personas/edit/<int:pk>', PersonaEdit.as_view(), name='personas_edit'),
     path('personas/delete/<int:pk>', PersonaDelete.as_view(), name="personas_delete"),
+    
+    # ver activistas
+    path('personas/activistas', getActivistas, name='activistas_list'),
+    # ver activados
+    path('personas/activados', getActivados, name='activados_list'),
     
     # personas de cada comunidad
     path('personas/personas-por-comunidad/<int:id>', personas_por_comunidad, name='personas_por_comunidad'),

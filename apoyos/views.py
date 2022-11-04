@@ -278,7 +278,6 @@ class ApoyosDelete(SuccessMessageMixin, Sin_Privilegios, generic.DeleteView):
     
 #*********************************************************************************
 # filtros personalizados 
-
 @login_required(login_url='/login/') # debe estar logeado
 @permission_required('apoyos.view_persona', login_url='bases:sin_privilegios')
 def personas_por_comunidad(request, id):
@@ -342,6 +341,28 @@ def comunidades_por_encargado(request, id):
     #     return redirect('apoyos:encargados_list')
     
     return render(request, template_name, context)
+
+@login_required(login_url='/login/')
+@permission_required('apoyos.view_persona', login_url='bases:sin_privilegios')
+def getActivistas(request):
+    """ mostrar todos los activistas"""
+    activistas = Persona.objects.all().filter(tipo="ACTIVISTA")
+    template_name = "apoyos/activistas.html"
+    context = {'obj': activistas}
+    
+    return render(request, template_name, context)
+
+@login_required(login_url='/login/')
+@permission_required('apoyos.view_persona', login_url='bases:sin_privilegios')
+def getActivados(request):
+    """ mostrar todos los activados"""
+    activados = Persona.objects.all().filter(tipo="ACTIVADO")
+    
+    template_name = "apoyos/activados.html"
+    context = {'obj': activados}
+    
+    return render(request, template_name, context)
+    
     
 
 

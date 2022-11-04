@@ -6,7 +6,7 @@
  <div class="card shadow mb-4">
     <!-- Card Header - Dropdown -->
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-        <h6 class="m-0 font-weight-bold text-primary">Listado de Personas - (Activistas/Activados) </h6>
+        <h6 class="m-0 font-weight-bold text-primary">Listado de Personas - Pinos, Zacatecas </h6>
         <div class="dropdown no-arrow">
             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -22,6 +22,26 @@
     </div>
     <!-- Card Body -->
     <div class="card-body">
+
+        <div class="row">
+            <div class="col-md-3">
+                <a href="{% url 'apoyos:activistas_list' %}" class="btn btn-light btn-icon-split">
+                    <span class="icon text-gray-600">
+                        <i class="fas fa-arrow-right"></i>
+                    </span>
+                    <span class="text">Ver activistas</span>
+                </a>
+            </div>
+
+            <div class="col-md-3">
+                <a href="{% url 'apoyos:activados_list' %}" class="btn btn-light btn-icon-split">
+                    <span class="icon text-gray-600">
+                        <i class="fas fa-arrow-right"></i>
+                    </span>
+                    <span class="text">Ver activados</span>
+                </a>
+            </div>
+        </div>
        
         {% if not obj %}
              <div class="alert alert-info">No Hay Personas</div>           
@@ -42,7 +62,7 @@
          >
             <thead>
                 <!-- <th data-field="id" data-sortable="true">Id</th> -->
-                <!-- <th data-field="curp">CURP</th> -->
+                <!-- <th data-field="curp"  data-search="curp">CURP</th> -->
                 <th data-field="nombres" data-sortable="true">Nombres</th>
                 <th data-field="ap_paterno" data-sortable="true">Ap Paterno</th>
                 <!-- <th data-field="ap_materno" data-sortable="true">Ap Materno</th> -->

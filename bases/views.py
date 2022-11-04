@@ -8,6 +8,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.base import TemplateView
 from django.contrib import messages
+from apoyos.models import Persona
+from django.shortcuts import render, redirect
 
 # Create your views here.
 class Sin_Privilegios(LoginRequiredMixin, PermissionRequiredMixin):
@@ -32,4 +34,18 @@ class Home(LoginRequiredMixin, TemplateView):
 class HomeSinPrivilegios(LoginRequiredMixin, generic.TemplateView):
     login_url = 'bases:login'
     template_name = "bases/sin_privilegios.html"
+    
+def estadisticas_generales(request):
+    # total de activistas
+    total_de_activistas = Persona.objects.all().filter(tipo="ACTIVISTA").count()
+    
+    # total de activados
+    # total_de_activados = Persona.objects.all().filter(tipo="ACTIVADO").count()
+    
+    template_name = 'bases/home.html'
+    context = {
+        'obj': total_de_activistas,       
+    }
+    
+    return render(request, template_name, context) 
 
