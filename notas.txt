@@ -2,3 +2,6 @@
 video 91 inactivar
 
 video 115 plantilla sin privilegios
+
+- Autocompletar en un select input HTML - template Django
+https://www.youtube.com/watch?v=jp7iRAdoA6Q

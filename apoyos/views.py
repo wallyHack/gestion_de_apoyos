@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib import messages
@@ -375,24 +375,28 @@ def getActivados(request):
     
     return render(request, template_name, context)
 
-def agregarApoyos(request, nombre):
+def agregarApoyos(request, id):
     """ agregamos un apoyo"""
     
-    # form vacio
+    # buscamos a la persona que se le va entregar
+    persona = Persona.objects.all().filter(id=id)
+    print(persona)
+    
+    # form que lleva la persona a la que se entregara el apoyo
     data = {
         'form': ApoyosForm({
             'tipo': 'VIVIENDA',
             'descripcion': '1 carretilla', 
             'notas_adicionales': 'se entrego esto',
-            'persona':nombre       
-        })
+            'persona': 'Luis UU'  
+        })        
     }
     
     if request.method == 'POST':
         formulario = ApoyosForm(data=request.POST or None, files=request.FILES)
         if formulario.is_valid():            
             formulario.save()
-            messages.success(request, 'Agregado correctamente.')
+            messages.success(request, 'Apoyo agregado correctamente.')
             return redirect('apoyos:apoyos_list')
         else:
             data['form'] = formulario

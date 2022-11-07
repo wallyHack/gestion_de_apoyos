@@ -68,7 +68,7 @@ urlpatterns = [
     path('apoyos/delete/<int:pk>', ApoyosDelete.as_view(), name='apoyos_delete'),
     
     # agregar apoyo
-    path('apoyos/agregar-apoyo/<str:nombre>', agregarApoyos, name='agregar_apoyos'),
+    path('apoyos/agregar-apoyo/<int:id>', agregarApoyos, name='agregar_apoyos'),
     
     # apoyos que ha recibido cada persona
     path('apoyos/apoyos-recibidos/<int:id>', apoyos_por_persona, name='apoyos-recibidos'),

@@ -66,6 +66,7 @@ class Puesto(models.Model):
 class Persona(models.Model):
     """ modelo persona"""
     curp = models.CharField(
+        unique=True,
         max_length=18,
         null=True,
         blank=True
@@ -141,7 +142,7 @@ class Persona(models.Model):
 
     telefono = models.BigIntegerField(
         null=True,
-        blank=True
+        blank=True,        
     )
 
     # llaves foráneas

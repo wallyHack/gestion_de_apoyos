@@ -1,4 +1,6 @@
 
+from django.contrib.admin.widgets import AutocompleteSelect
+from django.contrib import admin
 from django import forms
 from .models import Apoyos, Departamento, Localidad, Persona, EncargadoRuta, Puesto, Empleado
 
@@ -33,6 +35,13 @@ class PersonasForm(forms.ModelForm):
             'curp': 'CURP', 'nombres': 'Nombres', 'ap_paterno': 'Apellido Paterno', \
             'ap_materno': 'Apellido Materno', 'genero': 'Género', 'fecha_de_nacimiento':'Fecha de Nacimiento'
         }
+        widgets = {
+            'localidad': AutocompleteSelect(
+                Persona._meta.get_field('localidad').remote_field,
+                admin.site,
+                # attrs={'placeholder': 'Selecionar departamento..'}
+            )
+        }
         
     def __init__(self, *args, **kwargs):
         """ método que itera los campos del form y agrega la clase form-control de bootstrap a los input"""
@@ -56,6 +65,13 @@ class EncargadosRutaForm(forms.ModelForm):
             'ap_paterno': 'Apellido Paterno', 'ap_materno': 'Apellido Materno',
             'sexo': 'Género', 'email': 'Correo Electrónico', 'telefono': 'Teléfono'
         }
+        # widgets = {
+        #     'departamento': AutocompleteSelect(
+        #         EncargadoRuta._meta.get_field('departamento').remote_field,
+        #         admin.site,
+        #         # attrs={'placeholder': 'Selecionar departamento..'}
+        #     )
+        # }
         
     def __init__(self, *args, **kwargs):
         """ método que itera los campos del form y agrega la clase form-control de bootstrap a los input"""
@@ -78,15 +94,7 @@ class PuestosForm(forms.ModelForm):
         labels = {
             'nombre': 'Nombre'
         }
-        
-    def __init__(self, *args, **kwargs):
-        """ método que itera los campos del form y agrega la clase form-control de bootstrap a los input"""
-        super().__init__(*args, **kwargs)
-        for field in iter(self.fields):
-            self.fields[field].widget.attrs.update({
-                'class': 'form-control'
-            })
-            
+                    
 class DepartamentoForm(forms.ModelForm):
     """ form para departamentos"""
 

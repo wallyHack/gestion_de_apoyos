@@ -29,6 +29,12 @@
     <!-- CSS jQuery-confirm -->
     <link rel="stylesheet" href="{% static 'base/vendor/jquery_confirm/jquery-confirm.min.css' %}">
 
+    <!-- Select2 jQuery para listar modelos -->
+    <link rel="stylesheet" href="{% static 'base/css/select2.min.css' %}">
+
+    <!-- librerias para autocompletar select-->
+    <link rel="stylesheet" href="{% static 'admin/css/vendor/select2/select2.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/css/autocomplete.css' %}">
 
 </head>
 
@@ -488,6 +494,15 @@
     <!-- Page level plugins -->
     <script src="{% static 'base/vendor/datatables/jquery.dataTables.min.js' %}"></script>
     <script src="{% static 'base/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+
+    <!-- Select2 js para listar modelos -->
+    <script src="{% static 'base/js/select2.min.js' %}"></script>
+
+    <!-- librerias para autocompletar select-->
+    <script src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
+    <script src="{% static 'admin/js/vendor/select2/select2.full.js' %}"></script>
+    <script src="{% static 'admin/js/jquery.init.js' %}"></script>
+    <script src="{% static 'admin/js/autocomplete.js' %}"></script>
    
     
     {% block control_modal %}
@@ -520,10 +535,11 @@
                 });
             }
 
+
             // mostramos los mensajes
             {% if messages %}
                 {% for message in messages %}
-                // console.log("{{ messaje.tags }}");
+                console.log("{{ messaje.tags }}");
                     mensaje("{{ message }}", "{{ message.tags }}");
                 {% endfor %}
             {% endif %}
