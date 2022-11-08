@@ -5,3 +5,9 @@ video 115 plantilla sin privilegios
 
 - Autocompletar en un select input HTML - template Django
 https://www.youtube.com/watch?v=jp7iRAdoA6Q
+
+- configurar staticfiles y static root django
+https://www.digitalocean.com/community/tutorials/working-with-django-templates-static-files
+
+- uso de imágenes en los modelos
+https://www.youtube.com/watch?v=MAuHTqROt8w

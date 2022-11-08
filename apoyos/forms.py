@@ -59,19 +59,12 @@ class EncargadosRutaForm(forms.ModelForm):
     class Meta:
         model = EncargadoRuta
         # campos que muestra el formulario
-        fields = ("nombres", "ap_paterno", "ap_materno", "sexo", "telefono", \
+        fields = ("nombres", "ap_paterno", "ap_materno", "foto", "sexo", "telefono", \
         "domicilio", "email", "departamento")
         labels = {
             'ap_paterno': 'Apellido Paterno', 'ap_materno': 'Apellido Materno',
             'sexo': 'Género', 'email': 'Correo Electrónico', 'telefono': 'Teléfono'
         }
-        # widgets = {
-        #     'departamento': AutocompleteSelect(
-        #         EncargadoRuta._meta.get_field('departamento').remote_field,
-        #         admin.site,
-        #         # attrs={'placeholder': 'Selecionar departamento..'}
-        #     )
-        # }
         
     def __init__(self, *args, **kwargs):
         """ método que itera los campos del form y agrega la clase form-control de bootstrap a los input"""
@@ -135,6 +128,14 @@ class EmpleadosForm(forms.ModelForm):
             'departamento': 'Departamento', 'puesto': 'Puesto', 'sueldo': 'Sueldo'
         }
         
+        widgets = {
+            'departamento': AutocompleteSelect(
+                EncargadoRuta._meta.get_field('departamento').remote_field,
+                admin.site,
+                attrs={'placeholder': 'Selecionar departamento..'}
+            )
+        }
+        
     def __init__(self, *args, **kwargs):
         """ método que itera los campos del form y agrega la clase form-control de bootstrap a los input"""
         super().__init__(*args, **kwargs)
@@ -142,11 +143,13 @@ class EmpleadosForm(forms.ModelForm):
             self.fields[field].widget.attrs.update({
                 'class': 'form-control'
             })
-            
+                                
         # al select y/o combo box de departamento y puesto le agregamos un valor por defecto
         self.fields['tipo_de_empleado'].empty_label = 'Seleccione el tipo de empleado..'
         self.fields['departamento'].empty_label = 'Seleccione departamento..'
         self.fields['puesto'].empty_label = 'Seleccione el puesto..'
+        
+       
 
 class ApoyosForm(forms.ModelForm):
     """form para apoyos"""

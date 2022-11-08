@@ -329,6 +329,8 @@ class EncargadoRuta(models.Model):
         blank = True,
         null = True
     )
+    
+    foto = models.ImageField(upload_to='images-er', null=True, blank=True)
 
     # choices
     HOMBRE = 'HOMBRE'
@@ -358,6 +360,7 @@ class EncargadoRuta(models.Model):
         null=True,
         blank=True
     )
+    
 
     # llaves foráneas
     # un encargado de ruta administra/controla una o muchas localidades

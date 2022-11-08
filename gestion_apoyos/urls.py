@@ -16,9 +16,13 @@ Including another URLconf
 from argparse import Namespace
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', include(('bases.urls', 'bases'), namespace='bases')),
     path('apoyos/', include(('apoyos.urls', 'apoyos'), namespace='apoyos')),
     path('admin/', admin.site.urls),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
