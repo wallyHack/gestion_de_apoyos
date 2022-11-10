@@ -59,19 +59,32 @@
 
                             <!-- fila 3 -->
                             <div class="row mb-3">
+                                
                                 <div class="col-md-6">
-                                    {{ form.persona.label }}:
+                                    <!-- {{ form.persona.label }}:
                                     <div class="input-group">
                                         {{ form.persona }}
+                                    </div>                                                                            -->
+                                    <label for="id_persona" class="text-sm-left">Persona:</label>
+                                    <div class="input-group">
+                                        
+                                        <select name="persona" id="id_persona" class="form-control" required>
+                                            <option value="0">Seleccione Persona</option>
+                                            
+                                            {% for item in persona %}
+                                                <option value="{{ item.id }}" selected>{{ item.nombres }} {{ item.ap_paterno }} {{ item.ap_materno }}</option>
+                                            {% endfor %}                                                        
+                                        </select> 
                                     </div>
-                                  
+
+                                    
                                 </div>
 
                                 <div class="col-md-6">
                                     {{ form.encargado_de_ruta.label }}:
                                     <div class="input-group">
                                         {{ form.encargado_de_ruta }}
-                                    </div>
+                                    </div>                                                               
                                 </div>                                
                             </div>  
 

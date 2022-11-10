@@ -35,13 +35,6 @@ class PersonasForm(forms.ModelForm):
             'curp': 'CURP', 'nombres': 'Nombres', 'ap_paterno': 'Apellido Paterno', \
             'ap_materno': 'Apellido Materno', 'genero': 'Género', 'fecha_de_nacimiento':'Fecha de Nacimiento'
         }
-        widgets = {
-            'localidad': AutocompleteSelect(
-                Persona._meta.get_field('localidad').remote_field,
-                admin.site,
-                # attrs={'placeholder': 'Selecionar departamento..'}
-            )
-        }
         
     def __init__(self, *args, **kwargs):
         """ método que itera los campos del form y agrega la clase form-control de bootstrap a los input"""
@@ -83,10 +76,18 @@ class PuestosForm(forms.ModelForm):
     class Meta:
         model = Puesto
         # campos que muestra el form
-        fields = '__all__'
+        fields = ("__all__")
         labels = {
             'nombre': 'Nombre'
         }
+        
+    def __init__(self, *args, **kwargs):
+        """ método que itera los campos del form y agrega la clase form-control de bootstrap a los input"""
+        super().__init__(*args, **kwargs)
+        for field in iter(self.fields):
+            self.fields[field].widget.attrs.update({
+                'class': 'form-control'
+            })
                     
 class DepartamentoForm(forms.ModelForm):
     """ form para departamentos"""
@@ -127,15 +128,7 @@ class EmpleadosForm(forms.ModelForm):
             'domicilio': 'Domicilio', 'telefono':'Teléfono', 'genero': 'Genéro', 'status': 'Status',
             'departamento': 'Departamento', 'puesto': 'Puesto', 'sueldo': 'Sueldo'
         }
-        
-        widgets = {
-            'departamento': AutocompleteSelect(
-                EncargadoRuta._meta.get_field('departamento').remote_field,
-                admin.site,
-                attrs={'placeholder': 'Selecionar departamento..'}
-            )
-        }
-        
+                
     def __init__(self, *args, **kwargs):
         """ método que itera los campos del form y agrega la clase form-control de bootstrap a los input"""
         super().__init__(*args, **kwargs)

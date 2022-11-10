@@ -380,23 +380,31 @@ def agregarApoyos(request, id):
     
     # buscamos a la persona que se le va entregar
     persona = Persona.objects.all().filter(id=id)
-    print(persona)
-    context = {
-        'persona':persona
-    }
+    # print(persona)
     
+    # personas
+    # personas = Persona.objects.all()
+    # encargados
+    encargados_de_ruta = EncargadoRuta.objects.all()
+        
     # form que lleva la persona a la que se entregara el apoyo
+    # data = {
+    #     'form': ApoyosForm({
+    #         # 'tipo': 'VIVIENDA',
+    #         # 'descripcion': '1 carretilla', 
+    #         # 'notas_adicionales': 'se entrego esto',
+    #         # 'persona': persona  
+    #     })        
+    # }
+    
     data = {
-        'form': ApoyosForm({
-            # 'tipo': 'VIVIENDA',
-            # 'descripcion': '1 carretilla', 
-            # 'notas_adicionales': 'se entrego esto',
-            # 'persona': persona  
-        })        
+        'form': ApoyosForm(),
+        'persona': persona,
+        'encargados': encargados_de_ruta
     }
     
     if request.method == 'POST':
-        formulario = ApoyosForm(data=request.POST or None, files=request.FILES, initial=context)
+        formulario = ApoyosForm(data=request.POST or None, files=request.FILES)
         if formulario.is_valid():            
             formulario.save()
             messages.success(request, 'Apoyo agregado correctamente.')
