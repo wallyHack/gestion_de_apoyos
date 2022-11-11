@@ -43,10 +43,10 @@
             <thead>
                 <!-- <th data-field="id" data-sortable="true">Id</th> -->
                 <th data-field="tipo" data-sortable="true">Tipo de apoyo</th>
-                <th data-field="descripcion" data-sortable="true">Descripción</th>                
-                <th data-field="fecha_de_entrega" data-sortable="true">Fecha de entrega</th>                
+                <th data-field="descripcion">Descripción</th>                
+                <th data-field="fecha_de_entrega">Fecha de entrega</th>                
                 <!-- <th data-field="notas_adicionales" data-sortable="true">notas_adicionales</th>   -->
-                <!-- <th data-field="persona" data-sortable="true">Persona</th> -->
+                <th data-field="persona" data-sortable="true" data-search="persona.curp">CURP</th>
                 <!-- <th data-field="encargado_de_ruta" data-sortable="true">Encargado de Ruta</th>               -->
                 <th class="all">Acciones</th>
             </thead>
@@ -75,11 +75,11 @@
                             <td></td>
                         {% endif %}                                                                           -->
                         
-                        <!-- {% if item.persona %}
-                            <td>{{ item.persona }}</td> 
+                        {% if item.persona.curp %}
+                            <td>{{ item.persona.curp }}</td> 
                         {% else %}
                             <td></td>
-                        {% endif %}      -->
+                        {% endif %}
                                                     
                         <!-- {% if item.encargado_de_ruta %}
                             <td>{{ item.encargado_de_ruta }}</td>

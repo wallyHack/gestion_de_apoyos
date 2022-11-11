@@ -3,7 +3,7 @@
 {% block page_content %}
    <form method="POST" class="form-inline">
        {% csrf_token %}
-        <div class="col-xl-12 col-md-12 mb-12">
+        <div class="col-xl-10 col-md-10 mb-10">
             
             {% if obj %}      
                 <div class="card border-left-warning shadow h-100 py-2">
@@ -33,9 +33,13 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    {{ form.fecha_de_entrega.label }}:
+                                    <!-- {{ form.fecha_de_entrega.label }}:
                                     <div class="input-group">
                                         {{ form.fecha_de_entrega }}
+                                    </div> -->
+                                    <label for="id_fecha_de_entrega">Fecha de entrega:</label>
+                                    <div class="input-group">
+                                        <input type="text" name="fecha_de_entrega" class="form-control" readonly id="id_fecha_de_entrega">
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +69,7 @@
                                     <div class="input-group">
                                         {{ form.persona }}
                                     </div>                                                                            -->
-                                    <label for="id_persona" class="text-sm-left">Persona:</label>
+                                    <label for="id_persona">Persona:</label>
                                     <div class="input-group">
                                         
                                         <select name="persona" id="id_persona" class="form-control" required>
@@ -81,10 +85,20 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    {{ form.encargado_de_ruta.label }}:
+                                    <!-- {{ form.encargado_de_ruta.label }}:
                                     <div class="input-group">
                                         {{ form.encargado_de_ruta }}
-                                    </div>                                                               
+                                    </div> -->  
+                                    <label for="id_encargado_de_ruta">Encargado de Ruta:</label> 
+                                    <div class="input-group">                                       
+                                        <select name="encargado_de_ruta" id="id_encargado_de_ruta" class="form-control" required>                                        
+                                            <option value="0" selected>Seleccione el encargado de ruta..</option>
+                                            
+                                            {% for item in encargados %}
+                                                <option value="{{ item.id }}">{{ item.nombres }} {{ item.ap_paterno }} {{ item.ap_materno }}</option>
+                                            {% endfor %}                                                        
+                                        </select>      
+                                    </div>                                                                                       
                                 </div>                                
                             </div>  
 
@@ -104,5 +118,24 @@
         </div>
    </form>  
 {% endblock page_content %}    
-{% block js_page %} {% endblock js_page %}
+{% block js_page %}
+   <script>
+        // carga del DOM
+        $(function(){
+            
+            $("#sidebarToggle").click();
+            $("#id_encargado_de_ruta").select2({
+                placeholder: "Seleccione Encargado de Ruta..",
+                allowClear: true
+            });
+
+            $(function () {  
+            $("#id_fecha_de_entrega").datetimepicker({  
+                format: 'd/m/Y',  
+                timepicker:false  
+            });  
+            });
+        });
+   </script>
+{% endblock js_page %}
     

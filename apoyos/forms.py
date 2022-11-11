@@ -138,7 +138,6 @@ class EmpleadosForm(forms.ModelForm):
             })
                                 
         # al select y/o combo box de departamento y puesto le agregamos un valor por defecto
-        self.fields['tipo_de_empleado'].empty_label = 'Seleccione el tipo de empleado..'
         self.fields['departamento'].empty_label = 'Seleccione departamento..'
         self.fields['puesto'].empty_label = 'Seleccione el puesto..'
         
@@ -170,6 +169,8 @@ class ApoyosForm(forms.ModelForm):
             self.fields[field].widget.attrs.update({
                 'class': 'form-control'
             })
+            
+        self.fields['fecha_de_entrega'].widget.attrs['readonly'] = True  
             
         # al select y/o combo box de persona y puesto le agregamos un valor por defecto
         self.fields['persona'].empty_label = 'Seleccione la persona..'

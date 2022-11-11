@@ -225,12 +225,14 @@ class Empleado(models.Model):
     )
     
     # choices 
+    DEFAULT = 'Tipo de empleado..'
     SINDICALIZADO = 'SINDICALIZADO'
     EVENTUAL = 'EVENTUAL'
     CONTRATO = 'CONTRATO'
     OTROS = 'OTROS'
     
     TIPO_DE_EMPLEADO = [ 
+        (DEFAULT, 'Tipo de empleado..'),
         (SINDICALIZADO, 'SINDICALIZADO'),
         (EVENTUAL, 'EVENTUAL'),
         (CONTRATO, 'CONTRATO'),        
@@ -240,7 +242,7 @@ class Empleado(models.Model):
     tipo_de_empleado = models.CharField(
         max_length=20,
         choices=TIPO_DE_EMPLEADO,
-        default=SINDICALIZADO
+        default=DEFAULT
     )
 
     domicilio = models.CharField(
@@ -263,7 +265,7 @@ class Empleado(models.Model):
     genero = models.CharField(
         max_length=15,
         choices=GENERO,
-        default=M
+        default=DEFAULT
     )
 
     ACT = 'ACTIVO'
