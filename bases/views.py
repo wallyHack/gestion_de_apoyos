@@ -35,17 +35,12 @@ class HomeSinPrivilegios(LoginRequiredMixin, generic.TemplateView):
     login_url = 'bases:login'
     template_name = "bases/sin_privilegios.html"
     
-def estadisticas_generales(request):
-    # total de activistas
-    total_de_activistas = Persona.objects.all().filter(tipo="ACTIVISTA").count()
+def getActivistas(request):
+    """ mostrar todos los activistas"""
+    activistas = Persona.objects.all().filter(tipo="ACTIVISTA").count()
+    print(activistas)
+    template_name = "apoyos/activistas.html"
+    context = {'obj': activistas}
     
-    # total de activados
-    # total_de_activados = Persona.objects.all().filter(tipo="ACTIVADO").count()
-    
-    template_name = 'bases/home.html'
-    context = {
-        'obj': total_de_activistas,       
-    }
-    
-    return render(request, template_name, context) 
+    return render(request, template_name, context)
 

@@ -119,23 +119,23 @@
    </form>  
 {% endblock page_content %}    
 {% block js_page %}
-   <script>
-        // carga del DOM
-        $(function(){
-            
-            $("#sidebarToggle").click();
-            $("#id_encargado_de_ruta").select2({
-                placeholder: "Seleccione Encargado de Ruta..",
-                allowClear: true
-            });
+<script>
+    // carga del DOM
+    $(function(){
+        
+        $("#id_fecha_de_entrega").datetimepicker({  
+            format: 'd/m/Y',  
+            timepicker:false  
+        });  
 
-            $(function () {  
-            $("#id_fecha_de_entrega").datetimepicker({  
-                format: 'd/m/Y',  
-                timepicker:false  
-            });  
-            });
+        $("#sidebarToggle").click();
+        $("#id_encargado_de_ruta").select2({
+            placeholder: "Seleccione Encargado de Ruta..",
+            allowClear: true
         });
-   </script>
+        
+    });
+</script>
+
 {% endblock js_page %}
     
