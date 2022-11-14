@@ -321,7 +321,7 @@ def empleados_por_puesto(request, id):
 def apoyos_por_persona(request, id):
     """ mostramos todos los apoyos que ha recibido una persona"""
     apoyos_recibidos = Apoyos.objects.all().select_related('persona').filter(persona=id)
-    #print(apoyos_recibidos)
+    print(apoyos_recibidos)
 
     context = {'obj': apoyos_recibidos}
     template_name = "apoyos/apoyos_recibidos.html"

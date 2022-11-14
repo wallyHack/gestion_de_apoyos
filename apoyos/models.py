@@ -423,8 +423,7 @@ class Apoyos(models.Model):
         null=True, blank=True
     )
 
-    foto_de_comprobacion = models.ImageField(
-        upload_to="apoyos/", null=True, blank=True)
+    foto_de_comprobacion = models.ImageField(upload_to="apoyos/", null=True, blank=True)
 
     notas_adicionales = models.CharField(
         max_length=500,
