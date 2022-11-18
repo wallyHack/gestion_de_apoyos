@@ -16,7 +16,20 @@
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 {% if obj %} Editar {% else %} Nuevo {% endif %} Apoyo
                             </div>                        
-                            <div class="dropdown-divider"></div>   
+                            <div class="dropdown-divider"></div> 
+                            
+                            <div class="col mb-3">
+                                <div class="card m-auto" style="width: 20rem;">
+                                                                                                            
+                                    {% if obj.foto_de_comprobacion %}
+                                        <img src="{{ obj.foto_de_comprobacion.url }}" class="card-img-top" alt="..." height="250px" width="30px">
+                                    {% endif %}                                        
+                                                                        
+                                    <div class="card-body">
+                                      <h5 class="card-title text-md-center">Apoyo entregado a: <br> {{ obj.persona }}</h5>                                      
+                                    </div>
+                                </div>
+                            </div>
                             
                             <!-- fila 1 -->
                             <div class="row mb-3">

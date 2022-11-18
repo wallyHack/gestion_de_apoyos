@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 
 from bases.views import Sin_Privilegios 
 from .forms import ApoyosForm, DepartamentoForm, EmpleadosForm, LocalidadesForm, PersonasForm, EncargadosRutaForm, PuestosForm
-from.models import Localidad, Puesto, Persona, EncargadoRuta, Apoyos, Empleado, Departamento
+from .models import Localidad, Puesto, Persona, EncargadoRuta, Apoyos, Empleado, Departamento
 
 # Create your views here.
 class LocalidadView(Sin_Privilegios, generic.ListView):
@@ -361,6 +361,7 @@ def comunidades_por_encargado(request, id):
 def getActivistas(request):
     """ mostrar todos los activistas"""
     activistas = Persona.objects.all().filter(tipo="ACTIVISTA")
+    print(activistas)
     template_name = "apoyos/activistas.html"
     context = {'obj': activistas}
     

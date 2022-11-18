@@ -8,8 +8,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.base import TemplateView
 from django.contrib import messages
-from apoyos.models import Persona
 from django.shortcuts import render, redirect
+from apoyos.models import Persona, Apoyos, EncargadoRuta, Empleado, Departamento, Localidad, Puesto
 
 # Create your views here.
 class Sin_Privilegios(LoginRequiredMixin, PermissionRequiredMixin):
@@ -35,12 +35,40 @@ class HomeSinPrivilegios(LoginRequiredMixin, generic.TemplateView):
     login_url = 'bases:login'
     template_name = "bases/sin_privilegios.html"
     
-def getActivistas(request):
+def getEstadisticas(request):
     """ mostrar todos los activistas"""
+    # total de activistas
     activistas = Persona.objects.all().filter(tipo="ACTIVISTA").count()
-    print(activistas)
-    template_name = "apoyos/activistas.html"
-    context = {'obj': activistas}
+    # print(activistas)
+    
+    # total de activados
+    activados = Persona.objects.all().filter(tipo="ACTIVADO").count()
+    # print(activados)
+    
+    # total de apoyos entregados
+    apoyos = Apoyos.objects.all().count()
+    # total de encargados de ruta
+    encargados = EncargadoRuta.objects.all().count()
+    # total de empleados
+    empleados = Empleado.objects.all().count()
+    # total de departamentos
+    departamentos = Departamento.objects.all().count()
+    # total de localidades
+    localidades = Localidad.objects.all().count()
+    # total de puestos
+    puestos = Puesto.objects.all().count()
+    
+    template_name = "bases/home.html"
+    context = {
+        'activistas': activistas,
+        'activados': activados,
+        'apoyos': apoyos,
+        'encargados': encargados,
+        'empleados': empleados,
+        'departamentos': departamentos,
+        'localidades': localidades,
+        'puestos': puestos
+    }
     
     return render(request, template_name, context)
 
