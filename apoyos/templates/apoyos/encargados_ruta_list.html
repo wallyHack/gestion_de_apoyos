@@ -22,12 +22,42 @@
     </div>
     <!-- Card Body -->
     <div class="card-body">
-       
+
+        <!-- listado con datatables -->       
         {% if not obj %}
              <div class="alert alert-info">No Hay Encargados de Ruta</div>           
         {% else %}
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <th>ID</th>
+                <th>NOMBRES</th>
+                <th>AP PATERNO</th>
+                <th>AP MATERNO</th>
+                <th>DEPARTAMENTO</th>
+                <th>ACCIONES</th>
+            </thead>
+                
+                {% for item in obj %}
+                    <tr>
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.nombres }}</td>
+                        <td>{{ item.ap_paterno }}</td>
+                        <td>{{ item.ap_paterno }}</td>
+                        <td>{{ item.departamento }}</td>
+                        <th>
+                            <a href="{% url 'apoyos:encargados_edit' item.id %}" class="btn btn-warning btn-circle"><i class="far fa-edit"></i></a>                           
+                            <a href="{% url 'apoyos:encargados_delete' item.id %}" class="btn btn-danger btn-circle"><i class="fas fa-trash-alt"></i></a>                             
+                        </th>
+                    </tr>
+                {% endfor %}
+                    
+            <tbody>
+
+            </tbody>
+        </table>
  
-        <table
+        <!-- <table
              id="table"
              data-toggle="table"
              data-pagination="true"
@@ -43,10 +73,10 @@
             <thead>
                 <th data-field="id" data-sortable="true">Id</th>
                 <th data-field="nombres" data-sortable="true">Nombres</th>
-                <th data-field="ap_paterno" data-sortable="true">Ap Paterno</th>
-                <!-- <th data-field="ap_materno" data-sortable="true">Ap Materno</th>                 -->
-                <!-- <th data-field="telefono">Telefono</th>                              -->
-                <th data-field="localidad" data-sortable="true">Departamento</th>
+                <th data-field="ap_paterno" data-sortable="true">Ap Paterno</th> -->
+                <!-- <th data-field="ap_materno" data-sortable="true">Ap Materno</th> -->
+                <!-- <th data-field="telefono">Telefono</th> -->
+                <!-- <th data-field="localidad" data-sortable="true">Departamento</th>
                             
                 <th class="all">Acciones</th>
             </thead>
@@ -55,14 +85,14 @@
                 {% for item in obj %}
                     <tr>
                         <td>{{ item.id }}</td>
-                        <td>{{ item.nombres }}</td>
+                        <td>{{ item.nombres }}</td> -->
                         
                         <!-- si hay apellido paterno lo mostramos -->
-                        {% if item.ap_paterno %}
+                        <!-- {% if item.ap_paterno %}
                             <td>{{ item.ap_paterno }}</td>
                         {% else %}
                             <td></td>
-                        {% endif %}
+                        {% endif %} -->
                                                                            
                         <!-- si hay apellido materno lo mostramos -->
                         <!-- {% if item.ap_materno %}
@@ -79,13 +109,13 @@
                         {% endif %}    -->
                                                                                                                                                                                    
                         <!-- departamento que dirige -->
-                        <td>{{ item.departamento }}</td>
+                        <!-- <td>{{ item.departamento }}</td>
                                         
                         <td>                            
                             <a href="{% url 'apoyos:encargados_edit' item.id %}" class="btn btn-warning btn-circle"><i class="far fa-edit"></i></a>                           
-                            <a href="{% url 'apoyos:encargados_delete' item.id %}" class="btn btn-danger btn-circle"><i class="fas fa-trash-alt"></i></a>
+                            <a href="{% url 'apoyos:encargados_delete' item.id %}" class="btn btn-danger btn-circle"><i class="fas fa-trash-alt"></i></a> -->
                             <!-- <a href="{% url 'apoyos:comunidades-er' item.id %}" class="btn btn-primary"><i>Ver Comunidades</i></a> -->
-                            <a href="{% url 'apoyos:comunidades-er' item.id %}" class="btn btn-primary btn-icon-split btn-sm">
+                            <!-- <a href="{% url 'apoyos:comunidades-er' item.id %}" class="btn btn-primary btn-icon-split btn-sm">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-city"></i>
                                 </span>
@@ -97,12 +127,20 @@
                 {% endfor %}
                     
             </tbody>
-        </table>       
+        </table>        -->
         {% endif %}
     </div>
 </div>    
 
 {% endblock page_content %}
+{% block js_page %}
+    <script>
+        // llamamos al plugin datatable de jQuery
+        $(document).ready( function () {
+            $('.table').DataTable();
+        } );
+    </script>
+{% endblock js_page %}
 
 
 

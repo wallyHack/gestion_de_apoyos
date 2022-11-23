@@ -129,16 +129,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 # configuración de archivos estáticos
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-# Add these new lines
-STATICFILES_DIRS = (
+STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
-)
+]
 
-# configuración de archivos media
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #ubicación
-MEDIA_URL = '/media/' # url
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# media files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login/'

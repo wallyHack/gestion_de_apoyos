@@ -23,11 +23,41 @@
     <!-- Card Body -->
     <div class="card-body">
        
+        <!-- listado con datatables -->     
         {% if not obj %}
             <div class="alert alert-info">No Hay Empleados</div>           
         {% else %}
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <th>ID</th>
+                <th>NOMBRE</th>
+                <th>AP PATERNO</th>
+                <th>DEPARTAMENTO</th>
+                <th>PUESTO</th>
+                <th>ACCIONES</th>                
+            </thead>
+
+            <tbody>
+                
+                {% for item in obj %}
+                    <tr>
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.nombre }}</td>
+                        <td>{{ item.ap_paterno }}</td>
+                        <td>{{ item.departamento }}</td>
+                        <td>{{ item.puesto }}</td>
+                        <td>
+                            <a href="{% url 'apoyos:empleados_edit' item.id %}" class="btn btn-warning btn-circle"> <i class="far fa-edit"></i> </a>                           
+                            <a href="{% url 'apoyos:empleados_delete' item.id %}" class="btn btn-danger btn-circle"> <i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                    
+            </tbody>
+        </table>
  
-        <table
+        <!-- <table
              id="table"
              data-toggle="table"
              data-pagination="true"
@@ -43,13 +73,13 @@
             <thead>
                 <th data-field="id" data-sortable="true">Id</th>
                 <th data-field="nombre" data-sortable="true">Nombre</th>
-                <th data-field="ap_paterno" data-sortable="true">Apellido Paterno</th>
+                <th data-field="ap_paterno" data-sortable="true">Apellido Paterno</th> -->
                 <!-- <th data-field="ap_materno" data-sortable="true">Apellido Materno</th> -->
                 <!-- <th data-field="telefono" data-sortable="true">Telefono</th> -->
-                <th data-field="departamento" data-sortable="true">Departamento</th>
-                <th data-field="puesto" data-sortable="true">Puesto</th>
+                <!-- <th data-field="departamento" data-sortable="true">Departamento</th>
+                <th data-field="puesto" data-sortable="true">Puesto</th> -->
                 <!-- <th data-field="sueldo" data-sortable="true">Sueldo</th>                -->
-                <th class="all">Acciones</th>
+                <!-- <th class="all">Acciones</th>
             </thead>
  
             <tbody>               
@@ -62,7 +92,7 @@
                             <td>{{ item.ap_paterno }}</td> 
                         {% else %}
                             <td></td>
-                        {% endif %}
+                        {% endif %} -->
                                                     
                         <!-- {% if item.ap_materno %}
                             <td>{{ item.ap_materno }}</td> 
@@ -70,7 +100,7 @@
                             <td></td>
                         {% endif %} -->
                         
-                        {% if item.departamento %}
+                        <!-- {% if item.departamento %}
                             <td>{{ item.departamento }}</td>
                         {% else %}
                             <td></td>
@@ -81,7 +111,7 @@
                         {% else %}
                             <td></td>
                         {% endif %}                                                                          
-                        
+                         -->
                         <!-- {% if item.telefono %}
                             <td>{{ item.telefono }}</td> 
                         {% else %}
@@ -95,7 +125,7 @@
                             <td></td>
                         {% endif %}    -->
                                                                                    
-                        <td>                            
+                        <!-- <td>                            
                             <a href="{% url 'apoyos:empleados_edit' item.id %}" class="btn btn-warning btn-circle"> <i class="far fa-edit"></i> </a>                           
                             <a href="{% url 'apoyos:empleados_delete' item.id %}" class="btn btn-danger btn-circle"> <i class="fas fa-trash-alt"></i> </a>
                         </td>
@@ -104,12 +134,21 @@
                 {% endfor %}
                     
             </tbody>
-        </table>       
+        </table>        -->
         {% endif %}
     </div>
 </div>    
 
 {% endblock page_content %}
+
+{% block js_page %}
+    <script>
+        // llamamos al plugin datatable de jQuery
+        $(document).ready( function () {
+            $('.table').DataTable();
+        } );
+    </script>
+{% endblock js_page %}
 
 
 

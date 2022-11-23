@@ -23,11 +23,41 @@
     <!-- Card Body -->
     <div class="card-body">
        
+        <!-- listado con datatables -->
         {% if not obj %}
             <div class="alert alert-info">No Hay Puestos</div>           
         {% else %}
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <th>ID</th>
+                <th>NOMBRE</th>
+                <th>ACCIONES</th>
+            </thead>
+
+            <tbody>
+                
+                {% for item in obj %}
+                    <tr>
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.nombre }}</td>
+                        <td>
+                            <a href="{% url 'apoyos:puestos_edit' item.id %}" class="btn btn-warning btn-circle"> <i class="far fa-edit"></i> </a>                           
+                            <a href="{% url 'apoyos:puestos_delete' item.id %}" class="btn btn-danger btn-circle"> <i class="fas fa-trash-alt"></i> </a>
+                            <a href="{% url 'apoyos:empleados_por_puesto' item.id %}" class="btn btn-primary btn-icon-split btn-sm">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                                <span class="text">Ver empleados</span>
+                            </a>
+                        </td>
+                    </tr>                    
+                {% endfor %}
+                    
+            </tbody>
+        </table>
  
-        <table
+        <!-- <table
              id="table"
              data-toggle="table"
              data-pagination="true"
@@ -67,12 +97,21 @@
                 {% endfor %}
                     
             </tbody>
-        </table>       
+        </table>        -->
         {% endif %}
     </div>
 </div>    
 
 {% endblock page_content %}
+
+{% block js_page %}
+    <script>
+        // llamamos al plugin datatable de jQuery
+        $(document).ready( function () {
+            $('.table').DataTable();
+        } );
+    </script>
+{% endblock js_page %}
 
 
 
