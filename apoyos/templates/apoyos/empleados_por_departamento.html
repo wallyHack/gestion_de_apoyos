@@ -11,74 +11,39 @@
     <!-- Card Body -->
     <div class="card-body">
        
+        <!-- listado con datatables -->   
         {% if not obj %}
             <div class="alert alert-info">No Hay Empleados</div>           
         {% else %}
- 
-        <table
-             id="table"
-             data-toggle="table"
-             data-pagination="true"
-             data-page-size="6"
-             data-search="true"
-             data-show-columns="true"
-             data-show-fullscreen="true"
-             data-show-toggle="true"
-             data-show-export="true"
-             data-click-to-select="true"
-             data-locale="es-MX"
-         >
+
+        <table class="table table-bordered table-striped">
             <thead>
-                <!-- <th data-field="id" data-sortable="true">Id</th> -->
-                <th data-field="nombre" data-sortable="true">Nombre</th>
-                <th data-field="ap_paterno">Apellido Paterno</th>
-                <th data-field="ap_materno">Apellido Materno</th> 
-                <th data-field="tipo_de_empleado">Tipo</th>
-                <th data-field="status">Estatus</th>
-                <!-- <th data-field="puesto">Puesto</th>     -->
-                <th data-field="puesto">Departamento</th>                                         
+                <th>ID</th>
+                <th>NOMBRE</th>
+                <th>AP PATERNO</th>
+                <th>AP MATERNO</th>                
+                <th>TIPO</th>
+                <!-- <th>ESTATUS</th> -->
+                <th>DEPARTAMENTO</th>
+                <th>PUESTO</th>
             </thead>
- 
-            <tbody>               
+                                                
+            <tbody>
                 {% for item in obj %}
                     <tr>
-                        
-                        {% if item.nombre %}
-                            <td>{{ item.nombre }}</td>
-                        {% else %}
-                            <td></td>
-                        {% endif %}   
-                                                
-                        {% if item.ap_paterno %}
-                            <td>{{ item.ap_paterno }}</td> 
-                        {% else %}
-                            <td></td>
-                        {% endif %}                            
-                        
-                        {% if item.ap_materno %}
-                            <td>{{ item.ap_materno }}</td> 
-                        {% else %}
-                            <td></td>   
-                        {% endif %}
-                                                    
-                        {% if item.tipo_de_empleado %}
-                            <td>{{ item.tipo_de_empleado }}</td>  
-                        {% else %}
-                            <td></td>                             
-                        {% endif %}
-                                                 
-                        {% if item.status %}
-                            <td>{{ item.status }}</td>  
-                        {% endif %}                            
-                        
-                        <!-- <td>{{ item.puesto }}</td> -->
-                        <td>{{ item.departamento }}</td>            
-                        <!-- <td>{{ item.telefono }}</td>                                                                                           -->
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.nombre }}</td>
+                        <td>{{ item.ap_paterno }}</td>
+                        <td>{{ item.ap_materno }}</td>
+                        <td>{{ item.tipo_de_empleado }}</td>
+                        <!-- <td>{{ item.status }}</td> -->
+                        <td>{{ item.departamento }}</td>
+                        <td>{{ item.puesto }}</td>
                     </tr>
                 {% endfor %}
-                    
             </tbody>            
-        </table>           
+        </table>
+
         {% endif %}
 
         <div>
@@ -87,14 +52,44 @@
                     <i class="fas fa-arrow-left"></i>
                 </span>
                 <span class="text">Regresar</span>
-            </a>
-            <!-- <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-warning btn-circle"><i class="far fa-caret-square-down"></i></a> -->
-            <!-- <button type="button" class="btn btn-warning ml-3"><i class="fa-rainbow"></i><a href="{{ request.META.HTTP_REFERER }}">Regresar</a></button>     -->
-        </div>
-    </div>
+            </a>          
+        </div> 
+    </div>    
 </div>    
 
 {% endblock page_content %}
+
+{% block js_page %}
+    <script>
+        // llamamos al plugin datatable de jQuery
+        $(document).ready( function () {
+            $('.table').DataTable({
+                "language": {
+                    "processing": "Procesando...",
+                    "lengthMenu": "Mostrar _MENU_ registros",
+                    "zeroRecords": "No se encontraron resultados",
+                    "emptyTable": "Ningún dato disponible en esta tabla",
+                    "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "search": "Buscar:",
+                    "infoThousands": ",",
+                    "loadingRecords": "Cargando...",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    },
+                    "aria": {
+                        "sortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sortDescending": ": Activar para ordenar la columna de manera descendente"
+                    }
+                }
+            });
+        });
+         
+    </script>
+{% endblock js_page %}
 
 
 
