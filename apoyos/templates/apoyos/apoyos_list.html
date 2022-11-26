@@ -23,85 +23,75 @@
     <!-- Card Body -->
     <div class="card-body">
        
+        <!-- listado con datatables -->
         {% if not obj %}
             <div class="alert alert-info">No Hay Apoyos</div>           
         {% else %}
- 
-        <table
-             id="table"
-             data-toggle="table"
-             data-pagination="true"
-             data-page-size="5"
-             data-search="true"
-             data-show-columns="true"
-             data-show-fullscreen="true"
-             data-show-toggle="true"
-             data-show-export="true"
-             data-click-to-select="true"
-             data-locale="es-MX"
-         >
+
+        <table class="table table-bordered table-striped">
             <thead>
-                <!-- <th data-field="id" data-sortable="true">Id</th> -->
-                <th data-field="tipo" data-sortable="true">Tipo de apoyo</th>
-                <th data-field="descripcion">Descripción</th>                
-                <th data-field="fecha_de_entrega">Fecha de entrega</th>                
-                <!-- <th data-field="notas_adicionales" data-sortable="true">notas_adicionales</th>   -->
-                <th data-field="persona" data-sortable="true" data-search="persona.curp">CURP</th>
-                <!-- <th data-field="encargado_de_ruta" data-sortable="true">Encargado de Ruta</th>               -->
-                <th class="all">Acciones</th>
+                <th>TIPO</th>
+                <th>DESCRIPCIÓN</th>
+                <th>FECHA DE ENTREGA</th>
+                <th>CURP</th>
+                <th>ACCIONES</th> 
             </thead>
- 
-            <tbody>               
+
+            <tbody>
+                
                 {% for item in obj %}
                     <tr>
-                        <!-- <td>{{ item.id }}</td> -->
                         <td>{{ item.tipo }}</td>
-                        
-                        {% if item.descripcion %}
-                            <td>{{ item.descripcion }}</td> 
-                        {% else %}
-                            <td></td>
-                        {% endif %}
-                                                    
-                        {% if item.fecha_de_entrega %}
-                            <td>{{ item.fecha_de_entrega }}</td> 
-                        {% else %}
-                            <td></td>
-                        {% endif %}
-                                                                                                    
-                        <!-- {% if item.notas_adicionales %}
-                            <td>{{ item.notas_adicionales }}</td>
-                        {% else %}
-                            <td></td>
-                        {% endif %}                                                                           -->
-                        
-                        {% if item.persona.curp %}
-                            <td>{{ item.persona.curp }}</td> 
-                        {% else %}
-                            <td></td>
-                        {% endif %}
-                                                    
-                        <!-- {% if item.encargado_de_ruta %}
-                            <td>{{ item.encargado_de_ruta }}</td>
-                            {% else %}
-                            <td></td>
-                        {% endif %} -->
-                                                                                   
-                        <td>                            
-                            <a href="{% url 'apoyos:apoyos_edit' item.id %}" class="btn btn-warning btn-circle"> <i class="far fa-edit"></i> </a>                           
-                            <a href="{% url 'apoyos:apoyos_delete' item.id %}" class="btn btn-danger btn-circle"> <i class="fas fa-trash-alt"></i> </a>
+                        <td>{{ item.descripcion }}</td>
+                        <td>{{ item.fecha_de_entrega }}</td>
+                        <td>{{ item.persona.curp }}</td>
+                        <td>
+                            <a href="{% url 'apoyos:apoyos_edit' item.id %}" class="btn btn-warning btn-circle"> <i class="far fa-edit"></i></a>                           
+                            <a href="{% url 'apoyos:apoyos_delete' item.id %}" class="btn btn-danger btn-circle"> <i class="fas fa-trash-alt"></i></a>
                         </td>
-                        
                     </tr>
                 {% endfor %}
                     
             </tbody>
-        </table>       
+        </table>
         {% endif %}
     </div>
 </div>    
 
 {% endblock page_content %}
+
+{% block js_page %}
+    <script>
+        // llamamos al plugin datatable de jQuery
+        $(document).ready( function () {
+            $('.table').DataTable({
+                "pageLength": 8,
+                "language": {
+                    "processing": "Procesando...",
+                    "lengthMenu": "Mostrar _MENU_ registros",
+                    "zeroRecords": "No se encontraron resultados",
+                    "emptyTable": "Ningún dato disponible en esta tabla",
+                    "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "search": "Buscar:",
+                    "infoThousands": ",",
+                    "loadingRecords": "Cargando...",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    },
+                    "aria": {
+                        "sortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sortDescending": ": Activar para ordenar la columna de manera descendente"
+                    },                    
+                }
+            });
+        });
+         
+    </script>
+{% endblock js_page %}
 
 
 

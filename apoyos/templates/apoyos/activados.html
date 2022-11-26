@@ -23,67 +23,55 @@
     <!-- Card Body -->
     <div class="card-body">
        
+        <!-- listado con datatables -->
         {% if not obj %}
             <div class="alert alert-info">No hay activados</div>           
         {% else %}
- 
-        <table
-             id="table"
-             data-toggle="table"
-             data-pagination="true"
-             data-page-size="8"
-             data-search="true"
-             data-show-columns="true"
-             data-show-fullscreen="true"
-             data-show-toggle="true"
-             data-show-export="true"
-             data-click-to-select="true"
-             data-locale="es-MX"
-         >
+
+        <table class="table table-bordered table-striped">
             <thead>
-                <th data-field="curp" data-search="curp">CURP</th>
-                <th data-field="nombres">Nombres</th>
-                <th data-field="ap_paterno">Apellido Paterno</th>                            
-                <th data-field="localidad" data-sortable="localidad">Localidad</th>   
-                <th data-field="seccion" data-sortable="seccion">Sección</th>          
+                <th>CURP</th>
+                <th>NOMBRES</th>
+                <th>AP PATERNO</th>
+                <th>LOCALIDAD</th>
+                <th>SECCIÓN</th>  
+            </thead>              
+            
+            <tbody>
                 
-            </thead>
- 
-            <tbody>               
                 {% for item in obj %}
                     <tr>
-                        
                         {% if item.curp %}
                             <td>{{ item.curp }}</td>
                         {% else %}
                             <td></td>
                         {% endif %}
-                                                    
+
                         {% if item.nombres %}
                             <td>{{ item.nombres }}</td>
                         {% else %}
                             <td></td>
-                        {% endif %}                            
-                        
+                        {% endif %}
+
                         {% if item.ap_paterno %}
                             <td>{{ item.ap_paterno }}</td>  
                         {% else %} 
                             <td></td>
                         {% endif %}
-                                                    
+
                         {% if item.localidad %}
                             <td>{{ item.localidad }}</td>
                         {% else %} 
                             <td></td>
                         {% endif %}
                                                                             
-                        <td>{{ item.localidad.seccion }}</td>                                                                                                                                                               
-
+                        <td>{{ item.localidad.seccion }}</td>
                     </tr>
                 {% endfor %}
                     
-            </tbody>
-        </table>       
+            </tbody>        
+        </table>
+       
         {% endif %}
 
         <div>
@@ -101,6 +89,37 @@
 
 {% endblock page_content %}
 
-
+{% block js_page %}
+    <script>
+        // llamamos al plugin datatable de jQuery
+        $(document).ready( function () {
+            $('.table').DataTable({
+                "pageLength": 8,
+                "language": {
+                    "processing": "Procesando...",
+                    "lengthMenu": "Mostrar _MENU_ registros",
+                    "zeroRecords": "No se encontraron resultados",
+                    "emptyTable": "Ningún dato disponible en esta tabla",
+                    "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "search": "Buscar:",
+                    "infoThousands": ",",
+                    "loadingRecords": "Cargando...",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    },
+                    "aria": {
+                        "sortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sortDescending": ": Activar para ordenar la columna de manera descendente"
+                    },                    
+                }
+            });
+        });
+         
+    </script>
+{% endblock js_page %}
 
 
