@@ -41,10 +41,34 @@
                 
                 {% for item in obj %}
                     <tr>
-                        <td>{{ item.tipo }}</td>
-                        <td>{{ item.descripcion }}</td>
-                        <td>{{ item.fecha_de_entrega }}</td>
-                        <td>{{ item.persona.curp }}</td>
+                        
+                        {% if item.tipo %}
+                            <td>{{ item.tipo }}</td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                            
+                        
+                        {% if item.descripcion %}
+                            <td>{{ item.descripcion }}</td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                            
+                        
+                        {% if item.fecha_de_entrega %}
+                            <td>{{ item.fecha_de_entrega }}</td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                            
+                        
+                        {% if item.persona.curp %}
+                            <td>{{ item.persona.curp }}</td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                            
                         <td>
                             <a href="{% url 'apoyos:apoyos_edit' item.id %}" class="btn btn-warning btn-circle"> <i class="far fa-edit"></i></a>                           
                             <a href="{% url 'apoyos:apoyos_delete' item.id %}" class="btn btn-danger btn-circle"> <i class="fas fa-trash-alt"></i></a>
