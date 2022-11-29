@@ -20,21 +20,21 @@
                 <!-- Illustrations -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Administración de Recursos Entregados</h6>
+                        <h6 class="m-0 font-weight-bold text-black-50">Administración de Recursos Entregados</h6>
                     </div>
                     <div class="card-body">
                         <div class="text-center">
                             <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem; height: 15rem;"
-                                src="{% static 'base/img/apoyos-pinos.svg' %}" alt="Información de activistas/activados">
+                                src="{% static 'base/img/apoyos-pinos-zac.svg' %}" alt="Información de activistas/activados">
                         </div>
                         <p>El sistema de gestión de apoyos administra una base de datos global, de <a
                                 target="_blank" rel="nofollow" href="#">Pinos, Zac</a>, dónde
                             concentra a todos los activistas y activados; con la finalidad de saber que apoyos han recibido; así
                             como cuales están activos y cuáles no.</p>
 
-                            <div class="row">
+                            <div class="row">                                
                                 <div class="col-md-6">
-                                    <a href="{% url 'apoyos:personas_list' %}" class="btn btn-primary btn-icon-split btn-sm">
+                                    <a href="{% url 'apoyos:personas_list' %}" class="btn btn-secondary btn-icon-split">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-user"></i>
                                         </span>
@@ -43,7 +43,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <a href="{% url 'apoyos:apoyos_list' %}" class="btn btn-primary btn-icon-split btn-sm">
+                                    <a href="{% url 'apoyos:apoyos_list' %}" class="btn btn-secondary btn-icon-split">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-box-open"></i>
                                         </span>
@@ -59,18 +59,18 @@
                 <!-- Illustrations -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Administración de personal</h6>
+                        <h6 class="m-0 font-weight-bold text-black-50">Administración de personal</h6>
                     </div>
                     <div class="card-body">
                         <div class="text-center">
                             <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem; height: 15rem;"
-                                src="{% static 'base/img/admin-personal.svg' %}" alt="...">
+                                src="{% static 'base/img/personas-admon.svg' %}" alt="...">
                         </div>
                         <p>El sistema contempla un apartado dónde se puede ubicar la información general de cada<a
                                 target="_blank" rel="nofollow" href="#">Empleado</a>, que esta
                             trabajando en la presidencia municipal y la función que desempeña; todo esto con fines informativos
                             y para llevar un control del personal activo.</p>
-                            <a href="{% url 'apoyos:empleados_list' %}" class="btn btn-primary btn-icon-split btn-sm">
+                            <a href="{% url 'apoyos:empleados_list' %}" class="btn btn-secondary btn-icon-split">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-user-alt-slash"></i>
                                 </span>
