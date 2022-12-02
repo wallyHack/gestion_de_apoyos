@@ -61,7 +61,6 @@ class PersonaView(Sin_Privilegios, generic.ListView):
 class PersonaNew(SuccessMessageMixin, Sin_Privilegios, generic.CreateView):
     """ vista basada en clase para agregar personas"""
     departamentos = Departamento.objects.all()
-    
     permission_required = "apoyos.add_persona"
     model = Persona
     template_name = "apoyos/personas_form.html"

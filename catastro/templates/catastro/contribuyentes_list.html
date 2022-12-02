@@ -1,4 +1,5 @@
 
+
 {% extends 'base/base.html' %}
 
 {% block page_content %}
@@ -6,127 +7,101 @@
  <div class="card shadow mb-4">
     <!-- Card Header - Dropdown -->
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-        <h6 class="m-0 font-weight-bold text-primary">Listado de Personas - Pinos, Zacatecas </h6>
+        <h6 class="m-0 font-weight-bold text-primary">Listado de Contribuyentes - Pinos, Zacatecas</h6>
         <div class="dropdown no-arrow">
             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                 <div class="dropdown-header">Acciones:</div>
-                    <a class="dropdown-item" href="{% url 'apoyos:personas_new' %}"> <i class="fa fa-calendar-plus"></i>Nueva</a>
+                    <a class="dropdown-item" href="{% url 'catastro:contribuyentes_new' %}"> <i class="fa fa-calendar-plus"></i>Nuevo</a>
                     <!-- <a class="dropdown-item" href="#">Another action</a> -->
                 <div class="dropdown-divider"></div>
                 <!-- <a class="dropdown-item" href="#">Something else here</a> -->
             </div>
         </div>
     </div>
-    <!-- Card Body -->
+
     <div class="card-body">
-
-        <div class="row mb-3">
-            <div class="col-md-3">
-                <a href="{% url 'apoyos:activistas_list' %}" class="btn btn-light btn-icon-split">
-                    <span class="icon text-gray-600">
-                        <i class="fas fa-arrow-right"></i>
-                    </span>
-                    <span class="text">Ver activistas</span>
-                </a>
-            </div>
-
-            <div class="col-md-3">
-                <a href="{% url 'apoyos:activados_list' %}" class="btn btn-light btn-icon-split">
-                    <span class="icon text-gray-600">
-                        <i class="fas fa-arrow-right"></i>
-                    </span>
-                    <span class="text">Ver activados</span>
-                </a>
-            </div>
-        </div>
-
-        <!-- búsqueda por curp -->
-        <!-- <div class="row">
-            <div class="col-md-3">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Ingresar la CURP...">
-                </div>
-            </div>
-
-            <a href="#" class="btn btn-primary btn-icon-split btn-sm">
-                <span class="icon text-white-30">
-                    <i class="fas fa-search"></i>
-                </span>
-                <span class="text p-1">Buscar persona</span>
-            </a>
-        </div> -->
-       
         {% if not obj %}
-            <div class="alert alert-info">No Hay Personas</div>           
+            <div class="alert alert-info">No Hay Contribuyentes</div>           
         {% else %}
 
-        <!-- listado con datatables -->
         <table class="table table-bordered table-striped">
             <thead>
-                <th>CURP</th>
-                <th>NOMBRES</th>
+                <td>ID</td>
+                <th>NOMBRE</th>
                 <th>AP PATERNO</th>
+                <th>AP MATERNO</th>
+                <th>GÉNERO</th>
                 <th>LOCALIDAD</th>
-                <!-- <th>SECCIÓN</th> -->
+                <!-- <th>EXPEDIENTE</th> -->
+                <!-- <th>NOTAS ADICIONALES</th> -->
                 <th>ACCIONES</th>
             </thead>
-
+    
             <tbody>
                 
                 {% for item in obj %}
                     <tr>
-                        
-                        {% if item.curp %}
-                            <td>{{ item.curp }}</td>
-                        {% else %}
-                            <td></td>
-                        {% endif %}
+                        <td>{{ item.id }}</td>
 
-                        
-                        {% if item.nombres %}
-                            <td>{{ item.nombres }}</td>
+                        {% if item.nombre %}
+                            <td>{{ item.nombre }}</td>                    
                         {% else %}
                             <td></td>
                         {% endif %}
-                            
-                        
+                                                
                         {% if item.ap_paterno %}
-                            <td>{{ item.ap_materno }}</td>
+                            <td>{{ item.ap_paterno }}</td>
                         {% else %}
                             <td></td>
                         {% endif %}
-                            
+                                                                                       
+                        {% if item.ap_materno %}
+                            <td>{{ item.ap_materno }}</td>                    
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+    
+                        {% if item.genero %}
+                            <td>{{ item.genero }}</td>                    
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+    
                         {% if item.localidad %}
-                            <td>{{ item.localidad }}</td>
-                        {% else %}
+                            <td>{{ item.localidad }}</td>                    
+                        {% else %} 
                             <td></td>
                         {% endif %}
+                        
+                        <!-- {% if item.expediente %}
+                            <td>{{ item.expediente }}</td>                            
+                        {% else %} 
+                            <td></td>
+                        {% endif %} -->
                             
-                        <!-- <td>{{ item.localidad.seccion }} </td> -->
+                            
+                        <!-- {% if item.notas_adicionales %}
+                            <td>{{ item.notas_adicionales }}</td>
+                        {% else %} 
+                            <td></td>
+                        {% endif %} -->
+                            
                         <td>
-                            <a href="{% url 'apoyos:personas_edit' item.id %}" class="btn btn-warning btn-circle"><i class="far fa-edit"></i></a>                           
-                            <a href="{% url 'apoyos:personas_delete' item.id %}" class="btn btn-danger btn-circle"><i class="fas fa-trash-alt"></i> </a>
-
-                            <a href="{% url 'apoyos:apoyos-recibidos' item.id %}" class="btn btn-success btn-icon-split btn-sm">
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-list"></i>
-                                </span>
-                                <span class="text">Ver apoyos</span>
-                            </a>
+                            <a href="{% url 'catastro:contribuyentes_edit' item.id %}" class="btn btn-warning btn-circle"><i class="far fa-edit"></i></a>                           
+                            <a href="{% url 'catastro:contribuyentes_delete' item.id %}" class="btn btn-danger btn-circle"><i class="fas fa-trash-alt"></i> </a>                            
                         </td>
-                    </tr>
+                    </tr>                                     
                 {% endfor %}
                     
             </tbody>
-
         </table>
         {% endif %}
+        
     </div>
-</div>    
-
+</div>
 {% endblock page_content %}
 
 {% block js_page %}
@@ -161,7 +136,4 @@
          
     </script>
 {% endblock js_page %}
-    
-
-
 

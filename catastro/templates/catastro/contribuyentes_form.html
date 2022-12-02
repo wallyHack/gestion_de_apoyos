@@ -1,0 +1,120 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block page_content %}
+   <form method="POST" class="form-inline" enctype="multipart/form-data">
+       {% csrf_token %}
+        <div class="col-xl-12 col-md-12 mb-12">
+            
+            {% if obj %}      
+                <div class="card border-left-warning shadow h-100 py-2">
+            {% else %}
+                <div class="card border-left-success shadow h-100 py-2">
+            {% endif %}
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                {% if obj %} Editar {% else %} Nuevo {% endif %} Contribuyente
+                            </div>                        
+                            <div class="dropdown-divider"></div>  
+                            
+                            <div class="col mb-3">
+                                <div class="card" style="width: 64rem;">
+                                    <img src="{% static 'base/img/contribuyentes_edit.svg' %}" class="card-img-top" alt="..." height="200px" width="200px">
+                                    <div class="card-body">
+                                      <h5 class="card-title text-md-center">Contribuyentes Registrados - Presidencia Municipal</h5>                                      
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- fila 1 -->
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    {{ form.nombre.label }}:
+                                    <div class="input-group">                                        
+                                        {{ form.nombre }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    {{ form.ap_paterno.label }}:
+                                    <div class="input-group">
+                                        {{ form.ap_paterno }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    {{ form.ap_materno.label }}:
+                                    <div class="input-group">
+                                        {{ form.ap_materno }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- fila 2 -->
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    {{ form.genero.label }}:
+                                    <div class="input-group">
+                                        {{ form.genero }}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    {{ form.domicilio.label }}:
+                                    <div class="input-group">
+                                        {{ form.domicilio }}
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    {{ form.localidad.label }}:
+                                    <div class="input-group">
+                                        {{ form.localidad }}
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+                            <!-- fila 3 -->
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    {{ form.telefono.label }}:
+                                    <div class="input-group">
+                                        {{ form.telefono }}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    {{ form.expediente.label }}:
+                                    <div class="input-group">
+                                        {{ form.expediente }}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    {{ form.notas_adicionales.label }}:
+                                    <div class="input-group">
+                                        {{ form.notas_adicionales }}
+                                    </div>
+                                </div>                                
+                            </div>                           
+                            
+                            <!-- {{ form.as_p }} -->
+                            <div class="dropdown-divider"></div>
+                            <div class="row mt-3">
+                                 <div class="col">
+                                    <button type="submit" class="btn btn-danger"><span class="fa fa-save"></span>Guardar</button>
+                                    <a href="{% url 'catastro:contribuyentes_list' %}" class="btn btn-success"><span class="fa fa-undo">Cancelar</span></a>
+                                </div>
+                            </div>                                
+                            
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+   </form>  
+{% endblock page_content %}    
+{% block js_page %} {% endblock js_page %}
+    

@@ -91,6 +91,9 @@
             {% url 'apoyos:puestos_list' as puestos_url %}
             {% url 'apoyos:departamentos_list' as departamentos_url %}
 
+            <!-- admin de contribuyentes -->
+            {% url 'catastro:contribuyentes_list' as contribuyentes_url %}
+
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item {% if personas_url in request.path or apoyos_url in request.path or enc_url in request.path or loc_url in request.path %} active {% endif %}">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"

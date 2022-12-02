@@ -5,7 +5,7 @@ from django.contrib import admin
 from .models import Apoyos, Departamento, EncargadoRuta, Localidad, Persona, Puesto, Empleado
 
 class LocalidadAdmin(admin.ModelAdmin):
-    """ modelelo administrativo de Localidad"""
+    """ modelo administrativo de Localidad"""
     ordering = ['id']
     list_display = ('id', 'nombre', 'seccion', 'tipo')
     list_filter = ['tipo', 'seccion']
