@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bases.apps.BasesConfig',
     'apoyos.apps.ApoyosConfig',
-    'catastro'
+    'catastro.apps.CatastroConfig'
 ]
 
 X_FRAME_OPTIONS ='SAMEORIGIN'

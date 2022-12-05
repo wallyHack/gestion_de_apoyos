@@ -92,7 +92,7 @@
             {% url 'apoyos:departamentos_list' as departamentos_url %}
 
             <!-- admin de contribuyentes -->
-            {% url 'catastro:contribuyentes_list' as contribuyentes_url %}
+            {% url 'catastro:contribuyentes_list' as cont_url %}
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item {% if personas_url in request.path or apoyos_url in request.path or enc_url in request.path or loc_url in request.path %} active {% endif %}">
@@ -157,6 +157,26 @@
                     </div>
                 </div>
             </li>
+
+            <!-- <li class="nav-item {% if cont_url in request.path %} active {% endif %}">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo"> -->
+                    <!-- <i class="fas fa-fw fa-cog"></i> -->
+                    <!-- <i class="fas fa-home"></i> -->
+                    
+                    <!-- <span>CONTRIBUYENTES</span>
+                </a>
+                <div id="collapseTwo" class="collapse {% if cont_url in request.path %} show {% endif %}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">ADMIN. RECURSOS:</h6> -->
+                        <!-- permisos a nivel de plantillas -->                        
+                        <!-- {% if perms.catastro.view_contribuyente %}
+                            <a class="collapse-item {% if cont_url in request.path %} active {% endif %}" href="{{ cont_url }}">Personas</a>
+                        {% endif %}
+                                                                                                                                                                                                          
+                    </div>
+                </div>
+            </li> -->
 
             <!-- Divider -->
             <hr class="sidebar-divider">
