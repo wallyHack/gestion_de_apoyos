@@ -69,7 +69,7 @@
                 <th>CURP</th>
                 <th>NOMBRES</th>
                 <th>AP PATERNO</th>
-                <th>LOCALIDAD</th>
+                <!-- <th>LOCALIDAD</th> -->
                 <!-- <th>SECCIÓN</th> -->
                 <th>ACCIONES</th>
             </thead>
@@ -99,11 +99,11 @@
                             <td></td>
                         {% endif %}
                             
-                        {% if item.localidad %}
+                        <!-- {% if item.localidad %}
                             <td>{{ item.localidad }}</td>
                         {% else %}
                             <td></td>
-                        {% endif %}
+                        {% endif %} -->
                             
                         <!-- <td>{{ item.localidad.seccion }} </td> -->
                         <td>
@@ -115,6 +115,13 @@
                                     <i class="fas fa-list"></i>
                                 </span>
                                 <span class="text">Ver apoyos</span>
+                            </a>
+
+                            <a href="{% url 'apoyos:agregar_apoyos' item.id %}" class="btn btn-info btn-icon-split btn-sm">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-box-open"></i>
+                                </span>
+                                <span class="text">Dar apoyo</span>
                             </a>
                         </td>
                     </tr>

@@ -7,9 +7,10 @@ class ContribuyenteForm(forms.ModelForm):
     class Meta:
         model = Contribuyente
         # campos que muestra el form
-        fields = ("nombre", "ap_paterno", "ap_materno", "genero", "domicilio", "localidad", "telefono", "expediente", "notas_adicionales")
+        fields = ("numero_de_cuenta_predial", "nombre", "ap_paterno", "ap_materno", "genero", "domicilio", "localidad", "telefono", "expediente", "notas_adicionales")
         # etiquetas
         labels = {
+            "numero_de_cuenta_predial": "Número de cuenta predial", 
             "nombre": "Nombre",
             "ap_paterno": "Apellido Paterno",
             "ap_materno": "Apellido Materno",

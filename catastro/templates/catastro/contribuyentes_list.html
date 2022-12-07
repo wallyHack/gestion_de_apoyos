@@ -29,12 +29,13 @@
 
         <table class="table table-bordered table-striped">
             <thead>
-                <td>ID</td>
+                <!-- <td>ID</td> -->
+                <th>NÚMERO DE PREDIAL</th>
                 <th>NOMBRE</th>
                 <th>AP PATERNO</th>
                 <th>AP MATERNO</th>
                 <th>GÉNERO</th>
-                <th>LOCALIDAD</th>
+                <!-- <th>LOCALIDAD</th> -->
                 <!-- <th>EXPEDIENTE</th> -->
                 <!-- <th>NOTAS ADICIONALES</th> -->
                 <th>ACCIONES</th>
@@ -44,7 +45,13 @@
                 
                 {% for item in obj %}
                     <tr>
-                        <td>{{ item.id }}</td>
+                        <!-- <td>{{ item.id }}</td> -->
+                        
+                        {% if item.numero_de_cuenta_predial %}
+                            <td>{{ item.numero_de_cuenta_predial }}</td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}                           
 
                         {% if item.nombre %}
                             <td>{{ item.nombre }}</td>                    
@@ -64,11 +71,11 @@
                             <td></td>
                         {% endif %}
     
-                        {% if item.genero %}
+                        <!-- {% if item.genero %}
                             <td>{{ item.genero }}</td>                    
                         {% else %}
                             <td></td>
-                        {% endif %}
+                        {% endif %} -->
     
                         {% if item.localidad %}
                             <td>{{ item.localidad }}</td>                    

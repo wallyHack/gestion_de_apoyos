@@ -60,52 +60,7 @@
                     
             </tbody>
         </table>
- 
-        <!-- <table
-             id="table"
-             data-toggle="table"
-             data-pagination="true"
-             data-page-size="5"
-             data-search="true"
-             data-show-columns="true"
-             data-show-fullscreen="true"
-             data-show-toggle="true"
-             data-show-export="true"
-             data-click-to-select="true"
-             data-locale="es-MX"
-         >
-            <thead>
-                <th data-field="id" data-sortable="true">Id</th>
-                <th data-field="nombre" data-sortable="true">Nombres</th>
-                <th data-field="seccion" data-sortable="true">Sección</th>
-                <th data-field="tipo" data-sortable="true">Tipo</th>               
-                <th class="all">Acciones</th>
-            </thead>
- 
-            <tbody>               
-                {% for item in obj %}
-                    <tr>
-                        <td>{{ item.id }}</td>
-                        <td>{{ item.nombre }}</td>
-                        <td>{{ item.seccion }}</td> 
-                        <td>{{ item.tipo }}</td>            
-                        
-                        <td>                            
-                            <a href="{% url 'apoyos:localidades_edit' item.id %}" class="btn btn-warning btn-circle"> <i class="far fa-edit"></i> </a>                           
-                            <a href="{% url 'apoyos:localidades_delete' item.id %}" class="btn btn-danger btn-circle"> <i class="fas fa-trash-alt"></i> </a>
-                            <a href="{% url 'apoyos:personas_por_comunidad' item.id %}" class="btn btn-success btn-icon-split btn-sm">
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-user-alt-slash"></i>
-                                </span>
-                                <span class="text">Ver personas</span>
-                            </a>
-                        </td>
-                        
-                    </tr>
-                {% endfor %}
-                    
-            </tbody>
-        </table>        -->
+         
         {% endif %}
     </div>
 </div>    
@@ -116,6 +71,10 @@
     <script>
         // llamamos al plugin datatable de jQuery
         $(document).ready( function () {
+
+            // llamamos a la funcion de listar localidades
+            listarLocalidades();
+
             $('.table').DataTable({
                 "language": {
                     "processing": "Procesando...",
@@ -141,6 +100,20 @@
             });
         });
          
+        // función ajax para listar las localidades
+        function listarLocalidades(){
+            $.ajax({
+                url: "/apoyos/localidades/",
+                type: "get",
+                dataType: "json",
+                success: function(response){
+                    console.log(response);
+                },
+                error: function(error){
+                    console.log(error);
+                }
+            });
+        }
     </script>
 {% endblock js_page %}
     

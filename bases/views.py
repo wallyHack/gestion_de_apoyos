@@ -10,6 +10,7 @@ from django.views.generic.base import TemplateView
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from apoyos.models import Persona, Apoyos, EncargadoRuta, Empleado, Departamento, Localidad, Puesto
+from catastro.models import Contribuyente
 
 # Create your views here.
 class Sin_Privilegios(LoginRequiredMixin, PermissionRequiredMixin):
@@ -58,6 +59,9 @@ def getEstadisticas(request):
     # total de puestos
     puestos = Puesto.objects.all().count()
     
+    # total de contribuyentes
+    contribuyentes = Contribuyente.objects.all().count()
+    
     template_name = "bases/home.html"
     context = {
         'activistas': activistas,
@@ -67,7 +71,7 @@ def getEstadisticas(request):
         'empleados': empleados,
         'departamentos': departamentos,
         'localidades': localidades,
-        'puestos': puestos
+        'contribuyentes': contribuyentes
     }
     
     return render(request, template_name, context)

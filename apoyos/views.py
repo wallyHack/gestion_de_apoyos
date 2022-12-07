@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.core.serializers import serialize
 from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib import messages
@@ -50,13 +51,18 @@ class LocalidadDelete(SuccessMessageMixin, Sin_Privilegios, generic.DeleteView):
     success_url = reverse_lazy("apoyos:localidades_list")
     
 #*********************************************************************************
-
 class PersonaView(Sin_Privilegios, generic.ListView):
     """ vista basada en clase para listar personas"""
     permission_required = "apoyos.view_persona"
     model = Persona
     template_name = "apoyos/personas_list.html"
     context_object_name = "obj"
+    
+    # def get(self, request, *args, **kwargs):
+    #     if request.is_ajax():
+    #         return HttpResponse(serialize('json', self.get_queryset()), 'application/json')
+    #     else:
+    #         return render(request, self.template_name)
     
 class PersonaNew(SuccessMessageMixin, Sin_Privilegios, generic.CreateView):
     """ vista basada en clase para agregar personas"""

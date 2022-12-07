@@ -3,6 +3,13 @@ from django.db import models
 # Create your models here.
 class Contribuyente(models.Model):
     """ modelo de contribuyente """
+    
+    numero_de_cuenta_predial = models.IntegerField(
+        unique=True,
+        null=True,
+        blank=True
+    )
+    
     nombre = models.CharField(max_length=100)
     ap_paterno = models.CharField(
         max_length=100,
