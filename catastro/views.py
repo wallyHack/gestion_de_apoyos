@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Contribuyente
 from bases.views import Sin_Privilegios
 from django.views import generic
@@ -23,7 +23,7 @@ class ContribuyenteNew(SuccessMessageMixin, Sin_Privilegios, generic.CreateView)
     form_class = ContribuyenteForm
     success_message = "Contribuyente agregado satisfactoriamente.."
     success_url = reverse_lazy("catastro:contribuyentes_list")
-    
+        
 class ContribuyenteEdit(SuccessMessageMixin, Sin_Privilegios, generic.UpdateView):
     """ vista basada en clase para actualizar contribuyentes"""
     permission_required = "catastro.change_contribuyente"
