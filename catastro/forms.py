@@ -16,15 +16,15 @@ class ContribuyenteForm(forms.ModelForm):
     telefono = forms.IntegerField(required=True)
     
     # validamos que no haya registros duplicados con el mismo numero de predial
-    def clean_numero_de_cuenta_predial(self):
+    # def clean_numero_de_cuenta_predial(self):
         # extraemos el valor que ingreso el usuario en el campo
-        numero_de_cuenta_predial = self.cleaned_data["numero_de_cuenta_predial"] 
-        existe = Contribuyente.objects.filter(numero_de_cuenta_predial=numero_de_cuenta_predial).exists()
+        # numero_de_cuenta_predial = self.cleaned_data["numero_de_cuenta_predial"] 
+        # existe = Contribuyente.objects.filter(numero_de_cuenta_predial=numero_de_cuenta_predial).exists()
         
-        if existe:
-          raise ValidationError("Ya existe un contribuyentre con este numero de predial..")      
+        # if existe:
+        #   raise ValidationError("Ya existe un contribuyentre con este numero de predial..")      
       
-        return numero_de_cuenta_predial
+        # return numero_de_cuenta_predial
 
     class Meta:
         model = Contribuyente
@@ -41,22 +41,7 @@ class ContribuyenteForm(forms.ModelForm):
             "expediente": "Expediente",
             "notas_adicionales": "Notas Adicionales" 
         }
-        
-    # def clean(self):
-    #     try:
-    #         sc = Contribuyente.objects.get(
-    #             numero_de_cuenta_predial = self.cleaned_data['numero_de_cuenta_predial']
-    #         )
-            
-    #         if not self.instance.pk:
-    #             raise forms.ValidationError("El registro de contribuyente ya existe")
-    #         elif self.instance.pk != sc.pk:
-    #             raise forms.ValidationError("Cambio no permitido, coincide con otro registro")
-            
-    #     except Contribuyente.DoesNotExist:
-    #         pass            
-    #     return self.cleaned_data
-        
+                    
     def __init__(self, *args, **kwargs):
         """ método que itera los campos del form y agrega la clase form-control de bootstrap a los input"""
         super().__init__(*args, **kwargs)
@@ -64,3 +49,18 @@ class ContribuyenteForm(forms.ModelForm):
             self.fields[field].widget.attrs.update({
                 'class': 'form-control'
             })
+            
+    def clean(self):
+        try:
+            sc = Contribuyente.objects.get(
+                numero_de_cuenta_predial = self.cleaned_data['numero_de_cuenta_predial']
+            )
+            
+            if not self.instance.pk:
+                raise ValidationError("Ya existe un contribuyente con este numero de predial..")
+            elif self.instance.pk != sc.pk:
+                raise forms.ValidationError("Cambio no permitido, coincide con otro registro")
+            
+        except Contribuyente.DoesNotExist:
+            pass            
+        return self.cleaned_data
