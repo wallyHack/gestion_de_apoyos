@@ -20,7 +20,7 @@
                             </div>                        
                             <div class="dropdown-divider"></div>  
                             
-                            <div class="col">
+                            <div class="col mb-3">
                                 <div class="card" style="width: 64rem;">
                                     <img src="{% static 'base/img/empleados-pinos.svg' %}" class="card-img-top" alt="..." height="200px" width="200px">
                                     <div class="card-body">
@@ -34,19 +34,19 @@
                             
                             <!-- fila 1 -->
                             <div class="row mb-3">
-                                <div class="col-md-4">
+                                <div class="col-md-4 text-uppercase font-weight-bold">
                                     {{ form.nombre.label }}:
                                     <div class="input-group">                                        
                                         {{ form.nombre }}
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4 text-uppercase font-weight-bold">
                                     {{ form.ap_paterno.label }}:
                                     <div class="input-group">
                                         {{ form.ap_paterno }}
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4 text-uppercase font-weight-light">
                                     {{ form.ap_materno.label }}:
                                     <div class="input-group">
                                         {{ form.ap_materno }}
@@ -56,21 +56,21 @@
 
                             <!-- fila 2 -->
                             <div class="row mb-3">
-                                <div class="col-md-4">
+                                <div class="col-md-4 text-uppercase font-weight-bold">
                                     {{ form.tipo_de_empleado.label }}:
                                     <div class="input-group">
                                         {{ form.tipo_de_empleado }}
                                     </div>
                                 </div>
 
-                                <div class="col-md-4">
+                                <div class="col-md-4 text-uppercase font-weight-light">
                                     {{ form.domicilio.label }}:
                                     <div class="input-group">
                                         {{ form.domicilio }}
                                     </div>
                                 </div>
                                 
-                                <div class="col-md-4">
+                                <div class="col-md-4 text-uppercase font-weight-light">
                                     {{ form.telefono.label }}:
                                     <div class="input-group">
                                         {{ form.telefono }}
@@ -81,21 +81,21 @@
 
                             <!-- fila 3 -->
                             <div class="row mb-3">
-                                <div class="col-md-4">
+                                <div class="col-md-4 text-uppercase font-weight-bold">
                                     {{ form.genero.label }}:
                                     <div class="input-group">
                                         {{ form.genero }}
                                     </div>
                                 </div>
 
-                                <div class="col-md-4">
+                                <div class="col-md-4 text-uppercase font-weight-bold">
                                     {{ form.status.label }}:
                                     <div class="input-group">
                                         {{ form.status }}
                                     </div>
                                 </div>
 
-                                <div class="col-md-4">
+                                <div class="col-md-4 text-uppercase font-weight-bold">
                                     {{ form.departamento.label }}:
                                     <div class="input-group">
                                         {{ form.departamento }}
@@ -105,13 +105,13 @@
 
                             <!-- fila 4 -->
                             <div class="row mb-3">
-                                <div class="col-md-6">
+                                <div class="col-md-6 text-uppercase font-weight-bold">
                                     {{ form.puesto.label }}:
                                     <div class="input-group">
                                         {{ form.puesto }}
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 text-uppercase font-weight-light">
                                     {{ form.sueldo.label }}:
                                     <div class="input-group">
                                         {{ form.sueldo }}

@@ -47,7 +47,10 @@ class Localidad(models.Model):
 
 class Puesto(models.Model):
     """ modelo de Puesto de trabajo"""
-    nombre = models.CharField(max_length=200)
+    nombre = models.CharField(
+        max_length=200,
+        unique=True    
+    )
 
     def __str__(self):
         """ descripcion del puesto"""
@@ -173,7 +176,11 @@ class Persona(models.Model):
 
 class Departamento(models.Model):
     """ modelo departamento """
-    nombre = models.CharField(max_length=100)
+    nombre = models.CharField(    
+        max_length=100,
+        unique=True
+    )
+    
     titular = models.CharField(
         max_length=200,
         blank=True,

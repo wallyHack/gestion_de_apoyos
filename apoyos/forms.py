@@ -2,6 +2,7 @@
 from django.contrib.admin.widgets import AutocompleteSelect
 from django.contrib import admin
 from django import forms
+from django.core.exceptions import ValidationError
 from .models import Apoyos, Departamento, Localidad, Persona, EncargadoRuta, Puesto, Empleado
 
 class LocalidadesForm(forms.ModelForm):
@@ -72,7 +73,8 @@ class EncargadosRutaForm(forms.ModelForm):
         
 class PuestosForm(forms.ModelForm):
     """ form para puestos"""
-    
+    # validaciones en el servidor
+    nombre = forms.CharField(required=True)
     class Meta:
         model = Puesto
         # campos que muestra el form
@@ -88,10 +90,28 @@ class PuestosForm(forms.ModelForm):
             self.fields[field].widget.attrs.update({
                 'class': 'form-control'
             })
+    
+    def clean(self):
+        try:
+            sc = Puesto.objects.get(
+                nombre=self.cleaned_data['nombre'].upper()
+            )
+            
+            if not self.instance.pk:
+                raise forms.ValidationError("Ya existe un puesto de trabajo con este nombre..")
+            elif self.instance.pk != sc.pk:
+                raise forms.ValidationError("Cambio no permitido, coincide con otro registro..")
+        
+        except Puesto.DoesNotExist:
+            pass
+        return self.cleaned_data
                     
 class DepartamentoForm(forms.ModelForm):
     """ form para departamentos"""
-
+    # validaciones en el servidor
+    nombre = forms.CharField(required=True)
+    titular = forms.CharField(required=True)
+    
     class Meta:
         """Meta definition for DepartamentoForm"""
         model = Departamento        
@@ -113,9 +133,26 @@ class DepartamentoForm(forms.ModelForm):
                 'class': 'form-control'
             })
             
+    def clean(self):
+        try:
+            sc = Departamento.objects.get(
+                nombre=self.cleaned_data['nombre'].upper()                
+            )
+            if not self.instance.pk:
+                raise forms.ValidationError("Ya existe un departamento con este nombre..")
+            elif self.instance.pk != sc.pk:
+                raise forms.ValidationError("Cambio no permitido, coincide con otro registro..")
+                
+        except Departamento.DoesNotExist:
+            pass
+        return self.changed_data
+            
 class EmpleadosForm(forms.ModelForm):
     """ form para empleados"""
-
+    # validaciones en el servidor
+    nombre = forms.CharField(required=True)
+    ap_paterno = forms.CharField(required=True)
+ 
     class Meta:
         """Meta definition for Empleadosform"""
 
@@ -125,7 +162,7 @@ class EmpleadosForm(forms.ModelForm):
         'genero', 'status', 'departamento', 'puesto', 'sueldo')
         labels = {
             'nombre': 'Nombre', 'ap_paterno': 'Apellido Paterno', 'tipo_de_empleado': 'Tipo', 'ap_materno': 'Apellido Materno',
-            'domicilio': 'Domicilio', 'telefono':'Teléfono', 'genero': 'Genéro', 'status': 'Status',
+            'domicilio': 'Domicilio', 'telefono':'Teléfono', 'genero': 'Genéro', 'status': 'Estatus',
             'departamento': 'Departamento', 'puesto': 'Puesto', 'sueldo': 'Sueldo'
         }
                 

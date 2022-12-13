@@ -36,17 +36,17 @@
                             
                             <!-- primer fila -->
                             <div class="row mt-3">                                
-                                <div class="col-4">
+                                <div class="col-4 text-uppercase font-weight-bold">
                                     {{ form.nombre.label }}:
                                     <div class="input-group my-1">{{ form.nombre }}</div>
                                 </div>
 
-                                <div class="col-4">
+                                <div class="col-4 text-uppercase font-weight-bold">
                                     {{ form.titular.label }}:
                                     <div class="input-group my-1">{{ form.titular }}</div>
                                 </div>
 
-                                <div class="col-4">
+                                <div class="col-4 text-uppercase font-weight-light">
                                     {{ form.telefono.label }}:
                                     <div class="input-group my-1">{{ form.telefono }}</div>
                                 </div>
@@ -54,12 +54,12 @@
 
                             <!-- segunda fila -->
                             <div class="row my-3">                                                                
-                                <div class="col-6">
+                                <div class="col-6 text-uppercase font-weight-light">
                                     {{ form.email.label }}:
                                     <div class="input-group my-1">{{ form.email }}</div>
                                 </div>    
                                 
-                                <div class="col-6">
+                                <div class="col-6 text-uppercase font-weight-light">
                                     {{ form.numero_de_empleados.label }}:
                                     <div class="input-group my-1">{{ form.numero_de_empleados }}</div>
                                 </div>    
@@ -81,5 +81,25 @@
         </div>
    </form>  
 {% endblock page_content %}    
-{% block js_page %} {% endblock js_page %}
+{% block js_page %}
+    <script>
+        {% if form.errors %}
+            //si el formulario tiene errores
+            {% for field in form %}
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                        mensaje('{{ error|escape }}', 'red')
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                mensaje('{{ error|escape }}', 'red')
+            {% endfor %}
+        {% endif %}
+    </script>
+{% endblock js_page %}
     

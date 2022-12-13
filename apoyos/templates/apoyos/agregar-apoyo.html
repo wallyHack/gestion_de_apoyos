@@ -20,19 +20,19 @@
                                                                             
                             <!-- fila 1 -->
                             <div class="row mb-3">
-                                <div class="col-md-4">
+                                <div class="col-md-4 text-uppercase font-weight-bold">
                                     {{ form.tipo.label }}:
                                     <div class="input-group">                                        
                                         {{ form.tipo }}
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4 text-uppercase font-weight-bold">
                                     {{ form.descripcion.label }}:
                                     <div class="input-group">
                                         {{ form.descripcion }}
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4 text-uppercase font-weight-bold">
                                     <!-- {{ form.fecha_de_entrega.label }}:
                                     <div class="input-group">
                                         {{ form.fecha_de_entrega }}
@@ -46,14 +46,14 @@
 
                             <!-- fila 2 -->
                             <div class="row mb-3">
-                                <div class="col-md-6">
+                                <div class="col-md-6 text-uppercase font-weight-light">
                                     {{ form.foto_de_comprobacion.label }}:
                                     <div class="input-group">
                                         {{ form.foto_de_comprobacion }}
                                     </div>
                                 </div>
                                 
-                                <div class="col-md-6">
+                                <div class="col-md-6 text-uppercase font-weight-light">
                                     {{ form.notas_adicionales.label }}:
                                     <div class="input-group">
                                         {{ form.notas_adicionales }}
@@ -64,7 +64,7 @@
                             <!-- fila 3 -->
                             <div class="row mb-3">
                                 
-                                <div class="col-md-6">
+                                <div class="col-md-6 text-uppercase font-weight-bold">
                                     <!-- {{ form.persona.label }}:
                                     <div class="input-group">
                                         {{ form.persona }}
@@ -84,12 +84,14 @@
                                     
                                 </div>
 
-                                <div class="col-md-6">
+                                <div class="col-md-6 text-uppercase font-weight-light">
                                     <!-- {{ form.encargado_de_ruta.label }}:
                                     <div class="input-group">
                                         {{ form.encargado_de_ruta }}
                                     </div> -->  
-                                    <label for="id_encargado_de_ruta">Encargado de Ruta:</label> 
+                                    <div class="col-12">
+                                        <label for="id_encargado_de_ruta">Encargado de Ruta:</label> 
+                                    </div>
                                     <div class="input-group">                                       
                                         <select name="encargado_de_ruta" id="id_encargado_de_ruta" class="form-control" required>                                        
                                             <option value="0" selected>Seleccione el encargado de ruta..</option>

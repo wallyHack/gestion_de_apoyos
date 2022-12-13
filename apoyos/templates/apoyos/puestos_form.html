@@ -25,18 +25,15 @@
                                 <div class="card" style="width: 29rem;">
                                     <img src="{% static 'base/img/jobs.svg' %}" class="card-img-top" alt="..." height="200px" width="200px">
                                     <div class="card-body">
-                                      <h5 class="card-title text-md-center">Puestos de Trabajo - Presidencia Municipal</h5>
-                                      <!-- <p class="card-text">Toby es un perro muy jugueton y fuerte. Le gusta pasear todas las mañanas
-                                        y conocer nuevos amigos para convivir con ellos</p> -->
-                                      <!-- <a href="#" class="btn btn-primary">Vamos...</a> -->
+                                      <h5 class="card-title text-md-center">Puestos de Trabajo - Presidencia Municipal</h5>                                      
                                     </div>
                                 </div>
                             </div>
                             
                             <!-- primer fila -->
                             <div class="row my-3">                                
-                                <div class="col-md-12">
-                                    {{ form.nombre.label }}
+                                <div class="col-md-12 text-uppercase font-weight-bold">
+                                    {{ form.nombre.label }}:
                                     <div class="input-group mt-1">{{ form.nombre }}</div>
                                 </div>
                             </div>
@@ -57,5 +54,26 @@
         </div>
    </form>  
 {% endblock page_content %}    
-{% block js_page %} {% endblock js_page %}
+{% block js_page %}
+    <script>
+        {% if form.errors %}
+            //si el formulario tiene errores
+            {% for field in form %}
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                        mensaje('{{ error|escape }}', 'red')
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                mensaje('{{ error|escape }}', 'red')
+            {% endfor %}
+        {% endif %}
+    </script>
+{% endblock js_page %}
+
     
