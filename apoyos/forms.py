@@ -175,8 +175,8 @@ class EmpleadosForm(forms.ModelForm):
             })
                                 
         # al select y/o combo box de departamento y puesto le agregamos un valor por defecto
-        self.fields['departamento'].empty_label = 'Seleccione departamento..'
-        self.fields['puesto'].empty_label = 'Seleccione el puesto..'
+        self.fields['departamento'].empty_label = 'Seleccione un departamento..'
+        self.fields['puesto'].empty_label = 'Seleccione un puesto..'
         
        
 
