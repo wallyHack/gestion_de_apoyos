@@ -5,7 +5,7 @@ from django.db import models
 class Localidad(models.Model):
     """ modelo localidad"""
     nombre = models.CharField(
-        max_length=200
+        max_length=200   
     )
 
     seccion = models.CharField(
@@ -324,7 +324,7 @@ class Empleado(models.Model):
 class EncargadoRuta(models.Model):
     """ modelo para el encargado de ruta"""
     nombres = models.CharField(
-        max_length=100
+        max_length=100,
     )
 
     ap_paterno = models.CharField(

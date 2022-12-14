@@ -7,6 +7,9 @@ from .models import Apoyos, Departamento, Localidad, Persona, EncargadoRuta, Pue
 
 class LocalidadesForm(forms.ModelForm):
     """ form para Localidades"""
+    # validaciones en el servidor
+    nombre = forms.CharField(required=True)
+    
     class Meta:
         model = Localidad
         #fields = '__all__'
@@ -27,6 +30,11 @@ class LocalidadesForm(forms.ModelForm):
             
 class PersonasForm(forms.ModelForm):
     """ form para personas"""
+    # validaciones en el servidor
+    curp = forms.CharField(required=True)
+    nombres = forms.CharField(required=True)
+    ap_paterno = forms.CharField(required=True)
+    
     class Meta:
         model = Persona
         # campos que muestra el formulario
@@ -46,7 +54,22 @@ class PersonasForm(forms.ModelForm):
             })
             
         # al select y/o combo box de localidades le agregamos un valor por defecto
-        self.fields['localidad'].empty_label = 'Seleccione localidad..'             
+        self.fields['localidad'].empty_label = 'Seleccione localidad..'  
+        
+    def clean(self):
+        try:
+            sc = Persona.objects.get(
+                curp=self.cleaned_data['curp'].upper()
+            )
+            
+            if not self.instance.pk:
+                raise forms.ValidationError("Ya existe una persona con esta CURP..")
+            elif self.instance.pk != sc.pk:
+                raise forms.ValidationError("Cambio no permitido, coincide con otro registro..")
+            
+        except Persona.DoesNotExist:
+            pass
+        return self.cleaned_data          
             
 class EncargadosRutaForm(forms.ModelForm):
     """ form para encargados de ruta"""
