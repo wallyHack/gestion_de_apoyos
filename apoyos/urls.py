@@ -6,7 +6,7 @@ from .views import ApoyosView, LocalidadView, LocalidadNew, LocalidadEdit, Local
     PuestoView, PuestoNew, PuestoEdit, PuestoDelete, \
     DepartamentoView, DepartamentoNew, DepartamentoEdit, DepartamentoDelete, \
     EmpleadoView, EmpleadoNew, EmpleadoEdit, EmpleadoDelete, empleados_por_departamento, empleados_por_puesto, \
-    ApoyosView, ApoyosNew, ApoyosEdit, ApoyosDelete, apoyos_por_persona, agregarApoyos
+    ApoyosView, ApoyosNew, ApoyosEdit, ApoyosDelete, apoyos_por_persona, agregarApoyos, buscarPersona
 
 urlpatterns = [
     # crud localidades
@@ -72,4 +72,7 @@ urlpatterns = [
     
     # apoyos que ha recibido cada persona
     path('apoyos/apoyos-recibidos/<int:id>', apoyos_por_persona, name='apoyos-recibidos'),
+    
+    #búsqueda de persona por CURP
+    #path('apoyos/buscar-persona/<int:id>', buscarPersona, name='buscar-persona'),
 ]

@@ -1,5 +1,4 @@
 
-
 {% extends 'base/base.html' %}
 
 {% block page_content %}
@@ -7,116 +6,111 @@
  <div class="card shadow mb-4">
     <!-- Card Header - Dropdown -->
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-        <h6 class="m-0 font-weight-bold text-primary">Listado de Contribuyentes - Pinos, Zacatecas</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Persona - (Activista/Activado) de Pinos, Zacatecas</h6>
         <div class="dropdown no-arrow">
             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                <div class="dropdown-header">Acciones:</div>
-                    <a class="dropdown-item" href="{% url 'catastro:contribuyentes_new' %}"> <i class="fa fa-calendar-plus"></i>Nuevo</a>
-                    <a class="dropdown-item" href="#"> <i class="fa fa-search-plus"></i>Buscar</a>
+                <!-- <div class="dropdown-header">Acciones:</div> -->
+                    <!-- <a class="dropdown-item" href="{% url 'apoyos:localidades_new' %}"> <i class="fa fa-calendar-plus"></i>Nueva</a> -->
                     <!-- <a class="dropdown-item" href="#">Another action</a> -->
-                <div class="dropdown-divider"></div>
+                <!-- <div class="dropdown-divider"></div> -->
                 <!-- <a class="dropdown-item" href="#">Something else here</a> -->
             </div>
         </div>
     </div>
-
+    <!-- Card Body -->
     <div class="card-body">
+
+        <!-- búsqueda de personas con datatables -->       
         {% if not obj %}
-            <div class="alert alert-info">No Hay Contribuyentes</div>           
+            <div class="alert alert-info">No Hay Personas</div>           
         {% else %}
 
+        <!-- listado con datatables -->
         <table class="table table-bordered table-striped">
             <thead>
-                <!-- <td>ID</td> -->
-                <th>NÚMERO DE PREDIAL</th>
-                <th>NOMBRE</th>
+                <th>CURP</th>
+                <th>NOMBRES</th>
                 <th>AP PATERNO</th>
-                <th>AP MATERNO</th>
-                <th>GÉNERO</th>
                 <!-- <th>LOCALIDAD</th> -->
-                <!-- <th>EXPEDIENTE</th> -->
-                <!-- <th>NOTAS ADICIONALES</th> -->
+                <!-- <th>SECCIÓN</th> -->
                 <th>ACCIONES</th>
             </thead>
-    
+
             <tbody>
                 
                 {% for item in obj %}
                     <tr>
-                        <!-- <td>{{ item.id }}</td> -->                       
-                        {% if item.numero_de_cuenta_predial %}
-                            <td>{{ item.numero_de_cuenta_predial }}</td>
-                        {% else %}
-                            <td></td>
-                        {% endif %}                           
-
-                        {% if item.nombre %}
-                            <td>{{ item.nombre }}</td>                    
-                        {% else %}
-                            <td></td>
-                        {% endif %}
-                                                
-                        {% if item.ap_paterno %}
-                            <td>{{ item.ap_paterno }}</td>
-                        {% else %}
-                            <td></td>
-                        {% endif %}
-                                                                                       
-                        {% if item.ap_materno %}
-                            <td>{{ item.ap_materno }}</td>                    
-                        {% else %}
-                            <td></td>
-                        {% endif %}
-    
-                        <!-- {% if item.genero %}
-                            <td>{{ item.genero }}</td>                    
-                        {% else %}
-                            <td></td>
-                        {% endif %} -->
-    
-                        {% if item.localidad %}
-                            <td>{{ item.localidad }}</td>                    
-                        {% else %} 
-                            <td></td>
-                        {% endif %}
                         
-                        <!-- {% if item.expediente %}
-                            <td>{{ item.expediente }}</td>                            
-                        {% else %} 
+                        {% if item.curp %}
+                            <td>{{ item.curp }}</td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+
+                        
+                        {% if item.nombres %}
+                            <td>{{ item.nombres }}</td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                            
+                        
+                        {% if item.ap_paterno %}
+                            <td>{{ item.ap_materno }}</td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                            
+                        <!-- {% if item.localidad %}
+                            <td>{{ item.localidad }}</td>
+                        {% else %}
                             <td></td>
                         {% endif %} -->
                             
-                            
-                        <!-- {% if item.notas_adicionales %}
-                            <td>{{ item.notas_adicionales }}</td>
-                        {% else %} 
-                            <td></td>
-                        {% endif %} -->
-                            
+                        <!-- <td>{{ item.localidad.seccion }} </td> -->
                         <td>
-                            <a href="{% url 'catastro:contribuyentes_edit' item.id %}" class="btn btn-warning btn-circle"><i class="far fa-edit"></i></a>                           
-                            <a href="{% url 'catastro:contribuyentes_delete' item.id %}" class="btn btn-danger btn-circle"><i class="fas fa-trash-alt"></i> </a>                            
+                            <a href="{% url 'apoyos:personas_edit' item.id %}" class="btn btn-warning btn-circle"><i class="far fa-edit"></i></a>                           
+                            <a href="{% url 'apoyos:personas_delete' item.id %}" class="btn btn-danger btn-circle"><i class="fas fa-trash-alt"></i> </a>
+
+                            <a href="{% url 'apoyos:apoyos-recibidos' item.id %}" class="btn btn-success btn-icon-split btn-sm">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-list"></i>
+                                </span>
+                                <span class="text">Ver apoyos</span>
+                            </a>
+
+                            <a href="{% url 'apoyos:agregar_apoyos' item.id %}" class="btn btn-info btn-icon-split btn-sm">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-box-open"></i>
+                                </span>
+                                <span class="text">Dar apoyo</span>
+                            </a>
                         </td>
-                    </tr>                                     
+                    </tr>
                 {% endfor %}
                     
             </tbody>
+
         </table>
+                 
         {% endif %}
-        
     </div>
-</div>
+</div>    
+
 {% endblock page_content %}
 
 {% block js_page %}
     <script>
         // llamamos al plugin datatable de jQuery
         $(document).ready( function () {
+
+            // llamamos a la funcion de listar localidades
+            listarLocalidades();
+
             $('.table').DataTable({
-                "pageLength": 8,
                 "language": {
                     "processing": "Procesando...",
                     "lengthMenu": "Mostrar _MENU_ registros",
@@ -136,11 +130,15 @@
                     "aria": {
                         "sortAscending": ": Activar para ordenar la columna de manera ascendente",
                         "sortDescending": ": Activar para ordenar la columna de manera descendente"
-                    },                    
+                    }
                 }
             });
         });
-         
+        
     </script>
 {% endblock js_page %}
+    
+
+
+
 

@@ -423,7 +423,14 @@ def agregarApoyos(request, id):
     
     return render(request, 'apoyos/agregar-apoyo.html', data)
     
+def buscarPersona(request, curp):
+    """ buscamos una persona por su CURP"""
+    persona = Persona.objects.filter(curp=curp).first()
+    template_name = 'apoyos/buscar_persona.html'
+    context = {'obj': persona}
     
+    return render(request, template_name, context)
+
 
 
 
